@@ -1,0 +1,762 @@
+{
+  "RED": [
+    {
+      "id": "RED-1",
+      "team_id": "RED",
+      "number": 1,
+      "name": "Tomasz Wrona",
+      "short_name": "Wrona",
+      "position": "GK",
+      "nationality": "POL",
+      "age": 23,
+      "height_cm": 190,
+      "foot": "left",
+      "starter": true,
+      "attrs": {
+        "pace": 50,
+        "passing": 61,
+        "finishing": 17,
+        "defending": 74,
+        "dribbling": 42,
+        "aerial": 73
+      }
+    },
+    {
+      "id": "RED-2",
+      "team_id": "RED",
+      "number": 2,
+      "name": "Callum Reid",
+      "short_name": "Reid",
+      "position": "RB",
+      "nationality": "SCO",
+      "age": 25,
+      "height_cm": 192,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 69,
+        "passing": 63,
+        "finishing": 58,
+        "defending": 72,
+        "dribbling": 58,
+        "aerial": 56
+      }
+    },
+    {
+      "id": "RED-4",
+      "team_id": "RED",
+      "number": 4,
+      "name": "Mateo Duarte",
+      "short_name": "Duarte",
+      "position": "CB",
+      "nationality": "POR",
+      "age": 32,
+      "height_cm": 173,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 66,
+        "passing": 80,
+        "finishing": 76,
+        "defending": 90,
+        "dribbling": 76,
+        "aerial": 91
+      }
+    },
+    {
+      "id": "RED-5",
+      "team_id": "RED",
+      "number": 5,
+      "name": "Henrik Dahl",
+      "short_name": "Dahl",
+      "position": "CB",
+      "nationality": "DEN",
+      "age": 21,
+      "height_cm": 168,
+      "foot": "left",
+      "starter": true,
+      "attrs": {
+        "pace": 56,
+        "passing": 60,
+        "finishing": 56,
+        "defending": 70,
+        "dribbling": 56,
+        "aerial": 71
+      }
+    },
+    {
+      "id": "RED-3",
+      "team_id": "RED",
+      "number": 3,
+      "name": "Yannick Laurent",
+      "short_name": "Laurent",
+      "position": "LB",
+      "nationality": "FRA",
+      "age": 32,
+      "height_cm": 187,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 59,
+        "passing": 66,
+        "finishing": 62,
+        "defending": 76,
+        "dribbling": 62,
+        "aerial": 60
+      }
+    },
+    {
+      "id": "RED-6",
+      "team_id": "RED",
+      "number": 6,
+      "name": "Pieter de Wit",
+      "short_name": "de Wit",
+      "position": "CDM",
+      "nationality": "NED",
+      "age": 26,
+      "height_cm": 180,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 63,
+        "passing": 86,
+        "finishing": 70,
+        "defending": 84,
+        "dribbling": 70,
+        "aerial": 68
+      }
+    },
+    {
+      "id": "RED-8",
+      "team_id": "RED",
+      "number": 8,
+      "name": "Marco Bellini",
+      "short_name": "Bellini",
+      "position": "CM",
+      "nationality": "ITA",
+      "age": 32,
+      "height_cm": 187,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 60,
+        "passing": 80,
+        "finishing": 64,
+        "defending": 65,
+        "dribbling": 64,
+        "aerial": 62
+      }
+    },
+    {
+      "id": "RED-14",
+      "team_id": "RED",
+      "number": 14,
+      "name": "Elias Brenner",
+      "short_name": "Brenner",
+      "position": "CM",
+      "nationality": "AUT",
+      "age": 24,
+      "height_cm": 173,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 68,
+        "passing": 73,
+        "finishing": 56,
+        "defending": 57,
+        "dribbling": 56,
+        "aerial": 54
+      }
+    },
+    {
+      "id": "RED-7",
+      "team_id": "RED",
+      "number": 7,
+      "name": "Luca Moretti",
+      "short_name": "Moretti",
+      "position": "RW",
+      "nationality": "ITA",
+      "age": 28,
+      "height_cm": 176,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 94,
+        "passing": 65,
+        "finishing": 75,
+        "defending": 61,
+        "dribbling": 98,
+        "aerial": 58
+      }
+    },
+    {
+      "id": "RED-9",
+      "team_id": "RED",
+      "number": 9,
+      "name": "Jonas Falk",
+      "short_name": "Falk",
+      "position": "ST",
+      "nationality": "GER",
+      "age": 32,
+      "height_cm": 193,
+      "foot": "left",
+      "starter": true,
+      "attrs": {
+        "pace": 82,
+        "passing": 59,
+        "finishing": 69,
+        "defending": 55,
+        "dribbling": 54,
+        "aerial": 96
+      }
+    },
+    {
+      "id": "RED-11",
+      "team_id": "RED",
+      "number": 11,
+      "name": "Kofi Asante",
+      "short_name": "Asante",
+      "position": "LW",
+      "nationality": "GHA",
+      "age": 26,
+      "height_cm": 180,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 79,
+        "passing": 76,
+        "finishing": 87,
+        "defending": 73,
+        "dribbling": 84,
+        "aerial": 70
+      }
+    },
+    {
+      "id": "RED-13",
+      "team_id": "RED",
+      "number": 13,
+      "name": "Rory Kavanagh",
+      "short_name": "Kavanagh",
+      "position": "GK",
+      "nationality": "IRL",
+      "age": 21,
+      "height_cm": 187,
+      "foot": "left",
+      "starter": false,
+      "attrs": {
+        "pace": 49,
+        "passing": 60,
+        "finishing": 16,
+        "defending": 73,
+        "dribbling": 41,
+        "aerial": 72
+      }
+    },
+    {
+      "id": "RED-15",
+      "team_id": "RED",
+      "number": 15,
+      "name": "Bastien Leroy",
+      "short_name": "Leroy",
+      "position": "CB",
+      "nationality": "FRA",
+      "age": 27,
+      "height_cm": 168,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 58,
+        "passing": 64,
+        "finishing": 60,
+        "defending": 74,
+        "dribbling": 60,
+        "aerial": 75
+      }
+    },
+    {
+      "id": "RED-16",
+      "team_id": "RED",
+      "number": 16,
+      "name": "Arda Kaplan",
+      "short_name": "Kaplan",
+      "position": "CM",
+      "nationality": "TUR",
+      "age": 28,
+      "height_cm": 180,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 65,
+        "passing": 82,
+        "finishing": 74,
+        "defending": 75,
+        "dribbling": 74,
+        "aerial": 72
+      }
+    },
+    {
+      "id": "RED-17",
+      "team_id": "RED",
+      "number": 17,
+      "name": "Diego Salcedo",
+      "short_name": "Salcedo",
+      "position": "FW",
+      "nationality": "ESP",
+      "age": 33,
+      "height_cm": 175,
+      "foot": "left",
+      "starter": false,
+      "attrs": {
+        "pace": 70,
+        "passing": 58,
+        "finishing": 69,
+        "defending": 55,
+        "dribbling": 54,
+        "aerial": 52
+      }
+    },
+    {
+      "id": "RED-19",
+      "team_id": "RED",
+      "number": 19,
+      "name": "Theo Lindqvist",
+      "short_name": "Lindqvist",
+      "position": "ST",
+      "nationality": "SWE",
+      "age": 19,
+      "height_cm": 173,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 84,
+        "passing": 63,
+        "finishing": 73,
+        "defending": 59,
+        "dribbling": 58,
+        "aerial": 73
+      }
+    },
+    {
+      "id": "RED-20",
+      "team_id": "RED",
+      "number": 20,
+      "name": "Joel Ahonen",
+      "short_name": "Ahonen",
+      "position": "RB",
+      "nationality": "FIN",
+      "age": 27,
+      "height_cm": 168,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 59,
+        "passing": 66,
+        "finishing": 62,
+        "defending": 76,
+        "dribbling": 62,
+        "aerial": 60
+      }
+    },
+    {
+      "id": "RED-22",
+      "team_id": "RED",
+      "number": 22,
+      "name": "Ivo Petrov",
+      "short_name": "Petrov",
+      "position": "CM",
+      "nationality": "BUL",
+      "age": 32,
+      "height_cm": 175,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 56,
+        "passing": 72,
+        "finishing": 56,
+        "defending": 57,
+        "dribbling": 56,
+        "aerial": 54
+      }
+    }
+  ],
+  "WHI": [
+    {
+      "id": "WHI-1",
+      "team_id": "WHI",
+      "number": 1,
+      "name": "Mikkel Sørensen",
+      "short_name": "Sørensen",
+      "position": "GK",
+      "nationality": "DEN",
+      "age": 26,
+      "height_cm": 176,
+      "foot": "left",
+      "starter": true,
+      "attrs": {
+        "pace": 46,
+        "passing": 57,
+        "finishing": 13,
+        "defending": 70,
+        "dribbling": 38,
+        "aerial": 69
+      }
+    },
+    {
+      "id": "WHI-2",
+      "team_id": "WHI",
+      "number": 2,
+      "name": "Adrien Fournier",
+      "short_name": "Fournier",
+      "position": "RB",
+      "nationality": "FRA",
+      "age": 29,
+      "height_cm": 188,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 65,
+        "passing": 78,
+        "finishing": 74,
+        "defending": 88,
+        "dribbling": 74,
+        "aerial": 72
+      }
+    },
+    {
+      "id": "WHI-5",
+      "team_id": "WHI",
+      "number": 5,
+      "name": "Stefan Vuković",
+      "short_name": "Vuković",
+      "position": "CB",
+      "nationality": "SRB",
+      "age": 24,
+      "height_cm": 181,
+      "foot": "left",
+      "starter": true,
+      "attrs": {
+        "pace": 69,
+        "passing": 63,
+        "finishing": 58,
+        "defending": 72,
+        "dribbling": 58,
+        "aerial": 73
+      }
+    },
+    {
+      "id": "WHI-6",
+      "team_id": "WHI",
+      "number": 6,
+      "name": "Ollie Grant",
+      "short_name": "Grant",
+      "position": "CB",
+      "nationality": "ENG",
+      "age": 24,
+      "height_cm": 176,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 59,
+        "passing": 66,
+        "finishing": 62,
+        "defending": 76,
+        "dribbling": 62,
+        "aerial": 77
+      }
+    },
+    {
+      "id": "WHI-3",
+      "team_id": "WHI",
+      "number": 3,
+      "name": "Sam Whitaker",
+      "short_name": "Whitaker",
+      "position": "LB",
+      "nationality": "ENG",
+      "age": 29,
+      "height_cm": 183,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 55,
+        "passing": 58,
+        "finishing": 54,
+        "defending": 81,
+        "dribbling": 54,
+        "aerial": 52
+      }
+    },
+    {
+      "id": "WHI-8",
+      "team_id": "WHI",
+      "number": 8,
+      "name": "Lukas Hofer",
+      "short_name": "Hofer",
+      "position": "CDM",
+      "nationality": "AUT",
+      "age": 30,
+      "height_cm": 183,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 56,
+        "passing": 72,
+        "finishing": 56,
+        "defending": 70,
+        "dribbling": 56,
+        "aerial": 54
+      }
+    },
+    {
+      "id": "WHI-18",
+      "team_id": "WHI",
+      "number": 18,
+      "name": "Ruben Castillo",
+      "short_name": "Castillo",
+      "position": "CDM",
+      "nationality": "ESP",
+      "age": 24,
+      "height_cm": 183,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 58,
+        "passing": 76,
+        "finishing": 60,
+        "defending": 74,
+        "dribbling": 60,
+        "aerial": 58
+      }
+    },
+    {
+      "id": "WHI-7",
+      "team_id": "WHI",
+      "number": 7,
+      "name": "Emil Nyström",
+      "short_name": "Nyström",
+      "position": "RW",
+      "nationality": "SWE",
+      "age": 28,
+      "height_cm": 188,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 81,
+        "passing": 80,
+        "finishing": 91,
+        "defending": 77,
+        "dribbling": 88,
+        "aerial": 74
+      }
+    },
+    {
+      "id": "WHI-10",
+      "team_id": "WHI",
+      "number": 10,
+      "name": "Andrej Novak",
+      "short_name": "Novak",
+      "position": "CAM",
+      "nationality": "CRO",
+      "age": 24,
+      "height_cm": 181,
+      "foot": "right",
+      "starter": true,
+      "attrs": {
+        "pace": 70,
+        "passing": 96,
+        "finishing": 60,
+        "defending": 61,
+        "dribbling": 72,
+        "aerial": 58
+      }
+    },
+    {
+      "id": "WHI-17",
+      "team_id": "WHI",
+      "number": 17,
+      "name": "Jakub Hrubý",
+      "short_name": "Hrubý",
+      "position": "LW",
+      "nationality": "CZE",
+      "age": 31,
+      "height_cm": 188,
+      "foot": "left",
+      "starter": true,
+      "attrs": {
+        "pace": 83,
+        "passing": 61,
+        "finishing": 71,
+        "defending": 57,
+        "dribbling": 68,
+        "aerial": 54
+      }
+    },
+    {
+      "id": "WHI-9",
+      "team_id": "WHI",
+      "number": 9,
+      "name": "Daan Visser",
+      "short_name": "Visser",
+      "position": "ST",
+      "nationality": "NED",
+      "age": 33,
+      "height_cm": 169,
+      "foot": "left",
+      "starter": true,
+      "attrs": {
+        "pace": 78,
+        "passing": 74,
+        "finishing": 85,
+        "defending": 71,
+        "dribbling": 70,
+        "aerial": 85
+      }
+    },
+    {
+      "id": "WHI-12",
+      "team_id": "WHI",
+      "number": 12,
+      "name": "Ben Holloway",
+      "short_name": "Holloway",
+      "position": "GK",
+      "nationality": "ENG",
+      "age": 30,
+      "height_cm": 188,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 45,
+        "passing": 66,
+        "finishing": 12,
+        "defending": 79,
+        "dribbling": 47,
+        "aerial": 78
+      }
+    },
+    {
+      "id": "WHI-4",
+      "team_id": "WHI",
+      "number": 4,
+      "name": "Kristian Berg",
+      "short_name": "Berg",
+      "position": "CB",
+      "nationality": "NOR",
+      "age": 33,
+      "height_cm": 169,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 62,
+        "passing": 72,
+        "finishing": 68,
+        "defending": 82,
+        "dribbling": 68,
+        "aerial": 83
+      }
+    },
+    {
+      "id": "WHI-11",
+      "team_id": "WHI",
+      "number": 11,
+      "name": "Nico Ferreira",
+      "short_name": "Ferreira",
+      "position": "FW",
+      "nationality": "BRA",
+      "age": 28,
+      "height_cm": 176,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 75,
+        "passing": 68,
+        "finishing": 79,
+        "defending": 65,
+        "dribbling": 64,
+        "aerial": 62
+      }
+    },
+    {
+      "id": "WHI-14",
+      "team_id": "WHI",
+      "number": 14,
+      "name": "Marcel Kühn",
+      "short_name": "Kühn",
+      "position": "CM",
+      "nationality": "GER",
+      "age": 22,
+      "height_cm": 169,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 64,
+        "passing": 88,
+        "finishing": 72,
+        "defending": 73,
+        "dribbling": 72,
+        "aerial": 70
+      }
+    },
+    {
+      "id": "WHI-16",
+      "team_id": "WHI",
+      "number": 16,
+      "name": "Aurelio Conti",
+      "short_name": "Conti",
+      "position": "RW",
+      "nationality": "ITA",
+      "age": 30,
+      "height_cm": 176,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 76,
+        "passing": 70,
+        "finishing": 81,
+        "defending": 67,
+        "dribbling": 78,
+        "aerial": 64
+      }
+    },
+    {
+      "id": "WHI-20",
+      "team_id": "WHI",
+      "number": 20,
+      "name": "Finn O'Brien",
+      "short_name": "O'Brien",
+      "position": "LB",
+      "nationality": "IRL",
+      "age": 28,
+      "height_cm": 190,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 55,
+        "passing": 58,
+        "finishing": 54,
+        "defending": 68,
+        "dribbling": 54,
+        "aerial": 52
+      }
+    },
+    {
+      "id": "WHI-23",
+      "team_id": "WHI",
+      "number": 23,
+      "name": "Viktor Lund",
+      "short_name": "Lund",
+      "position": "CM",
+      "nationality": "SWE",
+      "age": 23,
+      "height_cm": 183,
+      "foot": "right",
+      "starter": false,
+      "attrs": {
+        "pace": 59,
+        "passing": 78,
+        "finishing": 62,
+        "defending": 63,
+        "dribbling": 62,
+        "aerial": 60
+      }
+    }
+  ]
+}

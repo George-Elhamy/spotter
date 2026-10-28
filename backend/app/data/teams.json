@@ -1,0 +1,196 @@
+{
+  "teams": [
+    {
+      "id": "RED",
+      "name": "Redmoor Rovers",
+      "short_name": "Redmoor",
+      "color_primary": "#d7263d",
+      "color_secondary": "#ffffff",
+      "formation": "4-3-3",
+      "style": {
+        "possession": 0.72,
+        "press": 0.48,
+        "directness": 0.35,
+        "tempo": 0.58
+      },
+      "stadium": "Moor Lane",
+      "manager": "Erik Halvorsen"
+    },
+    {
+      "id": "WHI",
+      "name": "Whitcliffe Athletic",
+      "short_name": "Whitcliffe",
+      "color_primary": "#f2f2f2",
+      "color_secondary": "#111111",
+      "formation": "4-2-3-1",
+      "style": {
+        "possession": 0.56,
+        "press": 0.86,
+        "directness": 0.68,
+        "tempo": 0.82
+      },
+      "stadium": "Cliffside Park",
+      "manager": "Paolo Ricci"
+    },
+    {
+      "id": "ASH",
+      "name": "Ashgrove City",
+      "short_name": "Ashgrove",
+      "color_primary": "#257a54",
+      "color_secondary": "#f5f1dc",
+      "formation": "4-3-3",
+      "style": {
+        "possession": 0.61,
+        "press": 0.67,
+        "directness": 0.51,
+        "tempo": 0.63
+      },
+      "stadium": "Willow Ground",
+      "manager": "Marek Varga"
+    },
+    {
+      "id": "BLK",
+      "name": "Blackwater FC",
+      "short_name": "Blackwater",
+      "color_primary": "#182c45",
+      "color_secondary": "#d0aa58",
+      "formation": "4-4-2",
+      "style": {
+        "possession": 0.48,
+        "press": 0.64,
+        "directness": 0.69,
+        "tempo": 0.57
+      },
+      "stadium": "Foundry Field",
+      "manager": "Niall Keegan"
+    },
+    {
+      "id": "EAS",
+      "name": "Eastholm United",
+      "short_name": "Eastholm",
+      "color_primary": "#6d3a83",
+      "color_secondary": "#f4e7c5",
+      "formation": "4-2-3-1",
+      "style": {
+        "possession": 0.62,
+        "press": 0.58,
+        "directness": 0.48,
+        "tempo": 0.61
+      },
+      "stadium": "East Mere",
+      "manager": "Lena Hartmann"
+    },
+    {
+      "id": "FEN",
+      "name": "Fenwick Town",
+      "short_name": "Fenwick",
+      "color_primary": "#2786a4",
+      "color_secondary": "#e9d88b",
+      "formation": "3-4-2-1",
+      "style": {
+        "possession": 0.53,
+        "press": 0.73,
+        "directness": 0.57,
+        "tempo": 0.76
+      },
+      "stadium": "Fenwick Common",
+      "manager": "Owen Macrae"
+    },
+    {
+      "id": "GRE",
+      "name": "Greystone Athletic",
+      "short_name": "Greystone",
+      "color_primary": "#b38b27",
+      "color_secondary": "#173c32",
+      "formation": "4-3-3",
+      "style": {
+        "possession": 0.59,
+        "press": 0.71,
+        "directness": 0.62,
+        "tempo": 0.69
+      },
+      "stadium": "Quarry End",
+      "manager": "Sorin Petrescu"
+    },
+    {
+      "id": "HAR",
+      "name": "Harwick Rangers",
+      "short_name": "Harwick",
+      "color_primary": "#4064aa",
+      "color_secondary": "#f4f4f0",
+      "formation": "4-4-1-1",
+      "style": {
+        "possession": 0.47,
+        "press": 0.79,
+        "directness": 0.61,
+        "tempo": 0.71
+      },
+      "stadium": "Ranger's Heath",
+      "manager": "Declan Byrne"
+    },
+    {
+      "id": "IRN",
+      "name": "Ironvale FC",
+      "short_name": "Ironvale",
+      "color_primary": "#9b4337",
+      "color_secondary": "#d9d5cd",
+      "formation": "4-1-4-1",
+      "style": {
+        "possession": 0.55,
+        "press": 0.62,
+        "directness": 0.53,
+        "tempo": 0.55
+      },
+      "stadium": "Vale Park",
+      "manager": "Tomas Eklund"
+    },
+    {
+      "id": "LAR",
+      "name": "Larkspur Albion",
+      "short_name": "Larkspur",
+      "color_primary": "#568c45",
+      "color_secondary": "#f1d7e2",
+      "formation": "4-3-3",
+      "style": {
+        "possession": 0.66,
+        "press": 0.59,
+        "directness": 0.65,
+        "tempo": 0.66
+      },
+      "stadium": "Larkspur Field",
+      "manager": "Rafiq Suleiman"
+    },
+    {
+      "id": "MIL",
+      "name": "Millbrook Town",
+      "short_name": "Millbrook",
+      "color_primary": "#765548",
+      "color_secondary": "#e6ddc9",
+      "formation": "4-2-3-1",
+      "style": {
+        "possession": 0.58,
+        "press": 0.65,
+        "directness": 0.55,
+        "tempo": 0.62
+      },
+      "stadium": "Millbrook Green",
+      "manager": "Ewan Sato"
+    },
+    {
+      "id": "OAK",
+      "name": "Oakhaven City",
+      "short_name": "Oakhaven",
+      "color_primary": "#3b7182",
+      "color_secondary": "#e7c85b",
+      "formation": "5-3-2",
+      "style": {
+        "possession": 0.51,
+        "press": 0.72,
+        "directness": 0.59,
+        "tempo": 0.58
+      },
+      "stadium": "Harbour Rise",
+      "manager": "Anika Solberg"
+    }
+  ]
+}

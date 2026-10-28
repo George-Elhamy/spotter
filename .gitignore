@@ -13,3 +13,4 @@ backend/app/static/
 *.log
 backend/app/data/cost_ledger.json
 backend/app/data/cache/audio_tmp/
+voice_samples/
