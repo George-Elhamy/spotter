@@ -31,7 +31,7 @@ KEYS = list(BUILTIN["en"])
 
 STYLE = {
     "en": "British football television commentary — natural UK commentator vocabulary (pitch, keeper, the top corner, brilliant, lovely touch).",
-    "ar": "Egyptian colloquial football commentary (تعليق كورة زي المعلقين المصريين) — idiomatic, energetic Egyptian Arabic, never stiff Modern Standard Arabic.",
+    "ar": "classic Arab football commentary in Modern Standard Arabic (فصحى) — vivid, energetic, no dialect.",
 }
 EVENTS = {
     "goal": "a goal is scored",
@@ -117,7 +117,7 @@ def write_file(lang: str, results: dict[str, dict[str, list[str]]]) -> None:
 
 
 def system_prompt(lang: str) -> str:
-    arabic = ("\n- Write every line in Egyptian colloquial Arabic. Placeholders stay EXACTLY as given, Latin "
+    arabic = ("\n- Write every line in Modern Standard Arabic (فصحى), no dialect. Placeholders stay EXACTLY as given, Latin "
               "letters inside the braces ({player}, never a translated placeholder)." if lang == "ar" else "")
     return f"""You write fallback play-by-play lines for Spotter, an AI commentator covering a fully fictional
 football league (Redmoor Rovers vs Whitcliffe Athletic — invented clubs only). Style: {STYLE[lang]}.
@@ -173,7 +173,7 @@ async def generate_key(lang: str, key: str, seed: dict[str, list[str]]) -> dict[
         for b in BUCKETS:
             lines = data.get(b) if isinstance(data, dict) else None
             for line in lines if isinstance(lines, list) else []:
-                t = valid_variant(line, key)
+                t = valid_variant(line, key, placeholders_in(BUILTIN["en"][key]))
                 n = norm(t) if t else ""
                 if t is None or n in seen or len(out[b]) >= KEEP:
                     invalid += 1
