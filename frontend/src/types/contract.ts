@@ -183,6 +183,8 @@ export interface ClockMsg {
   score: [number, number]; // [RED, WHI]
   paused: boolean;
   cost_cap_reached: boolean; // §0.1 cost guard badge
+  cost_usd: number; // running total from backend/app/data/cost_ledger.json
+  cost_cap_usd: number; // COST_CAP_USD
 }
 export interface EventMsg { type: "event"; event: MatchEvent }
 export interface StatsMsg {

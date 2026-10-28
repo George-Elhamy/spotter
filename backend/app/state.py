@@ -6,7 +6,7 @@ import json
 from dataclasses import dataclass, field
 from typing import Any
 
-from . import config
+from . import config, llm
 from .models import AGENTS, Directive, InstanceSettings
 
 JUMP_PRESETS = [0, 8, 17, 26, 37, 51, 60, 66, 80, 87, 90]
@@ -126,7 +126,8 @@ class MatchState:
     def clock_msg(self, speed: float, paused: bool) -> dict:
         return {"type": "clock", "t": round(self.t, 2), "display_delay_s": config.DISPLAY_DELAY_S, "speed": speed,
                 "period": self.period, "score": list(self.score), "paused": paused,
-                "cost_cap_reached": self.cost_cap_reached}
+                "cost_cap_reached": self.cost_cap_reached, "cost_usd": round(llm.ledger.total, 4),
+                "cost_cap_usd": config.COST_CAP_USD}
 
     def match_time_label(self, e: dict | None = None) -> str:
         e = e or self.last_event

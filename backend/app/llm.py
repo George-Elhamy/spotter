@@ -219,7 +219,11 @@ async def run_agent(agent: str, instructions: str, tools: Sequence[Any], prompt:
 
 
 # ---------------------------------------------------------------- TTS
-ENERGY_PROSODY = {1: ("-8%", "-4%"), 2: ("-3%", "-2%"), 3: ("0%", "0%"), 4: ("+8%", "+4%"), 5: ("+15%", "+8%")}
+# energy 1 calm → 5 hype: (rate, pitch, volume)
+ENERGY_PROSODY = {1: ("-10%", "-5%", "medium"), 2: ("-4%", "-2%", "medium"), 3: ("+3%", "+2%", "default"),
+                  4: ("+12%", "+8%", "loud"), 5: ("+22%", "+15%", "x-loud")}
+# expressive styles for MAI voices (energy ≥ 4, or "excited" moments like goals at energy ≥ 3)
+MAI_STYLE = {"calm": None, "lively": "joyful", "excited": "surprised"}
 _speech_lock = asyncio.Lock()
 
 
@@ -227,15 +231,28 @@ def voice_for(language: str) -> str:
     return config.VOICE_AR if language == "ar" else config.VOICE_EN
 
 
-def build_ssml(text: str, language: str, energy: int) -> str:
+def is_hd(voice: str) -> bool:
+    return ":MAI-Voice" in voice and not voice.endswith("-Flash") or "HD" in voice
+
+
+def build_ssml(text: str, language: str, energy: int, excited: bool = False) -> str:
     voice = voice_for(language)
-    lang = "ar-EG" if language == "ar" else "en-GB"
-    rate, pitch = ENERGY_PROSODY.get(int(energy), ENERGY_PROSODY[3])
-    style = ""
-    body = f'<prosody rate="{rate}" pitch="{pitch}">{escape(text)}</prosody>'
+    lang = "-".join(voice.split("-")[:2]) if language == "ar" else "en-GB"
+    energy = int(energy) if int(energy) in ENERGY_PROSODY else 3
+    rate, pitch, volume = ENERGY_PROSODY[energy]
+    body = escape(text)
+    if ":MAI-Voice" in voice:
+        mood = "excited" if excited and energy >= 3 else ("lively" if energy >= 4 else "calm")
+        style = MAI_STYLE[mood]
+        if style:
+            body = f'<mstts:express-as style="{style}">{body}</mstts:express-as>'
+    else:
+        if excited and energy >= 3:  # big moments get an extra lift on standard voices
+            rate, pitch, volume = ENERGY_PROSODY[min(5, energy + 1)]
+        body = f'<prosody rate="{rate}" pitch="{pitch}" volume="{volume}">{body}</prosody>'
     return (f'<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" '
             f'xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="{lang}">'
-            f'<voice name="{voice}">{style}{body}</voice></speak>')
+            f'<voice name="{voice}">{body}</voice></speak>')
 
 
 def estimate_duration_ms(text: str, language: str, energy: int = 3) -> int:
@@ -243,9 +260,10 @@ def estimate_duration_ms(text: str, language: str, energy: int = 3) -> int:
     return int(max(1.0, len(text.split()) / wps) * 1000) + 250
 
 
-async def synthesize(text: str, language: str, energy: int, *, agent: str = "tts") -> tuple[str, int] | None:
+async def synthesize(text: str, language: str, energy: int, *, agent: str = "tts",
+                     excited: bool = False) -> tuple[str, int] | None:
     """Returns (audio_id, duration_ms) or None (→ subtitle-only, §12.5). Audio served at /api/audio/{id}.mp3."""
-    ssml = build_ssml(text, language, energy)
+    ssml = build_ssml(text, language, energy, excited)
     audio_id = cache.make_key("tts", ssml)
     meta_path = cache.AUDIO_DIR / f"{audio_id}.json"
     if cache.has_audio(audio_id) and meta_path.exists():
@@ -274,7 +292,9 @@ async def synthesize(text: str, language: str, energy: int, *, agent: str = "tts
     if out is None:
         return None
     data, dur = out
-    ledger.add(agent, len(ssml) / 1e6 * config.TTS_USD_PER_M_CHARS, tts_chars=len(ssml))
+    # HD/MAI voices are billed above standard neural; count them at 2× to stay conservative.
+    price = config.TTS_USD_PER_M_CHARS * (2 if is_hd(voice_for(language)) else 1)
+    ledger.add(agent, len(ssml) / 1e6 * price, tts_chars=len(ssml))
     cache.put_audio(audio_id, data)
     meta_path.write_text(json.dumps({"duration_ms": dur, "text": text}))
     return audio_id, dur

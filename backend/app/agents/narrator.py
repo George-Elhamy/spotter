@@ -19,7 +19,7 @@ PERSPECTIVE = {"neutral": "neutral", "RED": "a Redmoor Rovers fan broadcast", "W
 
 def lang_fields(inst: InstanceSettings) -> dict:
     if inst.language == "ar":
-        return {"language_name": "Arabic", "dialect": " (Egyptian colloquial, like an Egyptian football commentator)"}
+        return {"language_name": "Arabic", "dialect": " (Modern Standard Arabic / فصحى, in the style of classic Arab football commentary — no dialect)"}
     return {"language_name": "English", "dialect": " (British football commentary)"}
 
 
@@ -67,10 +67,11 @@ async def narrate(rt: "AgentRuntime", card: Card) -> str | None:
     return card.text if inst.language == "en" else None
 
 
-async def speak(rt: "AgentRuntime", text: str, inst: InstanceSettings, agent: str) -> tuple[str | None, int]:
+async def speak(rt: "AgentRuntime", text: str, inst: InstanceSettings, agent: str,
+                excited: bool = False) -> tuple[str | None, int]:
     """TTS when AI voice is on; returns (audio_url, duration_ms). Failure → subtitle-only (§12.5)."""
     if inst.ai_voice:
-        res = await llm.synthesize(text, inst.language, inst.energy, agent=f"tts_{agent}")
+        res = await llm.synthesize(text, inst.language, inst.energy, agent=f"tts_{agent}", excited=excited)
         if res:
             return f"/api/audio/{res[0]}.mp3", res[1]
     return None, llm.estimate_duration_ms(text, inst.language, inst.energy)

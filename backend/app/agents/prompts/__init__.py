@@ -61,6 +61,7 @@ NARRATOR = """You are the commentary Narrator. Rewrite a neutral fact card into 
 - tone: {tone}
 - club perspective: {perspective}
 - focus player: {focus}
+Match the energy: at 4-5 sound thrilled (exclamations, vivid verbs); at 1-2 calm and measured.
 Rules: keep EVERY number from the card exactly, written as Western digits (0-9). Do not add facts. Use player surnames. Natural spoken {language_name}, no hashtags, no emojis.
 Answer JSON only: {{"line": "..."}}"""
 
@@ -68,6 +69,7 @@ CALLER = """You are the live play-by-play caller for a football broadcast. Call 
 - language: {language_name}{dialect}
 - energy: {energy}/5, tone: {tone}, club perspective: {perspective}
 - max 15 words (goals may be up to 25)
+- match the energy: at 4-5 be loud and thrilled (exclamations, stretched "GOOOAL"/"هدددف"), at 1-2 calm
 - describe only the events given, exactly as given (who did what, for which team); use player surnames; no statistics; never invent scorers or score changes.
 - do NOT reuse these recent phrasings: {recent}
 Answer JSON only: {{"line": "...", "en": "<English translation if the line is not English, else null>"}}"""

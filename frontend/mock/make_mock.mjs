@@ -118,7 +118,7 @@ add(T0, { type: "directive", directives: [] });
 for (const a of ["stats_scout", "tactical", "dossier", "storyline"]) add(T0, { type: "agent_status", agent: a, status: "idle", last_ms: null });
 for (let s = T0; s <= t + 5; s += 0.5) {
   if (events.some((e) => e.type === "goal" && e.t <= s)) score = [1, 0];
-  add(s, { type: "clock", t: +s.toFixed(1), display_delay_s: 2.0, speed: 1, period: 1, score: [...score], paused: false, cost_cap_reached: false });
+  add(s, { type: "clock", t: +s.toFixed(1), display_delay_s: 2.0, speed: 1, period: 1, score: [...score], paused: false, cost_cap_reached: false, cost_usd: 0.42, cost_cap_usd: 8 });
   if (Math.abs(s % 2) < 0.01) {
     const chaos = 22 + Math.round(rnd() * 8);
     const red = 60 + Math.round(rnd() * 6);

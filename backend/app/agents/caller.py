@@ -37,16 +37,17 @@ BUILTIN = {
            "injury": "{player} is down injured.", "kickoff": "We're under way.", "half_time": "Half-time.",
            "full_time": "Full-time!", "attack": "{team} on the attack.", "dribble": "{player} skips past {related}.",
            "goal_line_clearance": "Cleared off the line by {player}!"},
-    "ar": {"goal": "جوووول! {player} يسجل!", "shot_saved": "تسديدة من {player}… والحارس يتصدى!",
-           "shot_off_target": "تسديدة {player} بعيدة عن المرمى.", "shot_blocked": "تسديدة {player} اتصدت.",
-           "shot_post": "القائم! {player} يضرب القائم!", "save": "تصدي رائع.", "card_yellow": "كارت أصفر لـ {player}.",
-           "card_red": "كارت أحمر! {player} برة الملعب!", "foul": "فاول على {player}.", "corner": "ركنية.",
-           "penalty_awarded": "ضربة جزاء!", "penalty_saved": "صدها! الحارس صد ضربة الجزاء!",
-           "penalty_scored": "{player} يسجل ضربة الجزاء!", "var_check": "الفار بيراجع اللعبة.",
-           "var_decision": "الفار ألغى الجون!", "substitution": "{player} داخل مكان {related}.",
-           "injury": "{player} واقع على الأرض.", "kickoff": "بداية اللعب.", "half_time": "نهاية الشوط الأول.",
-           "full_time": "نهاية الماتش!", "attack": "هجمة.", "dribble": "{player} يراوغ {related}!",
-           "goal_line_clearance": "{player} يشيلها من على خط المرمى!"},
+    "ar": {"goal": "هدف! {player} يسجل لـ{team}!", "shot_saved": "تسديدة من {player}… والحارس يتصدى!",
+           "shot_off_target": "تسديدة {player} تمر بجوار المرمى.", "shot_blocked": "تسديدة {player} تُصد.",
+           "shot_post": "القائم! كرة {player} ترتطم بالقائم!", "save": "تصدٍّ رائع من الحارس!",
+           "card_yellow": "بطاقة صفراء لـ{player}.", "card_red": "بطاقة حمراء! {player} يغادر الملعب!",
+           "foul": "خطأ على {player}.", "corner": "ركلة ركنية لـ{team}.", "penalty_awarded": "ركلة جزاء لـ{team}!",
+           "penalty_saved": "تصدى لها! الحارس يصد ركلة الجزاء!", "penalty_scored": "{player} يسجل من ركلة الجزاء!",
+           "var_check": "حكم الفيديو يراجع اللقطة.", "var_decision": "حكم الفيديو يلغي الهدف!",
+           "substitution": "{player} يدخل بدلاً من {related}.", "injury": "{player} سقط مصاباً.",
+           "kickoff": "انطلقت المباراة.", "half_time": "نهاية الشوط الأول.", "full_time": "نهاية المباراة!",
+           "attack": "هجمة لـ{team}.", "dribble": "{player} يراوغ {related}!",
+           "goal_line_clearance": "{player} يبعدها من على خط المرمى!"},
 }
 
 
@@ -182,7 +183,9 @@ class Caller:
             if not line:
                 return
             subtitle = self.template_line(main, "en", inst.energy) if inst.language == "ar" else None
-        audio_url, dur = await speak(rt, line, inst, "caller")
+        excited = main["type"] in ("goal", "save", "penalty_taken", "var_decision") or \
+            (main["type"] == "shot" and main.get("outcome") in ("goal", "post", "saved"))
+        audio_url, dur = await speak(rt, line, inst, "caller", excited=excited)
         st.spoken = (st.spoken + [line])[-10:]
         play_at = main["t"] if main["type"] != "goal" else group[0]["t"]
         await rt.producer.emit_speech("call", None, line, subtitle if inst.language == "ar" else None, audio_url, play_at, dur, agent="caller")
