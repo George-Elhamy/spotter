@@ -1,6 +1,7 @@
 <p align="center"><img src="docs/brand/logo-emerald.png" width="96" alt="Spotter logo"></p>
 
 <h1 align="center">Spotter</h1>
+<p align="center"><a href="https://github.com/George-Elhamy/spotter/actions/workflows/ci.yml"><img src="https://github.com/George-Elhamy/spotter/actions/workflows/ci.yml/badge.svg" alt="CI"></a></p>
 <p align="center"><b>An AI research booth for live football commentary.</b><br>
 Your commentator covers one language. Spotter covers every market — and does the research for him.</p>
 
