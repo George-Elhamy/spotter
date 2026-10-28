@@ -20,7 +20,8 @@ class BoothBoard:
         return f"c_{next(self._ids):04d}"
 
     def clear(self) -> None:
-        self.cards.clear()
+        """On seek: drop pending/rejected cards but keep the aired history (shown on the board and used for dedupe)."""
+        self.cards = {cid: c for cid, c in self.cards.items() if c.status == "aired"}
 
     async def put(self, card: Card) -> Card:
         self.cards[card.id] = card
