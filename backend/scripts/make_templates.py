@@ -153,6 +153,9 @@ Return JSON only, exactly this shape with {ASK_PER_BUCKET} lines per bucket, eve
 {{"1": [lines], "3": [lines], "5": [lines]}}"""
 
 
+LANG_NAME = {"en": "English", "es": "Spanish", "fr": "French", "de": "German"}
+
+
 def user_prompt(key: str, lang: str, feedback: str) -> str:
     allowed = placeholders_in(BUILTIN["en"][key])
     ph = " ".join("{" + p + "}" for p in allowed) or "none — plain lines only"
@@ -161,6 +164,7 @@ STRICT: the only permitted placeholders are {ph} (you may omit some). Any other 
 especially {{"score"}}, {{"minute"}} or {{"opponent"}} if not listed — makes the line INVALID and it is discarded.
 Max {MAX_WORDS.get(key, DEFAULT_MAX_WORDS)} words per line.
 
+LANGUAGE: write EVERY line in {LANG_NAME[lang]} — not a single English word except the placeholders.
 Write {ASK_PER_BUCKET} variants of this event for each energy bucket ({", ".join(BUCKETS)}).
 Return JSON only: {{"1": [...], "3": [...], "5": [...]}}{feedback}"""
 
