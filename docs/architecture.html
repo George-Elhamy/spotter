@@ -1,156 +1,217 @@
 <title>Spotter Architecture</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: three horizontal lanes read left→right like a broadcast signal chain (feed → booth → screen),
-   with the shared blackboard as the hinge in the middle lane. Deliberately one dark control-room look. */
+/* Layout: one white technical diagram (draw.io style) in an SVG, five columns left→right:
+   data → match engine → proposer agents → board + card workflow → model gateway, browser underneath.
+   Deliberately a single light look so it screenshots cleanly into the README. */
 :root {
-  color-scheme: dark;
-  --bg: #070b0a; --panel: #0e1513; --panel-2: #121c19; --line: #1f2e29; --ink: #e6efeb; --muted: #8a9a94;
-  --pitch: #34d399; --gold: #fbbf24; --red: #f87171; --sky: #60a5fa; --violet: #c084fc; --teal: #2dd4bf; --orange: #fb923c;
-  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --body: "IBM Plex Sans", system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, monospace;
+  color-scheme: light;
+  --bg: #ffffff; --ink: #1f2933; --muted: #5b6774; --line: #33404d; --group: #f5f7f9; --group-line: #c9d2db;
+  --mini: #047857; --mini-bg: #ecfdf5; --nano: #b45309; --nano-bg: #fffbeb; --speech: #1d4ed8; --speech-bg: #eff6ff;
+  --store: #6d28d9; --store-bg: #f5f3ff; --reject: #dc2626;
+  --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
 }
-body { background: var(--bg); color: var(--ink); font-family: var(--body); }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
 .wrap {
-  max-width: 1360px; margin: 0 auto;
-  padding-block: 36px 40px;
+  padding-block: 20px;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  display: grid; gap: 18px;
 }
-header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
-h1 { font-family: var(--display); font-weight: 800; font-size: 44px; letter-spacing: .06em; margin: 0; line-height: 1; text-wrap: balance; }
-h1 span { color: var(--pitch); }
-.sub { color: var(--muted); max-width: 62ch; margin: 8px 0 0; line-height: 1.5; font-size: 15px; }
-.delay { font-family: var(--mono); font-size: 12px; color: var(--gold); border: 1px solid #4a3a12; background: #1a1508; padding: 8px 12px; border-radius: 6px; }
-
-.lane { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 16px; display: grid; gap: 12px; min-width: 0; }
-.lane-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.lane-tag { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-.lane-note { font-size: 13px; color: var(--muted); }
-.chain { display: flex; align-items: stretch; gap: 10px; min-width: 0; flex-wrap: wrap; }
-.arrow { align-self: center; color: var(--muted); font-family: var(--mono); font-size: 18px; flex: none; }
-
-.node { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-width: 0; flex: 1 1 150px; display: grid; gap: 4px; align-content: start; }
-.node h3 { margin: 0; font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: .03em; }
-.node p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
-.chip { justify-self: start; font-family: var(--mono); font-size: 10.5px; padding: 2px 7px; border-radius: 99px; border: 1px solid currentColor; opacity: .95; }
-.code { color: var(--muted); }
-.mini { color: var(--pitch); }
-.nano { color: var(--gold); }
-.speech { color: var(--sky); }
-
-.booth { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .9fr) minmax(0, 1.25fr); gap: 14px; align-items: stretch; }
-.agents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.agent { border-left: 3px solid var(--c); }
-.stack { display: grid; gap: 8px; align-content: start; }
-
-.board { border: 1px dashed #2f5c4b; background: radial-gradient(circle at 50% 0, #10261e, var(--panel-2) 70%); border-radius: 10px; padding: 14px; display: grid; gap: 10px; align-content: center; text-align: center; }
-.board h3 { font-family: var(--display); font-size: 26px; letter-spacing: .12em; margin: 0; color: var(--pitch); }
-.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.cols span { font-family: var(--mono); font-size: 10.5px; color: var(--ink); background: #0b1210; border: 1px solid var(--line); border-radius: 5px; padding: 6px 4px; }
-.board p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
-
-.flow { display: grid; gap: 8px; }
-.flow-row { display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap; }
-.flow-row .node { flex-basis: 120px; }
-.loop { font-family: var(--mono); font-size: 11px; color: var(--red); border: 1px solid #5b2626; background: #1a0d0d; border-radius: 6px; padding: 7px 10px; line-height: 1.4; }
-
-.stackbar { display: flex; flex-wrap: wrap; gap: 8px; }
-.ms { display: grid; gap: 2px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); flex: 1 1 200px; }
-.ms b { font-family: var(--display); font-size: 17px; letter-spacing: .03em; }
-.ms span { font-size: 12px; color: var(--muted); }
-.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: var(--muted); align-items: center; }
-
-@media (max-width: 980px) {
-  .booth { grid-template-columns: minmax(0, 1fr); }
-  .arrow { transform: rotate(90deg); }
-  .chain { flex-direction: column; }
-}
+.scroll { overflow-x: auto; }
+svg { display: block; width: 100%; min-width: 1100px; max-width: 1600px; margin: 0 auto; height: auto; }
+svg text { font-family: var(--sans); fill: var(--ink); }
+.t { font-size: 15px; font-weight: 600; }
+.s { font-size: 12px; fill: var(--muted); }
+.m { font-family: var(--mono); font-size: 11.5px; fill: var(--ink); }
+.g { font-size: 12px; font-weight: 700; letter-spacing: .08em; fill: var(--muted); }
+.h1 { font-size: 24px; font-weight: 700; }
+.lbl { font-size: 11px; fill: var(--muted); }
+.box { fill: #fff; stroke: var(--line); stroke-width: 1.3; }
+.grp { fill: var(--group); stroke: var(--group-line); stroke-width: 1.2; stroke-dasharray: 5 4; }
+.file { fill: var(--store-bg); stroke: var(--store); stroke-width: 1.1; }
+.mini { fill: var(--mini-bg); stroke: var(--mini); stroke-width: 1.4; }
+.nano { fill: var(--nano-bg); stroke: var(--nano); stroke-width: 1.4; }
+.speech { fill: var(--speech-bg); stroke: var(--speech); stroke-width: 1.4; }
+.a { stroke: var(--line); stroke-width: 1.4; fill: none; marker-end: url(#arr); }
+.ad { stroke: var(--line); stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; marker-end: url(#arr); }
+.ar { stroke: var(--reject); stroke-width: 1.5; fill: none; stroke-dasharray: 6 4; marker-end: url(#arrR); }
+.ap { stroke: var(--store); stroke-width: 1.3; fill: none; stroke-dasharray: 4 3; marker-end: url(#arrP); }
 </style>
 
-<div class="wrap">
-  <header>
-    <div>
-      <h1>SPOTTER <span>·</span> MULTI-AGENT BOOTH</h1>
-      <p class="sub">Specialist agents watch a live synthetic match, propose insight cards on a shared blackboard, an independent Verifier checks every number, and a Producer decides what airs and when — voiced live in English, Spanish, French or German.</p>
-    </div>
-    <div class="delay">BROADCAST DELAY · screen shows server&nbsp;t − 2.0&nbsp;s</div>
-  </header>
+<div class="wrap"><div class="scroll">
+<svg viewBox="0 0 1600 1010" role="img" aria-label="Spotter system architecture diagram">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#33404d"/></marker>
+    <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6d28d9"/></marker>
+  </defs>
+  <rect width="1600" height="1010" fill="#ffffff"/>
 
-  <section class="lane" aria-label="Match feed">
-    <div class="lane-head"><span class="lane-tag">1 · Match feed</span><span class="lane-note">Fully synthetic, seed 42 — only match events follow a script; every number is derived</span></div>
-    <div class="chain">
-      <div class="node"><h3>Generator</h3><p>1,749 events with 22-player position frames, 10-matchday league history, dossiers. Validated: realism ranges, pinned facts, smooth motion.</p><span class="chip code">python · seed=42</span></div>
-      <div class="arrow">→</div>
-      <div class="node"><h3>Match clock</h3><p>1× / 2× / 5×, pause, jump to any minute. Runs 2 s ahead of the screen so commentary lands in sync.</p><span class="chip code">asyncio</span></div>
-      <div class="arrow">→</div>
-      <div class="node"><h3>Stats engine</h3><p>Incremental: pass difficulty 0–100, speeds, xG, control &amp; chaos indexes, duels, alerts, quiet windows, win probability.</p><span class="chip code">code</span></div>
-      <div class="arrow">→</div>
-      <div class="node"><h3>Match state</h3><p>Score, on-pitch players, instance settings and showrunner directives — read by every tool.</p><span class="chip code">shared state</span></div>
-    </div>
-  </section>
+  <text x="30" y="38" class="h1">Spotter — system architecture</text>
+  <text x="30" y="60" class="s">One FastAPI process, in-memory state, one WebSocket. Blackboard pattern: agents never call each other.</text>
 
-  <section class="lane" aria-label="Booth">
-    <div class="lane-head"><span class="lane-tag">2 · The booth</span><span class="lane-note">Blackboard pattern — agents never call each other; they read state and write cards</span></div>
-    <div class="booth">
-      <div class="stack">
-        <div class="node"><h3>Dispatcher</h3><p>Wakes only the relevant agents per event, with cooldowns, mutes, a concurrency cap and a rate limit.</p><span class="chip code">code, not an agent</span></div>
-        <div class="agents">
-          <div class="node agent" style="--c: var(--sky)"><h3>Stats Scout</h3><p>Numbers, milestones, thresholds</p></div>
-          <div class="node agent" style="--c: var(--violet)"><h3>Tactical Analyst</h3><p>Control, pressure, shape — and why</p></div>
-          <div class="node agent" style="--c: var(--teal)"><h3>Dossier Researcher</h3><p>Season form, table, head-to-head</p></div>
-          <div class="node agent" style="--c: var(--orange)"><h3>Storyline Keeper</h3><p>Threads inside this match</p></div>
-        </div>
-        <span class="chip mini">Agent Framework agents · function tools · gpt-5-mini</span>
-      </div>
+  <!-- legend -->
+  <g transform="translate(1010 26)">
+    <rect x="0" y="0" width="22" height="14" rx="3" class="mini"/><text x="28" y="12" class="lbl">gpt-5-mini call</text>
+    <rect x="120" y="0" width="22" height="14" rx="3" class="nano"/><text x="148" y="12" class="lbl">gpt-5-nano call</text>
+    <rect x="245" y="0" width="22" height="14" rx="3" class="speech"/><text x="273" y="12" class="lbl">Azure AI Speech</text>
+    <rect x="375" y="0" width="22" height="14" rx="3" class="file"/><text x="403" y="12" class="lbl">file on disk</text>
+    <rect x="475" y="0" width="22" height="14" rx="3" class="box"/><text x="503" y="12" class="lbl">code</text>
+  </g>
 
-      <div class="board">
-        <h3>BOOTH BOARD</h3>
-        <div class="cols"><span>PROPOSED</span><span>PRODUCER QUEUE</span><span>AIRED</span></div>
-        <p>Shared blackboard. Every card carries structured claims and evidence event ids. The human can ✕ remove or ⚡ say-now any card.</p>
-      </div>
+  <!-- ===== Column 1: data ===== -->
+  <rect x="30" y="85" width="280" height="330" rx="8" class="grp"/>
+  <text x="44" y="108" class="g">DATA · backend/app/data</text>
+  <text x="44" y="124" class="lbl">generated by generator/ (seed 42), validated</text>
+  <rect x="44" y="136" width="252" height="36" rx="4" class="file"/><text x="56" y="159" class="m">match_events.json  1,749 events</text>
+  <rect x="44" y="180" width="252" height="36" rx="4" class="file"/><text x="56" y="203" class="m">squads.json · teams.json</text>
+  <rect x="44" y="224" width="252" height="36" rx="4" class="file"/><text x="56" y="247" class="m">league_history.json  10 matchdays</text>
+  <rect x="44" y="268" width="252" height="36" rx="4" class="file"/><text x="56" y="291" class="m">dossiers.json  derived season stats</text>
+  <rect x="44" y="312" width="252" height="36" rx="4" class="file"/><text x="56" y="335" class="m">templates_{en,es,fr,de}.json</text>
+  <text x="44" y="372" class="s">Loaded into memory at startup.</text>
+  <text x="44" y="390" class="s">No database, no vector store.</text>
 
-      <div class="flow">
-        <div class="flow-row">
-          <div class="node"><h3>Verifier</h3><p>Code recomputes every numeric claim; nano checks the wording.</p><span class="chip nano">code + gpt-5-nano</span></div>
-          <div class="arrow">→</div>
-          <div class="node"><h3>Producer</h3><p>Audience fit, ranking, airs cards into quiet moments and gaps.</p><span class="chip nano">gpt-5-nano + code</span></div>
-          <div class="arrow">→</div>
-          <div class="node"><h3>Narrator</h3><p>One spoken line per language, audience, energy and club; numbers checked.</p><span class="chip mini">gpt-5-mini</span></div>
-        </div>
-        <div class="loop">✗ rejected → back to the proposer once with the reason → second failure = discarded</div>
-        <div class="flow-row">
-          <div class="node"><h3>Caller</h3><p>Continuous play-by-play from the 2 s lookahead; 1.4 s deadline, then a template.</p><span class="chip nano">gpt-5-nano</span></div>
-          <div class="arrow">→</div>
-          <div class="node"><h3>Voice</h3><p>One shared speech channel, never overlapping. Energy drives style and prosody.</p><span class="chip speech">Azure AI Speech · MAI voices</span></div>
-        </div>
-        <span class="chip mini">Card lifecycle = Agent Framework workflow: Verify → Revise ↺ → Producer fit → Narrate</span>
-      </div>
-    </div>
-  </section>
+  <rect x="30" y="440" width="280" height="190" rx="8" class="grp"/>
+  <text x="44" y="463" class="g">DISK · written at runtime</text>
+  <rect x="44" y="476" width="252" height="36" rx="4" class="file"/><text x="56" y="499" class="m">cache/llm/*.json  record/replay</text>
+  <rect x="44" y="520" width="252" height="36" rx="4" class="file"/><text x="56" y="543" class="m">cache/audio/*.mp3  by text hash</text>
+  <rect x="44" y="564" width="252" height="36" rx="4" class="file"/><text x="56" y="587" class="m">cost_ledger.json  running $</text>
+  <text x="44" y="618" class="s">Written only by llm.py (gateway)</text>
 
-  <section class="lane" aria-label="Screen">
-    <div class="lane-head"><span class="lane-tag">3 · Showrunner screen</span><span class="lane-note">One WebSocket server → client, REST client → server</span></div>
-    <div class="chain">
-      <div class="node"><h3>2D pitch</h3><p>Players interpolated between event frames, displayed 2 s behind the server.</p><span class="chip code">React · SVG</span></div>
-      <div class="node"><h3>Board &amp; trace</h3><p>Cards move Proposed → Queue → Aired; verifier rejections and revisions are visible.</p><span class="chip code">live</span></div>
-      <div class="node"><h3>Controls</h3><p>Language EN/ES/FR/DE, audience, club perspective, energy, tone, focus player, AI voice.</p><span class="chip code">instance settings</span></div>
-      <div class="node"><h3>Directives</h3><p>“focus on Novak”, “more tactics” → parsed chips the Producer and agents obey.</p><span class="chip nano">gpt-5-nano parser</span></div>
-      <div class="node"><h3>Audio &amp; subtitles</h3><p>Plays each line at its event time; English subtitles under other languages.</p><span class="chip speech">mp3 cache</span></div>
-    </div>
-  </section>
+  <!-- ===== Column 2: match engine ===== -->
+  <rect x="350" y="85" width="290" height="545" rx="8" class="grp"/>
+  <text x="364" y="108" class="g">MATCH ENGINE · code</text>
+  <rect x="366" y="122" width="258" height="62" rx="6" class="box"/>
+  <text x="380" y="147" class="t">MatchClock</text><text x="380" y="168" class="s">1× 2× 5×, seek · runs 2 s ahead of screen</text>
+  <rect x="366" y="214" width="258" height="62" rx="6" class="box"/>
+  <text x="380" y="239" class="t">StatsEngine</text><text x="380" y="260" class="s">pass difficulty, xG, control, chaos, alerts</text>
+  <rect x="366" y="306" width="258" height="62" rx="6" class="box"/>
+  <text x="380" y="331" class="t">MatchState</text><text x="380" y="352" class="s">score, players, settings, directives</text>
+  <rect x="366" y="398" width="258" height="62" rx="6" class="box"/>
+  <text x="380" y="423" class="t">Dispatcher</text><text x="380" y="444" class="s">event → wake agents · cooldowns, cap</text>
+  <rect x="366" y="530" width="258" height="70" rx="6" class="nano"/>
+  <text x="380" y="555" class="t">Caller · play-by-play</text><text x="380" y="576" class="s">gpt-5-nano, 1.4 s deadline → template</text>
+  <text x="380" y="592" class="s">continuous, one shared speech channel</text>
 
-  <div class="stackbar" aria-label="Microsoft technologies">
-    <div class="ms"><b>Microsoft Foundry</b><span>gpt-5-mini &amp; gpt-5-nano deployments</span></div>
-    <div class="ms"><b>Microsoft Agent Framework</b><span>Agents, function tools, card-lifecycle workflow</span></div>
-    <div class="ms"><b>Azure AI Speech</b><span>Expressive MAI neural voices, 4 languages</span></div>
-    <div class="ms"><b>Azure Container Apps</b><span>One container, scale to zero</span></div>
-  </div>
-  <div class="legend">
-    <span class="chip mini">gpt-5-mini</span><span class="chip nano">gpt-5-nano</span><span class="chip speech">speech</span><span class="chip code">code</span>
-    <span>Every model and voice call goes through one wrapper with a hard cost cap and record/replay cache.</span>
-  </div>
-</div>
+  <path d="M495 184 V210" class="a"/>
+  <path d="M495 276 V302" class="a"/>
+  <path d="M495 368 V394" class="a"/>
+  <path d="M310 154 H362" class="a"/><text x="318" y="146" class="lbl">events</text>
+  <path d="M370 154 H352 V565 H362" class="ad"/><text x="356" y="500" class="lbl" transform="rotate(-90 356 500)">event stream</text>
+
+  <!-- ===== Column 3: proposer agents ===== -->
+  <rect x="690" y="85" width="310" height="300" rx="8" class="grp"/>
+  <text x="704" y="108" class="g">PROPOSER AGENTS</text>
+  <text x="704" y="124" class="lbl">Microsoft Agent Framework · gpt-5-mini · run concurrently</text>
+  <rect x="704" y="138" width="138" height="56" rx="6" class="mini"/><text x="716" y="162" class="t">Stats Scout</text><text x="716" y="182" class="s">numbers, milestones</text>
+  <rect x="850" y="138" width="138" height="56" rx="6" class="mini"/><text x="862" y="162" class="t">Tactical Analyst</text><text x="862" y="182" class="s">control, shape, why</text>
+  <rect x="704" y="202" width="138" height="56" rx="6" class="mini"/><text x="716" y="226" class="t">Dossier</text><text x="716" y="246" class="s">season, table, H2H</text>
+  <rect x="850" y="202" width="138" height="56" rx="6" class="mini"/><text x="862" y="226" class="t">Storyline</text><text x="862" y="246" class="s">threads in this match</text>
+  <text x="704" y="284" class="s">Each run: prompt + match context → tool calls</text>
+  <text x="704" y="302" class="s">→ one JSON card: text, numeric claims,</text>
+  <text x="704" y="320" class="s">evidence event ids — or null.</text>
+  <text x="704" y="350" class="m">one wake = one agent.run()</text>
+
+  <path d="M624 429 H660 V170 H700" class="a"/><text x="628" y="420" class="lbl">wake</text>
+
+  <rect x="690" y="410" width="310" height="110" rx="8" class="box"/>
+  <text x="704" y="434" class="t">match_tools.py · function tools</text>
+  <text x="704" y="454" class="m">get_player_stats  get_control_chaos</text>
+  <text x="704" y="472" class="m">get_player_dossier  get_head_to_head</text>
+  <text x="704" y="490" class="m">get_league_table  get_recent_cards …</text>
+  <text x="704" y="510" class="s">read-only, JSON results</text>
+  <path d="M845 385 V406" class="a"/><path d="M835 406 V389" class="a"/>
+  <text x="852" y="400" class="lbl">tool calls</text>
+  <path d="M690 450 H650 V245 H628" class="a"/><text x="634" y="300" class="lbl" transform="rotate(-90 640 300)">stats</text>
+  <path d="M690 512 H672 V738 H330 V380 H314" class="ap"/><text x="380" y="732" class="lbl">tools read dossiers / history / squads (in memory)</text>
+
+  <rect x="690" y="545" width="310" height="85" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="704" y="568" class="t">Retrieval: tool calls, not vector RAG</text>
+  <text x="704" y="588" class="s">No embeddings. Agents look up exact values in</text>
+  <text x="704" y="605" class="s">structured JSON and live stats through typed tools,</text>
+  <text x="704" y="622" class="s">so the Verifier can recompute every number.</text>
+
+  <!-- ===== Column 4: board + workflow ===== -->
+  <rect x="1040" y="85" width="300" height="545" rx="8" class="grp"/>
+  <text x="1054" y="108" class="g">BOOTH BOARD + CARD WORKFLOW</text>
+  <text x="1054" y="124" class="lbl">Agent Framework workflow (WorkflowBuilder)</text>
+  <rect x="1056" y="136" width="268" height="62" rx="6" class="box" stroke-width="2"/>
+  <text x="1070" y="161" class="t">Booth Board (blackboard)</text><text x="1070" y="182" class="s">Proposed → Queue → Aired · in memory</text>
+  <rect x="1056" y="230" width="268" height="62" rx="6" class="nano"/>
+  <text x="1070" y="255" class="t">Verifier</text><text x="1070" y="276" class="s">code recomputes claims + nano wording check</text>
+  <rect x="1056" y="322" width="268" height="62" rx="6" class="nano"/>
+  <text x="1070" y="347" class="t">Producer</text><text x="1070" y="368" class="s">fit: nano · rank, schedule, air: code</text>
+  <rect x="1056" y="414" width="268" height="62" rx="6" class="mini"/>
+  <text x="1070" y="439" class="t">Narrator</text><text x="1070" y="460" class="s">one spoken line per language · numbers kept</text>
+  <rect x="1056" y="506" width="268" height="62" rx="6" class="speech"/>
+  <text x="1070" y="531" class="t">Voice (TTS)</text><text x="1070" y="552" class="s">Azure AI Speech · MAI voices · EN ES FR DE</text>
+
+  <path d="M1000 166 H1052" class="a"/><text x="1008" y="158" class="lbl">card</text>
+  <path d="M1190 198 V226" class="a"/>
+  <path d="M1190 292 V318" class="a"/><text x="1196" y="310" class="lbl">verified</text>
+  <path d="M1190 384 V410" class="a"/><text x="1196" y="402" class="lbl">queued</text>
+  <path d="M1190 476 V502" class="a"/>
+  <path d="M1056 270 H1020 V230 H992" class="ar"/>
+  <text x="1006" y="292" class="lbl" fill="#dc2626" style="fill:#dc2626">rejected →</text>
+  <text x="1006" y="306" class="lbl" style="fill:#dc2626">revise once</text>
+  <path d="M624 590 H660 V712 H1030 V545 H1052" class="a"/>
+  <text x="800" y="706" class="lbl">Caller lines → same speech channel</text>
+
+  <!-- ===== Column 5: gateway + Azure ===== -->
+  <rect x="1380" y="85" width="190" height="400" rx="8" fill="#fff" stroke="#33404d" stroke-width="2"/>
+  <text x="1394" y="112" class="t">llm.py gateway</text>
+  <text x="1394" y="132" class="s">every model + speech call</text>
+  <text x="1394" y="164" class="m">• $8 hard cost cap</text>
+  <text x="1394" y="186" class="m">• tokens → $ ledger</text>
+  <text x="1394" y="208" class="m">• calls/min limit</text>
+  <text x="1394" y="230" class="m">• record / replay</text>
+  <text x="1394" y="252" class="m">• 429 retry, degrade</text>
+  <text x="1394" y="274" class="m">• timeouts → fallback</text>
+  <text x="1394" y="310" class="s">Callers: proposers, Verifier,</text>
+  <text x="1394" y="327" class="s">Producer, Narrator, Caller,</text>
+  <text x="1394" y="344" class="s">directive parser, TTS.</text>
+
+  <path d="M1324 261 H1376" class="a"/>
+  <path d="M1324 353 H1376" class="a"/>
+  <path d="M1324 445 H1376" class="a"/>
+  <path d="M1324 537 H1350 V470 H1376" class="a"/>
+  <path d="M995 85 V74 H1360 V120 H1376" class="a"/><text x="1100" y="68" class="lbl">agent runs (with tool loop) → gateway</text>
+
+
+  <rect x="1380" y="520" width="190" height="200" rx="8" class="grp"/>
+  <text x="1394" y="543" class="g">MICROSOFT AZURE</text>
+  <rect x="1394" y="556" width="162" height="70" rx="6" class="box"/>
+  <text x="1406" y="580" class="t">Microsoft Foundry</text><text x="1406" y="598" class="s">gpt-5-mini</text><text x="1406" y="614" class="s">gpt-5-nano</text>
+  <rect x="1394" y="636" width="162" height="70" rx="6" class="speech"/>
+  <text x="1406" y="660" class="t">Azure AI Speech</text><text x="1406" y="678" class="s">neural TTS, mp3</text><text x="1406" y="694" class="s">MAI expressive voices</text>
+  <path d="M1545 485 V552" class="a"/>
+
+  <!-- ===== Bottom: browser ===== -->
+  <rect x="350" y="760" width="990" height="190" rx="8" class="grp"/>
+  <text x="364" y="783" class="g">BROWSER · React + Vite + Tailwind</text>
+  <rect x="366" y="798" width="225" height="72" rx="6" class="box"/>
+  <text x="380" y="823" class="t">2D pitch</text><text x="380" y="844" class="s">frames interpolated, shown</text><text x="380" y="860" class="s">at server t − 2 s</text>
+  <rect x="607" y="798" width="225" height="72" rx="6" class="box"/>
+  <text x="621" y="823" class="t">Board + trace</text><text x="621" y="844" class="s">cards, verifier rejections,</text><text x="621" y="860" class="s">✕ remove · ⚡ say now</text>
+  <rect x="848" y="798" width="225" height="72" rx="6" class="box"/>
+  <text x="862" y="823" class="t">Controls + directives</text><text x="862" y="844" class="s">language, audience, energy,</text><text x="862" y="860" class="s">"focus on Novak" → chip</text>
+  <rect x="1089" y="798" width="235" height="72" rx="6" class="box"/>
+  <text x="1103" y="823" class="t">Audio + subtitles</text><text x="1103" y="844" class="s">plays each line at its event</text><text x="1103" y="860" class="s">time, never overlapping</text>
+  <text x="366" y="898" class="m">WebSocket /ws  ↑ server → client: clock, events, stats, cards, speech, trace</text>
+  <text x="366" y="920" class="m">REST /api      ↓ client → server: settings, directives, seek, ✕ / ⚡, audio mp3</text>
+
+  <path d="M760 630 V756" class="a"/><text x="768" y="752" class="lbl">WebSocket</text>
+  <path d="M1190 756 V632" class="a"/><text x="1198" y="752" class="lbl">REST</text>
+
+  <rect x="30" y="760" width="280" height="190" rx="8" class="grp"/>
+  <text x="44" y="783" class="g">DEPLOY</text>
+  <text x="44" y="810" class="t">Azure Container Apps</text>
+  <text x="44" y="832" class="s">One container: FastAPI serves the API,</text>
+  <text x="44" y="850" class="s">WebSocket and the built frontend.</text>
+  <text x="44" y="872" class="s">min 0 / max 1 replicas (scale to zero).</text>
+  <text x="44" y="900" class="m">CACHE_MODE=replay for the demo</text>
+
+  <text x="30" y="985" class="s">Models: proposers + Narrator = gpt-5-mini; Verifier wording, Producer fit, Caller, directive parser = gpt-5-nano. Numbers are always recomputed in code.</text>
+</svg>
+</div></div>
