@@ -83,8 +83,8 @@ svg text { font-family: var(--sans); fill: var(--ink); }
   <text x="656" y="376" class="s">Agents look up exact facts by calling</text>
   <text x="656" y="396" class="s">tools — no vector search, no guessing.</text>
   <path d="M560 149 H616" class="a"/><text x="569" y="140" class="lbl">wake</text>
-  <path d="M636 380 H330 V269 H304" class="a"/><text x="470" y="374" class="lbl">read stats</text>
-  <path d="M636 400 H340 V389 H304" class="a"/><text x="470" y="414" class="lbl">read season data</text>
+  <path d="M620 269 H304" class="a"/><text x="420" y="261" class="lbl">tools read stats</text>
+  <path d="M620 389 H304" class="a"/><text x="400" y="381" class="lbl">tools read season data</text>
 
   <!-- ===== Right: board + decision chain ===== -->
   <rect x="1010" y="94" width="350" height="96" rx="10" class="board"/>
@@ -106,13 +106,13 @@ svg text { font-family: var(--sans); fill: var(--ink); }
   <text x="1030" y="590" class="t">Voice</text>
   <text x="1030" y="614" class="s">Azure AI Speech · EN ES FR DE</text>
 
-  <path d="M1185 190 V218" class="a"/>
-  <path d="M1185 294 V322" class="a"/><text x="1193" y="314" class="lbl">verified</text>
-  <path d="M1185 398 V426" class="a"/><text x="1193" y="418" class="lbl">fits audience</text>
+  <path d="M1185 190 V218" class="a"/><text x="1197" y="208" class="lbl">new card</text>
+  <path d="M1185 294 V322" class="a"/><text x="1197" y="312" class="lbl">verified</text>
+  <path d="M1185 398 V426" class="a"/><text x="1197" y="416" class="lbl">fits the audience</text>
   <path d="M1185 502 V556" class="a"/>
-  <path d="M1010 258 H985 V270 H954" class="ar"/>
-  <text x="788" y="314" class="lbl" style="fill:#d23b3b">wrong number → revise once</text>
-  <text x="1210" y="533" class="lbl">card workflow</text>
+  <path d="M1010 258 H954" class="ar"/>
+  <text x="936" y="314" text-anchor="end" class="lbl" style="fill:#d23b3b">rejected → the agent fixes it (one retry)</text>
+  <text x="1197" y="533" class="lbl">spoken line</text>
 
   <!-- ===== Bottom: play-by-play + showrunner ===== -->
   <rect x="360" y="560" width="300" height="72" rx="8" class="check"/>
@@ -124,7 +124,7 @@ svg text { font-family: var(--sans); fill: var(--ink); }
   <rect x="1010" y="680" width="350" height="72" rx="8" class="box"/>
   <text x="1030" y="710" class="t">Showrunner screen</text>
   <text x="1030" y="734" class="s">pitch, board, subtitles, audio</text>
-  <path d="M1185 632 V676" class="a"/>
+  <path d="M1185 632 V676" class="a"/><text x="1197" y="658" class="lbl">audio + subtitles</text>
 
   <rect x="620" y="680" width="330" height="72" rx="8" class="box"/>
   <text x="638" y="710" class="t">Human showrunner</text>
