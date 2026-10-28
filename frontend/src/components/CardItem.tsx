@@ -37,7 +37,7 @@ export default function CardItem({
       animate={{ opacity: greyed ? 0.5 : 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.75 }}
-      className={`card-item relative shrink-0 overflow-hidden rounded-md border bg-[#14191d] ${card.status === "rejected" ? "card-rejected border-red-400/35" : "border-white/[0.075]"} ${highlighted ? "card-highlighted" : ""} ${compact ? "px-2.5 py-2" : "px-3 py-2.5"}`}
+      className={`card-item relative shrink-0 overflow-hidden rounded-md border bg-[var(--sp-panel-2)] ${card.status === "rejected" ? "card-rejected border-red-400/35" : "border-white/[0.075]"} ${highlighted ? "card-highlighted" : ""} ${compact ? "px-2.5 py-2" : "px-3 py-2.5"}`}
       style={{ borderLeft: `2px solid ${agent?.color ?? "#94a3b8"}` }}
     >
       <div className="flex items-center gap-1.5">

@@ -48,7 +48,7 @@ export default function App() {
 
   if (!meta || !instance) {
     return (
-      <div className="grid h-dvh place-items-center bg-[#080b0d] text-white">
+      <div className="grid h-dvh place-items-center bg-[var(--sp-bg)] text-white">
         <div className="text-center">
           <div className="mx-auto grid h-11 w-11 place-items-center rounded-xl border border-emerald-300/20 bg-emerald-300/[0.07]">
             <Radio size={21} className="animate-pulse text-emerald-300" />

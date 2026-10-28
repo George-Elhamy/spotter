@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Pause, Play, Radio } from "lucide-react";
+import { ChevronDown, Moon, Pause, Play, Radio, Sun } from "lucide-react";
 import { controlMatch } from "../api";
 import { MOCK_MODE } from "../config";
 import { useBoothStore } from "../store";
 import { formatMatchClock } from "../utils/time";
+import { useTheme } from "../utils/theme";
 
 function probability(value: number | undefined) {
   const percent = (value ?? 0) * ((value ?? 0) <= 1 ? 100 : 1);
@@ -19,6 +20,7 @@ export default function TopBar() {
   const connection = useBoothStore((state) => state.connection);
   const costCapReached = useBoothStore((state) => state.costCapReached);
   const [jumpOpen, setJumpOpen] = useState(false);
+  const [theme, toggleTheme] = useTheme();
   const jumpRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function TopBar() {
   const chaosColor = chaos < 35 ? "#34d399" : chaos < 65 ? "#fbbf24" : "#fb4b5c";
 
   return (
-    <header className="relative z-40 border-b border-white/[0.07] bg-[#0b0e11]/95 shadow-[0_12px_36px_rgba(0,0,0,.25)]">
+    <header className="relative z-40 border-b border-white/[0.07] bg-[var(--sp-header)] shadow-[0_12px_36px_rgba(0,0,0,.25)]">
       <div className="flex h-[66px] items-center gap-5 px-4 2xl:px-6">
         <div className="flex w-[174px] shrink-0 items-center gap-3">
           <div className="grid h-8 w-8 place-items-center rounded-lg border border-emerald-300/25 bg-emerald-300/[0.08]">
@@ -103,7 +105,7 @@ export default function TopBar() {
               Jump <ChevronDown size={13} className={jumpOpen ? "rotate-180 transition" : "transition"} />
             </button>
             {jumpOpen && (
-              <div className="absolute left-0 top-11 w-56 rounded-lg border border-white/10 bg-[#14191d] p-1.5 shadow-2xl shadow-black/60">
+              <div className="absolute left-0 top-11 w-56 rounded-lg border border-white/10 bg-[var(--sp-panel-2)] p-1.5 shadow-2xl shadow-black/60">
                 <div className="px-2.5 pb-1.5 pt-2 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-500">
                   Key moment presets
                 </div>
@@ -134,6 +136,15 @@ export default function TopBar() {
           <span className="rounded border border-white/[0.07] px-2 py-1 font-mono text-[9px] text-slate-600">
             −{message?.display_delay_s.toFixed(1) ?? "2.0"}s
           </span>
+          <CostChip spent={message?.cost_usd} cap={message?.cost_cap_usd} />
+          <button
+            className="icon-button ml-1 h-9 w-9"
+            title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            aria-label="Toggle light/dark theme"
+            onClick={toggleTheme}
+          >
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
         </div>
       </div>
 
@@ -173,10 +184,25 @@ export default function TopBar() {
   );
 }
 
+function CostChip({ spent, cap }: { spent?: number; cap?: number }) {
+  if (spent == null || !cap) return null;
+  const share = spent / cap;
+  const tone = share >= 0.8
+    ? "border-red-400/40 bg-red-500/15 text-red-300"
+    : share >= 0.5
+      ? "border-amber-300/40 bg-amber-300/10 text-amber-300"
+      : "border-white/[0.07] text-slate-400";
+  return (
+    <span className={`rounded border px-2 py-1 font-mono text-[9px] tabular-nums ${tone}`} title="Azure AI spend (models + voice) — hard cap">
+      ${spent.toFixed(2)} / ${cap.toFixed(0)}
+    </span>
+  );
+}
+
 function TeamScore({ name, color }: { name: string; color: string }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="h-2 w-2 shrink-0 rounded-full ring-2 ring-white/[0.06]" style={{ backgroundColor: color }} />
+      <span className="h-2 w-2 shrink-0 rounded-full ring-2 ring-white/[0.12]" style={{ backgroundColor: color }} />
       <span className="text-[10px] font-bold tracking-[0.08em] text-slate-300">{name}</span>
     </div>
   );

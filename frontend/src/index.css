@@ -1,13 +1,35 @@
 @import "tailwindcss";
 
+/* Theme tokens. Dark is the default broadcast-control-room look; light remaps Tailwind's
+   slate scale, white/black overlays and accent text so every component flips without per-class edits. */
+:root {
+  --sp-bg: #080b0d; --sp-header: #0b0e11; --sp-panel: #101518; --sp-panel-2: #14191d; --sp-field: #0c1114;
+  --sp-pitch-bg: #09110e; --sp-toast: #10251d; --sp-text: #e2e8f0; --sp-muted: #94a3b8; --sp-soft: #cbd5e1;
+  --sp-line: rgba(255,255,255,.065); --sp-grid: rgba(255,255,255,.014); --sp-glow: rgba(31,78,60,.12);
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --sp-bg: #eef2f6; --sp-header: #ffffff; --sp-panel: #ffffff; --sp-panel-2: #f6f8fb; --sp-field: #f1f5f9;
+  --sp-pitch-bg: #e3ece6; --sp-toast: #e7f6ef; --sp-text: #0f172a; --sp-muted: #475569; --sp-soft: #334155;
+  --sp-line: rgba(15,23,42,.10); --sp-grid: rgba(15,23,42,.035); --sp-glow: rgba(16,185,129,.08);
+  --color-white: #0f172a; --color-black: #ffffff;
+  --color-slate-100: #0f172a; --color-slate-200: #1e293b; --color-slate-300: #334155; --color-slate-400: #475569;
+  --color-slate-500: #5b6b80; --color-slate-600: #758397; --color-slate-700: #97a3b4; --color-slate-800: #cbd5e1;
+  --color-emerald-100: #064e3b; --color-emerald-200: #065f46; --color-emerald-300: #047857; --color-emerald-400: #059669;
+  --color-red-200: #991b1b; --color-red-300: #b91c1c; --color-red-400: #dc2626;
+  --color-amber-100: #78350f; --color-amber-300: #b45309; --color-amber-400: #d97706;
+  --color-purple-200: #6b21a8; --color-purple-300: #7e22ce;
+}
+
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #e2e8f0;
-  background: #080b0d;
+  color: var(--sp-text);
+  background: var(--sp-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   color-scheme: dark;
 }
+:root[data-theme="light"] { color-scheme: light; }
 
 * { box-sizing: border-box; }
 html, body, #root { width: 100%; height: 100%; }
@@ -18,23 +40,23 @@ button:disabled { cursor: default; }
 ::selection { color: #ecfdf5; background: rgba(52, 211, 153, .25); }
 
 .app-shell {
-  background-color: #080b0d;
+  background-color: var(--sp-bg);
   background-image:
-    radial-gradient(circle at 42% -20%, rgba(31, 78, 60, .12), transparent 45%),
-    linear-gradient(rgba(255,255,255,.014) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.014) 1px, transparent 1px);
+    radial-gradient(circle at 42% -20%, var(--sp-glow), transparent 45%),
+    linear-gradient(var(--sp-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--sp-grid) 1px, transparent 1px);
   background-size: auto, 40px 40px, 40px 40px;
 }
 
 .panel {
-  border: 1px solid rgba(255,255,255,.065);
+  border: 1px solid var(--sp-line);
   border-radius: 8px;
-  background: #101518;
+  background: var(--sp-panel);
   box-shadow: 0 8px 28px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.014);
 }
 
 .section-title {
-  color: #94a3b8;
+  color: var(--sp-muted);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: .14em;
@@ -45,13 +67,13 @@ button:disabled { cursor: default; }
 .icon-button {
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid var(--sp-line);
   border-radius: 6px;
-  color: #cbd5e1;
-  background: rgba(255,255,255,.035);
+  color: var(--sp-soft);
+  background: color-mix(in srgb, var(--color-white) 3.5%, transparent);
   transition: background .15s, color .15s;
 }
-.icon-button:hover { color: white; background: rgba(255,255,255,.08); }
+.icon-button:hover { color: var(--sp-text); background: color-mix(in srgb, var(--color-white) 8%, transparent); }
 .icon-button:disabled { opacity: .35; }
 
 .field-select {
@@ -59,11 +81,11 @@ button:disabled { cursor: default; }
   width: 100%;
   height: 31px;
   padding: 0 28px 0 9px;
-  border: 1px solid rgba(255,255,255,.075);
+  border: 1px solid var(--sp-line);
   border-radius: 6px;
   outline: none;
-  color: #cbd5e1;
-  background: #0c1114;
+  color: var(--sp-soft);
+  background: var(--sp-field);
   font-size: 10px;
 }
 .field-select:focus { border-color: rgba(110,231,183,.3); }
@@ -79,13 +101,13 @@ button:disabled { cursor: default; }
   width: 21px;
   height: 20px;
   place-items: center;
-  border: 1px solid rgba(255,255,255,.055);
+  border: 1px solid var(--sp-line);
   border-radius: 4px;
-  color: #64748b;
-  background: rgba(255,255,255,.025);
+  color: var(--color-slate-500);
+  background: color-mix(in srgb, var(--color-white) 2.5%, transparent);
   transition: color .15s, background .15s;
 }
-.card-action:hover { background: rgba(255,255,255,.06); }
+.card-action:hover { background: color-mix(in srgb, var(--color-white) 6%, transparent); }
 .card-rejected { animation: rejected-flash .85s ease-out; }
 .card-highlighted { box-shadow: 0 0 0 1px #c084fc, 0 0 20px rgba(192,132,252,.25); }
 .on-air-badge {
@@ -130,7 +152,7 @@ button:disabled { cursor: default; }
 @keyframes goal-pop { 0% { transform: scale(.55); opacity: 0; } 65% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 @keyframes goal-fade { 0% { opacity: 0; } 8%,78% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes speaker-pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
-@keyframes rejected-flash { 0% { background: rgba(239,68,68,.3); } 100% { background: #14191d; } }
+@keyframes rejected-flash { 0% { background: rgba(239,68,68,.3); } 100% { background: var(--sp-panel-2); } }
 @keyframes on-air { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {

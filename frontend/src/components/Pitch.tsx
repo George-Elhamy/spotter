@@ -75,7 +75,7 @@ export default function Pitch() {
         </div>
       </div>
 
-      <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-[#09110e] p-2">
+      <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden bg-[var(--sp-pitch-bg)] p-2">
         <svg
           viewBox="-3 -3 111 74"
           className="h-auto max-h-full w-full"

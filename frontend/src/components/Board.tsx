@@ -98,7 +98,7 @@ function BoardColumn({
 }) {
   return (
     <div className="board-column flex min-h-0 flex-col">
-      <div className="sticky top-0 z-10 flex h-8 shrink-0 items-center gap-1.5 border-b border-white/[0.045] bg-[#101518]/95 px-2.5 backdrop-blur">
+      <div className="sticky top-0 z-10 flex h-8 shrink-0 items-center gap-1.5 border-b border-white/[0.045] bg-[var(--sp-panel)] px-2.5 backdrop-blur">
         <span className="h-1 w-1 rounded-full" style={{ backgroundColor: accent }} />
         <h3 className="truncate text-[8px] font-bold uppercase tracking-[0.13em] text-slate-400">{title}</h3>
         <span className="ml-auto font-mono text-[8px] text-slate-600">{count}</span>
