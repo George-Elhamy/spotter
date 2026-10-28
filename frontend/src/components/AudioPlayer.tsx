@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Volume2 } from "lucide-react";
 import { useBoothStore } from "../store";
 import type { SpeechMsg } from "../types/contract";
 
@@ -95,6 +94,18 @@ export default function AudioPlayer() {
     void audioContextRef.current?.close();
   }, [finish]);
 
+  useEffect(() => {
+    // Browsers need one user gesture before audio can play: the first click/key anywhere unlocks it.
+    if (unlocked) return;
+    const unlock = () => void enableAudio();
+    window.addEventListener("pointerdown", unlock, { once: true, capture: true });
+    window.addEventListener("keydown", unlock, { once: true, capture: true });
+    return () => {
+      window.removeEventListener("pointerdown", unlock, { capture: true });
+      window.removeEventListener("keydown", unlock, { capture: true });
+    };
+  });
+
   const enableAudio = async () => {
     try {
       const context = audioContextRef.current ?? new AudioContext();
@@ -111,18 +122,5 @@ export default function AudioPlayer() {
     }
   };
 
-  if (unlocked || !aiVoice) return null;
-
-  return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-5 z-50 flex justify-center">
-      <button
-        onClick={() => void enableAudio()}
-        className="pointer-events-auto flex items-center gap-2.5 rounded-full border border-emerald-300/30 bg-[var(--sp-toast)] px-5 py-3 text-[13px] font-semibold text-emerald-100 shadow-2xl shadow-black/60 backdrop-blur-xl transition hover:scale-[1.02] hover:bg-[#163328]"
-      >
-        <Volume2 size={15} className="text-emerald-300" />
-        Click to enable audio
-        <span className="rounded-full bg-emerald-300/10 px-2 py-0.5 text-[10px] uppercase tracking-wider text-emerald-300">One time</span>
-      </button>
-    </div>
-  );
+  return null;
 }

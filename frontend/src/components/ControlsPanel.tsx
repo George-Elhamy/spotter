@@ -57,21 +57,37 @@ export default function ControlsPanel() {
             ))}
           </div>
         </div>
-        <div className="flex items-center justify-between">
-          <FieldLabel>Energy</FieldLabel>
-          <div className="flex items-center gap-2" aria-label={`Energy ${instance.energy} of 5`}>
-            {([1, 2, 3, 4, 5] as const).map((energy) => (
-              <button
-                key={energy}
-                aria-label={`Set energy to ${energy}`}
-                onClick={() => void update({ energy })}
-                className={`h-2.5 w-2.5 rounded-full transition ${
-                  energy <= instance.energy
-                    ? "bg-emerald-300 shadow-[0_0_8px_rgba(110,231,183,.25)]"
-                    : "bg-white/[0.1] hover:bg-white/20"
-                }`}
-              />
-            ))}
+        <div>
+          <div className="flex items-baseline justify-between">
+            <FieldLabel>Energy</FieldLabel>
+            <span className="font-mono text-[11px] text-emerald-300">{instance.energy}/5</span>
+          </div>
+          <div className="flex items-end gap-1.5" role="radiogroup" aria-label="Commentary energy">
+            {([1, 2, 3, 4, 5] as const).map((energy) => {
+              const active = energy <= instance.energy;
+              return (
+                <button
+                  key={energy}
+                  role="radio"
+                  aria-checked={energy === instance.energy}
+                  aria-label={`Energy ${energy}`}
+                  title={`Energy ${energy}`}
+                  onClick={() => void update({ energy })}
+                  style={{ height: `${18 + energy * 4}px` }}
+                  className={`flex flex-1 items-end justify-center rounded-md border pb-1 font-mono text-[11px] font-semibold transition hover:-translate-y-0.5 ${
+                    active
+                      ? "border-emerald-300/40 bg-emerald-300/[0.18] text-emerald-200"
+                      : "border-white/[0.08] bg-white/[0.03] text-slate-500 hover:border-emerald-300/30 hover:text-slate-200"
+                  }`}
+                >
+                  {energy}
+                </button>
+              );
+            })}
+          </div>
+          <div className="mt-1 flex justify-between text-[10px] uppercase tracking-[0.14em] text-slate-600">
+            <span>Calm</span>
+            <span>Hype</span>
           </div>
         </div>
         <label className="block">

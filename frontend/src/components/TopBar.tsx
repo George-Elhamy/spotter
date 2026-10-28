@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Moon, Pause, Play, Radio, Sun } from "lucide-react";
+import { ChevronDown, Moon, Pause, Play, Sun } from "lucide-react";
+import Logo from "./Logo";
 import { controlMatch } from "../api";
 import { MOCK_MODE } from "../config";
 import { useBoothStore } from "../store";
@@ -42,9 +43,7 @@ export default function TopBar() {
     <header className="relative z-40 border-b border-white/[0.07] bg-[var(--sp-header)] shadow-[0_12px_36px_rgba(0,0,0,.25)]">
       <div className="flex h-[66px] items-center gap-5 px-4 2xl:px-6">
         <div className="flex w-[174px] shrink-0 items-center gap-3">
-          <div className="grid h-8 w-8 place-items-center rounded-lg border border-emerald-300/25 bg-emerald-300/[0.08]">
-            <Radio size={17} className="text-emerald-300" strokeWidth={2.2} />
-          </div>
+          <Logo size={36} />
           <div>
             <div className="text-[19px] font-black tracking-[0.22em] text-white">SPOTTER</div>
             <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500">
@@ -150,7 +149,7 @@ export default function TopBar() {
 
       <div className="flex h-[42px] items-center gap-6 border-t border-white/[0.05] px-4 2xl:px-6">
         <div className="flex min-w-[300px] flex-1 items-center gap-3">
-          <span className="w-14 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">Control</span>
+          <span className="shrink-0 pr-1 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">Control</span>
           <div className="flex h-[5px] min-w-24 flex-1 overflow-hidden rounded-full bg-white/[0.06]">
             <div className="transition-[width] duration-500" style={{ width: `${redControl}%`, backgroundColor: red?.color_primary ?? "#d7263d" }} />
             <div className="transition-[width] duration-500" style={{ width: `${100 - redControl}%`, backgroundColor: white?.color_primary ?? "#f2f2f2" }} />
@@ -160,7 +159,7 @@ export default function TopBar() {
           </span>
         </div>
         <div className="flex min-w-[240px] flex-1 items-center gap-3">
-          <span className="w-14 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">Chaos</span>
+          <span className="shrink-0 pr-1 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">Chaos</span>
           <div className="h-[5px] min-w-20 flex-1 overflow-hidden rounded-full bg-white/[0.06]">
             <div
               className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-amber-400 to-red-500 transition-[width] duration-500"

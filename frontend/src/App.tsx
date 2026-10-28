@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { PanelLeftClose, PanelLeftOpen, Radio } from "lucide-react";
+import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import Logo from "./components/Logo";
 import { getInstance, getMatchMeta } from "./api";
 import AgentStrip from "./components/AgentStrip";
 import AudioPlayer from "./components/AudioPlayer";
@@ -66,8 +67,8 @@ export default function App() {
     return (
       <div className="grid h-dvh place-items-center bg-[var(--sp-bg)] text-white">
         <div className="text-center">
-          <div className="mx-auto grid h-11 w-11 place-items-center rounded-xl border border-emerald-300/20 bg-emerald-300/[0.07]">
-            <Radio size={21} className="animate-pulse text-emerald-300" />
+          <div className="mx-auto w-fit animate-pulse">
+            <Logo size={48} />
           </div>
           <div className="mt-4 text-lg font-black tracking-[0.25em]">SPOTTER</div>
           <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-slate-600">
