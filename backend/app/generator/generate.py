@@ -207,7 +207,7 @@ def _phase_red_share(t: float) -> float:
     red_style, whi_style = styles["RED"], styles["WHI"]
     base = red_style["possession"] / (red_style["possession"] + whi_style["possession"])
     if t < 900:
-        return min(0.68, base + 0.08)
+        return min(0.74, base + 0.12)
     if 1500 <= t <= 2220:
         return max(0.34, 0.43 - (whi_style["press"] - 0.5) * 0.14)
     if 4680 <= t <= 5160:
@@ -215,7 +215,7 @@ def _phase_red_share(t: float) -> float:
     if t > _clock(61):
         return max(0.34, base - 0.17)
     if t < 2820:
-        return min(0.66, base + 0.04)
+        return min(0.6, base - 0.09)
     return max(0.45, base - 0.05)
 
 
