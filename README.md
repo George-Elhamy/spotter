@@ -7,7 +7,7 @@ Your commentator covers one language. Spotter covers every market — and does t
 
 ![Spotter live at 18:05 — goal, cards moving across the board, a card on air, a rejected card discarded by the Verifier](docs/screenshot.png)
 
-**Live demo:** https://spotter.salmonmoss-28211672.swedencentral.azurecontainerapps.io (scales to zero — the first visit can take ~20 s to wake up)
+**Demo video:** https://youtu.be/_fsi04iTJRc · **Live demo:** https://spotter.salmonmoss-28211672.swedencentral.azurecontainerapps.io (scales to zero — the first visit can take ~20 s to wake up)
 
 Built for **Microsoft x Premier League — Inside the Game: Developer Hackathon** · Category: **Best Multi-Agent System**.
 All teams, players and stadiums are fictional; the match is fully synthetic.
