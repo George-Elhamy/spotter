@@ -38,7 +38,7 @@ class ProducerInfo(BaseModel):
 
 class RenderInfo(BaseModel):
     line: Optional[str] = None
-    language: Optional[Literal["en", "ar"]] = None
+    language: Optional[Literal["en", "es", "fr", "de"]] = None
     audio_url: Optional[str] = None
     duration_ms: Optional[int] = None
 
@@ -74,7 +74,7 @@ class Directive(BaseModel):
 class InstanceSettings(BaseModel):
     id: str = "main"
     name: str = "EN Analyst"
-    language: Literal["en", "ar"] = "en"
+    language: Literal["en", "es", "fr", "de"] = "en"
     audience: Literal["casual", "analyst"] = "analyst"
     perspective: Literal["neutral", "RED", "WHI"] = "neutral"
     energy: int = Field(3, ge=1, le=5)
@@ -87,7 +87,7 @@ class InstanceSettings(BaseModel):
 
 class InstancePatch(BaseModel):
     name: Optional[str] = None
-    language: Optional[Literal["en", "ar"]] = None
+    language: Optional[Literal["en", "es", "fr", "de"]] = None
     audience: Optional[Literal["casual", "analyst"]] = None
     perspective: Optional[Literal["neutral", "RED", "WHI"]] = None
     energy: Optional[int] = Field(None, ge=1, le=5)

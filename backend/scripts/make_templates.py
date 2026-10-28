@@ -31,9 +31,22 @@ KEYS = list(BUILTIN["en"])
 
 STYLE = {
     "en": "British football television commentary — natural UK commentator vocabulary (pitch, keeper, the top corner, brilliant, lovely touch).",
-    "ar": "classic Arab football commentary in Modern Standard Arabic (فصحى) — vivid, energetic, no dialect.",
+    "es": "Latin American Spanish football commentary — passionate, rhythmic, long '¡GOOOOL!' on goals.",
+    "fr": "French football commentary — lively and vivid, 'BUUUT !' on goals.",
+    "de": "German football commentary — punchy and dramatic, 'TOOOR!' on goals.",
 }
 EVENTS = {
+    "pass": "a routine completed pass from one player to a teammate during build-up play",
+    "carry": "a player carries the ball forward into space",
+    "tackle": "a defender wins the ball with a clean tackle",
+    "interception": "a player reads the pass and intercepts it",
+    "clearance": "a defender clears the danger away from his own box",
+    "throw_in": "a throw-in is awarded to a team",
+    "goal_kick": "a goal kick restarts play",
+    "free_kick": "a free kick is awarded to a team",
+    "duel": "two players battle for the ball",
+    "offside": "the assistant referee flags for offside",
+    "block": "a defender blocks a shot or cross",
     "goal": "a goal is scored",
     "shot_saved": "a shot is saved by the goalkeeper",
     "shot_off_target": "a shot goes wide of the goal",
@@ -117,8 +130,8 @@ def write_file(lang: str, results: dict[str, dict[str, list[str]]]) -> None:
 
 
 def system_prompt(lang: str) -> str:
-    arabic = ("\n- Write every line in Modern Standard Arabic (فصحى), no dialect. Placeholders stay EXACTLY as given, Latin "
-              "letters inside the braces ({player}, never a translated placeholder)." if lang == "ar" else "")
+    arabic = ("\n- Placeholders stay EXACTLY as given, in English inside the braces ({player}, never a translated "
+              "placeholder)." if lang != "en" else "")
     return f"""You write fallback play-by-play lines for Spotter, an AI commentator covering a fully fictional
 football league (Redmoor Rovers vs Whitcliffe Athletic — invented clubs only). Style: {STYLE[lang]}.
 
@@ -200,7 +213,7 @@ async def main() -> int:
     results: dict[str, dict[str, dict[str, list[str]]]] = {}
     problems: list[str] = []
     i = 0
-    for lang in ("en", "ar"):
+    for lang in ("en", "es", "fr", "de"):
         results[lang] = load_existing(lang)
         for key in KEYS:
             i += 1
@@ -220,8 +233,8 @@ async def main() -> int:
     def count(lang_data: dict[str, dict[str, list[str]]]) -> int:
         return sum(len(lines) for buckets in lang_data.values() for lines in buckets.values())
 
-    total = sum(count(results[lang]) for lang in ("en", "ar"))
-    for lang in ("en", "ar"):
+    total = sum(count(results[lang]) for lang in ("en", "es", "fr", "de"))
+    for lang in ("en", "es", "fr", "de"):
         say(f"wrote {config.DATA_DIR / f'templates_{lang}.json'} ({count(results[lang])} lines)")
     say(f"templates total: {total} lines across {len(KEYS)} keys x 2 languages (6 per key per bucket)")
     say(f"run cost ${llm.ledger.total - before:.4f}; ledger total ${llm.ledger.total:.4f} "

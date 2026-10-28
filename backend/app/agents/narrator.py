@@ -12,14 +12,19 @@ from . import prompts
 if TYPE_CHECKING:
     from .runtime import AgentRuntime
 
+LANGUAGE_STYLE = {
+    "es": {"language_name": "Spanish", "dialect": " (Latin American football commentary: passionate, rhythmic, the famous long '¡GOOOOL!')"},
+    "fr": {"language_name": "French", "dialect": " (French football commentary: lively, vivid, 'BUUUT !' on goals)"},
+    "de": {"language_name": "German", "dialect": " (German football commentary: punchy, dramatic, 'TOOOR!' on goals)"},
+}
 AR_DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
 AUDIENCE_HINT = {"casual": "simple words, emotion, no jargon", "analyst": "precise, tactical vocabulary welcome"}
 PERSPECTIVE = {"neutral": "neutral", "RED": "a Redmoor Rovers fan broadcast", "WHI": "a Whitcliffe Athletic fan broadcast"}
 
 
 def lang_fields(inst: InstanceSettings) -> dict:
-    if inst.language == "ar":
-        return {"language_name": "Arabic", "dialect": " (Modern Standard Arabic / فصحى, in the style of classic Arab football commentary — no dialect)"}
+    if inst.language in LANGUAGE_STYLE:
+        return LANGUAGE_STYLE[inst.language]
     return {"language_name": "English", "dialect": " (British football commentary)"}
 
 
@@ -64,7 +69,7 @@ async def narrate(rt: "AgentRuntime", card: Card) -> str | None:
             return line
         await rt.booth.trace("narrator", "retry" if attempt == 0 else "fallback",
                              f"{card.id}: number check failed ({', '.join(nums)})")
-    return card.text if inst.language == "en" else None
+    return card.text if inst.language == "en" else None  # non-English: skip rather than speak English
 
 
 async def speak(rt: "AgentRuntime", text: str, inst: InstanceSettings, agent: str,

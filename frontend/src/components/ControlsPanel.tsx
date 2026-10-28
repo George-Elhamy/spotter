@@ -1,6 +1,6 @@
 import { patchInstance } from "../api";
 import { useBoothStore } from "../store";
-import type { InstanceSettings } from "../types/contract";
+import type { InstanceSettings, Language } from "../types/contract";
 
 export default function ControlsPanel() {
   const instance = useBoothStore((state) => state.instance);
@@ -29,8 +29,8 @@ export default function ControlsPanel() {
           <FieldLabel>Language</FieldLabel>
           <Segmented
             value={instance.language}
-            options={[["en", "EN · English"], ["ar", "AR · العربية"]]}
-            onChange={(language) => void update({ language: language as "en" | "ar" })}
+            options={[["en", "EN"], ["es", "ES"], ["fr", "FR"], ["de", "DE"]]}
+            onChange={(language) => void update({ language: language as Language })}
           />
         </div>
         <div>
@@ -147,7 +147,10 @@ function Segmented({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="grid grid-cols-2 rounded-md border border-white/[0.07] bg-black/20 p-0.5">
+    <div
+      className="grid rounded-md border border-white/[0.07] bg-black/20 p-0.5"
+      style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}
+    >
       {options.map(([option, label]) => (
         <button
           key={option}

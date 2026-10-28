@@ -44,27 +44,19 @@ BUILTIN = {
            "interception": "Intercepted by {player}.", "clearance": "{player} clears it.",
            "throw_in": "Throw-in, {team}.", "goal_kick": "Goal kick.", "free_kick": "Free kick to {team}.",
            "duel": "{player} battling with {related}.", "offside": "Flag's up, offside.", "block": "Blocked by {player}!"},
-    "ar": {"goal": "هدف! {player} يسجل لـ{team}!", "shot_saved": "تسديدة من {player}… والحارس يتصدى!",
-           "shot_off_target": "تسديدة {player} تمر بجوار المرمى.", "shot_blocked": "تسديدة {player} تُصد.",
-           "shot_post": "القائم! كرة {player} ترتطم بالقائم!", "save": "تصدٍّ رائع من الحارس!",
-           "card_yellow": "بطاقة صفراء لـ{player}.", "card_red": "بطاقة حمراء! {player} يغادر الملعب!",
-           "foul": "خطأ على {player}.", "corner": "ركلة ركنية لـ{team}.", "penalty_awarded": "ركلة جزاء لـ{team}!",
-           "penalty_saved": "تصدى لها! الحارس يصد ركلة الجزاء!", "penalty_scored": "{player} يسجل من ركلة الجزاء!",
-           "var_check": "حكم الفيديو يراجع اللقطة.", "var_decision": "حكم الفيديو يلغي الهدف!",
-           "substitution": "{player} يدخل بدلاً من {related}.", "injury": "{player} سقط مصاباً.",
-           "kickoff": "انطلقت المباراة.", "half_time": "نهاية الشوط الأول.", "full_time": "نهاية المباراة!",
-           "attack": "هجمة لـ{team}.", "dribble": "{player} يراوغ {related}!",
-           "goal_line_clearance": "{player} يبعدها من على خط المرمى!", "pass": "{player} يمرر إلى {related}.",
-           "carry": "{player} يتقدم بالكرة.", "tackle": "افتكاك رائع من {player}.", "interception": "{player} يقطع الكرة.",
-           "clearance": "{player} يبعد الخطر.", "throw_in": "رمية تماس لـ{team}.", "goal_kick": "ركلة مرمى.",
-           "free_kick": "ركلة حرة لـ{team}.", "duel": "صراع بين {player} و{related}.", "offside": "تسلل.",
-           "block": "صدّها {player}!"},
+}
+
+
+INTRO_FALLBACK = {
+    "es": "¡Bienvenidos a {stadium}! {home} contra {away}, ¡empieza el espectáculo!",
+    "fr": "Bienvenue à {stadium} ! {home} face à {away}, c'est parti !",
+    "de": "Willkommen in {stadium}! {home} gegen {away} – los geht's!",
 }
 
 
 def _load_templates() -> dict:
     out = {}
-    for lang in ("en", "ar"):
+    for lang in config.LANGUAGES:
         p = config.DATA_DIR / f"templates_{lang}.json"
         try:
             out[lang] = json.loads(p.read_text()) if p.exists() else {}
@@ -147,7 +139,7 @@ class Caller:
         d = self.rt.booth.data
         bucket = "1" if energy <= 2 else ("3" if energy == 3 else "5")
         variants = (self.templates.get(lang, {}).get(key) or {}).get(bucket) or []
-        tpl = self.rng.choice(variants) if variants else BUILTIN[lang].get(key)
+        tpl = self.rng.choice(variants) if variants else BUILTIN.get(lang, BUILTIN["en"]).get(key)
         if not tpl:
             return None
         st = self.rt.booth.state
@@ -194,14 +186,13 @@ class Caller:
             en = (f"Welcome to {facts['stadium']}: {facts['home']} against {facts['away']}, and we're under way!"
                   if facts["kickoff"] else
                   f"Back with you at {facts['stadium']}, {facts['minute']} played, {facts['home']} {facts['score']} {facts['away']}.")
-            ar = (f"أهلاً بكم في {facts['stadium']}: {facts['home']} ضد {facts['away']}، وانطلقت المباراة!"
-                  if facts["kickoff"] else f"نعود إليكم من {facts['stadium']}، والنتيجة {facts['score']}.")
-            line, subtitle = (ar, en) if inst.language == "ar" else (en, None)
+            local = INTRO_FALLBACK.get(inst.language)
+            line, subtitle = (local.format(**facts), en) if local else (en, None)
         audio_url, dur = await speak(rt, line, inst, "caller", excited=inst.energy >= 4)
         play_at = rt.producer.display_now() + 0.3
         self.reserved_until = play_at + dur / 1000 * max(1.0, rt.booth.clock.speed)
         st.spoken = (st.spoken + [line])[-10:]
-        await rt.producer.emit_speech("call", None, line, subtitle if inst.language == "ar" else None, audio_url,
+        await rt.producer.emit_speech("call", None, line, subtitle if inst.language != "en" else None, audio_url,
                                       play_at, dur, agent="caller")
 
     async def tick(self) -> None:
@@ -252,7 +243,7 @@ class Caller:
             line = self.template_line(main, inst.language, inst.energy)
             if not line:
                 return
-            subtitle = self.template_line(main, "en", inst.energy) if inst.language == "ar" else None
+            subtitle = self.template_line(main, "en", inst.energy) if inst.language != "en" else None
         excited = main["type"] in ("goal", "save", "penalty_taken", "var_decision") or \
             (main["type"] == "shot" and main.get("outcome") in ("goal", "post", "saved"))
         audio_url, dur = await speak(rt, line, inst, "caller", excited=excited)
@@ -261,6 +252,6 @@ class Caller:
         if main["type"] in FLOW:  # flowing calls may start up to 1 s early to close gaps (still in sync)
             play_at = max(group[0]["t"] - 1.0, rt.producer.speaking_until + 0.2, rt.producer.display_now() + 0.2)
         self.reserved_until = min(self.reserved_until, max(play_at, rt.producer.speaking_until))
-        await rt.producer.emit_speech("call", None, line, subtitle if inst.language == "ar" else None, audio_url, play_at, dur, agent="caller")
+        await rt.producer.emit_speech("call", None, line, subtitle if inst.language != "en" else None, audio_url, play_at, dur, agent="caller")
         if source == "template":
             await rt.booth.trace("caller", "template", f"{main['type']} after {time.monotonic() - started:.1f}s: {line}")

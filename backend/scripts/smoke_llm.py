@@ -29,7 +29,7 @@ async def main() -> None:
                               "What is the score?", kind="nano", effort="minimal")
     print("agent →", out)
     if "--tts" in sys.argv:
-        for lang, text in (("en", "Moretti skips past Whitaker!"), ("ar", "موريتي يتخطى ويتاكر!")):
+        for lang, text in (("en", "Moretti skips past Whitaker!"), ("es", "¡Moretti se va de Whitaker!")):
             print("tts", lang, "→", await llm.synthesize(text, lang, 5))
     print(f"cost this run ${llm.ledger.total - before:.6f}; ledger total ${llm.ledger.total:.6f}")
 

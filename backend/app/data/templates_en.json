@@ -596,5 +596,291 @@
       "Pulse-racing stuff as {player} throws his body in to clear on the line!",
       "Stunning last-ditch clearance by {player}, that’s championship defending!"
     ]
+  },
+  "pass": {
+    "1": [
+      "{player} finds {related} with a neat, unhurried pass",
+      "{player} slips a simple ball to {related}",
+      "{player} lays it off calmly to {related}",
+      "{player} plays a tidy pass into {related}",
+      "{player} passes short to {related} with composure",
+      "{player} moves the ball neatly to {related}"
+    ],
+    "3": [
+      "{player} feeds {related} who keeps the move flowing",
+      "{player} clips it through to {related}, build-up continues",
+      "{player} shifts play by passing to {related}",
+      "{player} plays {related} in and the move stays alive",
+      "{player} finds {related} and Whitcliffe reshape their attack",
+      "{player} sends a measured ball to {related} in space"
+    ],
+    "5": [
+      "{player} rips it into {related}, crowd on their feet",
+      "{player} fires a brilliant pass to {related}, momentum shifted",
+      "{player} zips the ball to {related}, this could spark something",
+      "{player} drills a killer pass through to {related}",
+      "{player} threads a sensational ball to {related}",
+      "{player} unleashes a rapid pass to {related}, tempo lifted"
+    ]
+  },
+  "carry": {
+    "1": [
+      "{player} strides calmly into space with the ball, looking up patiently",
+      "{player} carries the ball into space, conserving pace and composure",
+      "{player} finds room and eases forward with a measured touch",
+      "{player} drifts into space, keeping the move unhurried",
+      "{player} advances into space, no rush in the buildup",
+      "{player} takes the ball into space with quiet assurance"
+    ],
+    "3": [
+      "{player} bursts into space with the ball, looking to create something",
+      "{player} drives forward into space, picking up momentum now",
+      "{player} carries the ball into space and seeks an opening",
+      "{player} powers into space, drawing defenders out of shape",
+      "{player} runs into space with the ball, probing the defence",
+      "{player} charges into space, intent on making a forward pass"
+    ],
+    "5": [
+      "{player} explodes into space with the ball, crowd to its feet",
+      "{player} tears into space, defenders scrambling to stop him",
+      "{player} darts into acres of space, this could be decisive",
+      "{player} surges into space at pace, danger looming for opponents",
+      "{player} rockets into space with the ball, eyes fixed on goal",
+      "{player} steamrollers into space, that burst will worry defenders"
+    ]
+  },
+  "tackle": {
+    "1": [
+      "{player} times his tackle perfectly, simple and effective.",
+      "A composed challenge from {player}, ball cleanly won.",
+      "{player} stands firm and clips the ball away.",
+      "Neat defending by {player}, no fuss about it.",
+      "{player} reads that and takes the ball cleanly.",
+      "A tidy interception from {player}, play resumes."
+    ],
+    "3": [
+      "{player} with a sharp tackle, wins it back for the team.",
+      "Lovely tackle by {player}, he snatches possession.",
+      "{player} slides in and wins it, clean as you like.",
+      "Brilliant timing from {player}, ball recovered.",
+      "{player} throws his body in, cleans up the danger.",
+      "Smart defending by {player}, he gets the ball away."
+    ],
+    "5": [
+      "What a crunching tackle from {player}, utterly decisive!",
+      "Thrilling challenge by {player}, he robs them blind!",
+      "Electrifying tackle from {player}, straight into the crowd!",
+      "Game-changing challenge from {player}, brilliant recovery!",
+      "Massive intervention by {player}, ball ripped away!",
+      "Explosive tackle by {player}, leave nothing to chance!"
+    ]
+  },
+  "interception": {
+    "1": [
+      "{player} reads it and calmly intercepts the pass",
+      "A tidy interception by {player} as he reads the play",
+      "{player} anticipates and takes possession with composure",
+      "Calm interception from {player}, stops the move cold",
+      "{player} positions well and intercepts the loose pass",
+      "Neat thinking from {player}, intercepts and holds it"
+    ],
+    "3": [
+      "{player} reads the pass and nicks it away",
+      "Good anticipation from {player}, intercepts the ball",
+      "{player} times his run to steal the pass",
+      "Lovely reading of the game by {player}, interception",
+      "{player} intercepts sharply to break the attack",
+      "Clinical interception from {player} in midfield"
+    ],
+    "5": [
+      "Brilliant read! {player} robs them with a fierce interception",
+      "What a moment — {player} anticipates and rips the pass away",
+      "Sensational anticipation from {player}, interception and spark",
+      "{player} reads it perfectly, seizes it and ignites the crowd",
+      "Explosive interception by {player}, a game-changing read",
+      "Unbelievable reading of the play by {player}, takes it clean"
+    ]
+  },
+  "clearance": {
+    "1": [
+      "{player} calmly clears the danger from his own box",
+      "A tidy clearance by {player} eases the pressure",
+      "{player} nods it away, defence relieved",
+      "Calm defensive header from {player} clears danger",
+      "{player} clears his box with composed defending",
+      "A simple but vital clearance by {player}"
+    ],
+    "3": [
+      "Brilliant intervention as {player} clears the danger",
+      "{player} upends the attack with a strong clearance",
+      "Lovely clearance by {player} from his own box",
+      "{player} clears under pressure to halt the move",
+      "Important headed clearance from {player} keeps them out",
+      "{player} clears his lines and relieves the pressure"
+    ],
+    "5": [
+      "Massive clearance from {player}, kept them at bay",
+      "What a block and clearance by {player}, top defending",
+      "Sensational headed clearance by {player} from goalmouth",
+      "{player} absolutely smashes it away, crowd roars",
+      "Thundering clearance from {player}, danger completely gone",
+      "Heroic clearance from {player}, what a vital intervention"
+    ]
+  },
+  "throw_in": {
+    "1": [
+      "{team} will take the throw in from the right flank",
+      "A quiet throw in for {team} to recycle possession",
+      "{team} have a throw in, neat and composed restart",
+      "Throw in to {team}, keep it tight at the back",
+      "{team} awarded a throw, slow build-up expected",
+      "Short throw in for {team}, calm and collected"
+    ],
+    "3": [
+      "{team} win a throw in on the edge of the box",
+      "Throw in to {team}, chance to press forward",
+      "{team} have a throw, crowd waiting for action",
+      "Quick throw in for {team}, keep momentum going",
+      "{team} awarded a throw, looking for an opening",
+      "Throw in to {team}, they’ll try to find the striker"
+    ],
+    "5": [
+      "Massive chance from this throw in for {team}",
+      "{team} awarded a throw, bodies forward in the box",
+      "Quick throw in for {team}, sense of urgency here",
+      "{team} take the throw, push everyone upfield",
+      "Throw in to {team}, it's a proper attacking set piece",
+      "{team} have a throw, this could spark something big"
+    ]
+  },
+  "goal_kick": {
+    "1": [
+      "Keeper takes a steady goal kick to restart play",
+      "A calm goal kick and the game is underway again",
+      "Quiet restart as the goalkeeper sends it long",
+      "Goal kick taken, Rovers prepare to build from the back",
+      "Whitcliffe regroup after the goal kick to organise shape",
+      "Short goal kick to a defender, neat and measured restart"
+    ],
+    "3": [
+      "Keeper launches a searching goal kick downfield and it's away",
+      "Clean restart from the goal kick, both teams repositioning",
+      "A long goal kick into the middle, contest expected",
+      "Quick goal kick taken, Rovers look to catch them out",
+      "Goal kick sent high, Whitcliffe challenge for the second ball",
+      "Keeper's punt forward gives the wingers something to chase"
+    ],
+    "5": [
+      "Massive boot from the keeper, ball whipped into the box",
+      "Powerful goal kick, attackers sprinting like lightning",
+      "Thunderous restart, everyone up for that second ball",
+      "Keeper lets fly, chaos promised in the penalty area",
+      "Instant fireworks from the goal kick, bodies flying in",
+      "High, fierce goal kick — full-on contest at the edge of the box"
+    ]
+  },
+  "free_kick": {
+    "1": [
+      "{team} will take the free kick from a decent position",
+      "A calm set-piece here for {team}",
+      "{team} have a chance from the free kick",
+      "Short routines likely from {team} at this free kick",
+      "{team} preparing to deliver the free kick",
+      "A measured approach from {team} for the set piece"
+    ],
+    "3": [
+      "Chance for {team} from this free kick, defenders organised",
+      "{team} shaping up to whip one into the box",
+      "Crowd watching as {team} step up to the free kick",
+      "{team} eyeing the penalty area with this delivery",
+      "Dangerous position for {team} to take the free kick",
+      "{team} ready to test the wall and keeper"
+    ],
+    "5": [
+      "Big moment — free kick for {team}, everybody up!",
+      "{team} to deliver, crowd on their feet for the set-piece",
+      "This could change the game, free kick to {team} now!",
+      "Massive chance for {team} from this free kick",
+      "All or nothing from {team} at this free kick",
+      "{team} with a brilliant opportunity from the set-piece"
+    ]
+  },
+  "duel": {
+    "1": [
+      "{player} and {related} shoulder-to-shoulder, calm contest for the ball.",
+      "{player} holds position as {related} tries to nudge him off.",
+      "{player} stays composed while {related} presses, tidy little duel.",
+      "{player} and {related} jostle gently, neither giving ground.",
+      "{player} keeps balance as {related} brushes past, quiet tussle.",
+      "{player} leans in, {related} matches him in a measured battle."
+    ],
+    "3": [
+      "{player} drives at {related}, lively shoulder-to-shoulder battle.",
+      "{player} and {related} scrap for the loose ball, game on.",
+      "{player} nudges {related} off the ball in a keen contest.",
+      "{player} hunches into {related}, tight physical duel.",
+      "{player} and {related} trade shoves, both desperate to win it.",
+      "{player} edges past {related} in a competitive little scrap."
+    ],
+    "5": [
+      "{player} throws his body at it, {related} roaring back, epic duel!",
+      "{player} outmuscles {related} with sheer will, brilliant physicality!",
+      "{player} barrels into {related}, throw-down fight for the ball!",
+      "{player} and {related} collide, crowd rising to the contest!",
+      "{player} lunges, {related} repels him, sensational scrap for possession!",
+      "{player} all or nothing challenge on {related}, breathtaking intensity!"
+    ]
+  },
+  "offside": {
+    "1": [
+      "Assistant flagged — offside given, play brought back calmly.",
+      "Linesman’s flag up, decision is offside.",
+      "Offside called, free-kick to the defending side.",
+      "Flag goes up, attacking move stopped for offside.",
+      "Play halted, offside decision confirmed by the assistant.",
+      "Soft whistle in the background, assistant raises the flag for offside."
+    ],
+    "3": [
+      "Flag up, offside spotted, move wiped out.",
+      "Assistant raises the flag — offside, chance gone.",
+      "Play breaks down as the linesman signals offside.",
+      "Offside given, Whitcliffe’s break halted by the flag.",
+      "Linesman’s flag cuts the move short — offside.",
+      "Attack stopped cold — assistant flags for offside."
+    ],
+    "5": [
+      "Flag flies up — offside! What a big decision!",
+      "Linesman throws his flag — offside, massive let-off!",
+      "Offside given at the death, huge intervention from the assistant!",
+      "Assistant’s flag ruins a glorious chance — offside!",
+      "Flag up, huge moment ruled out for offside!",
+      "Right decision from the assistant — offside and relief all round!"
+    ]
+  },
+  "block": {
+    "1": [
+      "{player} gets a vital block, shepherding danger away calmly",
+      "{player} reads it and smothers the effort with a composed block",
+      "{player} stands firm and blocks the cross with calm assurance",
+      "{player} intercepts and blocks, defusing the immediate threat",
+      "{player} manages a tidy block to halt the attack",
+      "{player} times the block well to stop the ball in its tracks"
+    ],
+    "3": [
+      "{player} gets across and blocks the shot with a brave challenge",
+      "{player} sticks out a leg and blocks the dangerous delivery",
+      "{player} throws his body in and blocks that one",
+      "{player} makes a telling block to frustrate the attack",
+      "{player} blocks at the near post, excellent defending",
+      "{player} denies the attacker with a decisive block"
+    ],
+    "5": [
+      "{player} flings himself in and produces a sensational block",
+      "{player} with a heroic block to keep them out, unbelievable",
+      "{player} springs to his feet with a match-saving block",
+      "{player} somehow blocks it, pure instinct and bravery",
+      "{player} lunges and blocks, that could be the moment of the match",
+      "{player} throws his body on the line with a thunderous block"
+    ]
   }
 }

@@ -1,0 +1,886 @@
+{
+  "goal": {
+    "1": [
+      "Disparo colocado de {player} y el arco se mueve, {team} respira distinto con ese gol.",
+      "Toma de balón y definición fría de {player}, ventaja mínima para {team}.",
+      "Jugadita cuidada y remate seguro de {player}, gol para {team}.",
+      "Sutileza en el área, {player} la manda adentro y {team} lo celebra en silencio.",
+      "Control y definición de {player}, gol para {team} que cambia el aire del partido.",
+      "Pase medido y final de {player}, gol que confirma la calidad de {team}."
+    ],
+    "3": [
+      "¡Qué jugada! {player} remata y el balón cruza la línea, gol para {team} que enciende el estadio.",
+      "Centro perfecto y volea de {player}, ¡golazo de {team} que responde con autoridad!",
+      "Recuperación rápida y definición de {player}, {team} celebra el tanto importante.",
+      "Carcajadas en la grada cuando {player} la engancha y la manda a la red, gol para {team}.",
+      "Contrapaseo y definición clínica de {player}, {team} suma con justicia.",
+      "Tremendo movimiento de {player} que no perdona, gol para {team} que cambia el ritmo."
+    ],
+    "5": [
+      "¡GOOOOL! ¡Increíble definición de {player}! {team} explota de alegría, la grada enloquece.",
+      "¡GOOOOLAZO! {player} la coloca con veneno y {team} domina ahora el encuentro.",
+      "¡GOOOOL! {player} firma una obra maestra, {team} celebra con pasión desbordada.",
+      "¡GOOOOL! Contra relámpago culminado por {player}, {team} estalla en júbilo.",
+      "¡GOOOOL! ¿Lo viste? {player} la clava al ángulo y {team} se lleva el hálito del estadio.",
+      "¡GOOOOL! Remate fulminante de {player}, {team} rompe las defensas y canta fuerte."
+    ]
+  },
+  "shot_saved": {
+    "1": [
+      "{player} dispara y el guardameta atrapa sin problemas",
+      "Tiro de {player}, control seguro del portero",
+      "{player} intenta, pero el arquero responde tranquilo",
+      "El remate de {player} queda en manos del portero",
+      "{player} prueba de lejos y el arquero detiene",
+      "Disparo ajustado de {player}, bien cubierto por el portero"
+    ],
+    "3": [
+      "{player} remata y el portero saca una gran parada",
+      "Disparo potente de {player}, el arquero se estira y evita el gol",
+      "{player} dispara al palo, el guardameta la salva abajo",
+      "Tiro de {player}, providencial intervención del portero",
+      "{player} remata desde el borde, el portero desvía a córner",
+      "Intento de {player}, el arquero responde con reflejos"
+    ],
+    "5": [
+      "¡{player} dispara y el portero vuela para salvar!",
+      "¡Gran remate de {player}, el arquero la saca increíble!",
+      "¡{player} lo intenta y el portero evita el gol con reflejo!",
+      "¡Tremendo tiro de {player}, el arquero la mantiene fuera!",
+      "¡{player} enchufa y el guardameta hace una parada monumental!",
+      "¡Qué disparo de {player}, el portero la quita en la línea!"
+    ]
+  },
+  "shot_off_target": {
+    "1": [
+      "Tiro de {player} se va fuera, sin peligro claro",
+      "Remata {player} y la pelota se va por encima",
+      "Disparo de {player} que no encuentra puerta",
+      "Intento de {player} que se va desviado",
+      "La acción acaba con un tiro fuera de {player}",
+      "{player} prueba suerte y el balón se marcha ancho"
+    ],
+    "3": [
+      "¡Vaya tiro de {player}, rozando el poste y fuera!",
+      "{player} conecta un remate potente que se va ancho",
+      "Buena jugada y disparo de {player} que no entra",
+      "Error de colocación: tiro de {player} fuera",
+      "{player} lo intenta pero el balón se marcha por la línea",
+      "Atento {player} con un disparo que se va desviado"
+    ],
+    "5": [
+      "¡Qué ocasión! {player} la prueba y se va fuera por poco",
+      "¡Increíble! {player} busca el ángulo y la pelota se marcha",
+      "¡Ufff! Disparo brutal de {player} que se va por centímetros",
+      "¡GOL casi! {player} dispara y el poste salva, fuera",
+      "¡Lo tuvo {player}! Tremendo remate que se va ancho",
+      "¡Casi lo celebra {player}! Disparo al palo y fuera"
+    ]
+  },
+  "shot_blocked": {
+    "1": [
+      "Disparo de {player} detenido por la defensa.",
+      "La intentó {player}, pero fue bloqueado.",
+      "Tiro de {player} cortado por un zaguero.",
+      "Remate de {player} neutralizado.",
+      "Disparo de {player} desviado al córner.",
+      "Intento tímido de {player}, bloqueado."
+    ],
+    "3": [
+      "¡Qué remate de {player}, pero la defensa lo bloquea!",
+      "Disparo potente de {player}, bloqueo oportuno atrás.",
+      "{player} conecta y otro defensor se cruza.",
+      "Tiro de {player} frenado por el cuerpo rival.",
+      "Buena ocasión de {player}, corte providencial.",
+      "{player} dispara y la zaga evita el peligro."
+    ],
+    "5": [
+      "¡GOOOOL... no! Remate de {player}, gran bloqueo defensivo.",
+      "¡Qué remate de {player}! Bloqueo salvador, se salva el arco.",
+      "¡Increíble intentó de {player}, defensor evita el gol!",
+      "¡Lo tuvo {player}! Bloqueo monumental en el área.",
+      "¡Explosivo disparo de {player}, pero llega la muralla defensiva!",
+      "¡Vibrante tiro de {player}, defensor evita la celebración!"
+    ]
+  },
+  "shot_post": {
+    "1": [
+      "Disparo de {player} y madera, qué cerca estuvo.",
+      "Toca el poste tras el remate de {player}, respiro colectivo.",
+      "{player} prueba y el palo lo niega, jugada de cuidado.",
+      "Madera para {player}, el balón se va por poco.",
+      "Intento de {player} que choca con el poste, sigue el juego.",
+      "El tiro de {player} golpea el poste, oportunidad desperdiciada."
+    ],
+    "3": [
+      "¡Remate de {player} y el poste lo repele!",
+      "¡Qué disparo de {player}, madera y a seguir!",
+      "{player} dispara y el palo evita el grito.",
+      "Casi gol de {player}, el poste dijo no.",
+      "Tremendo intento de {player}, pega en la madera.",
+      "{player} busca la red y choca con el poste."
+    ],
+    "5": [
+      "¡GOOOOL? No, el poste lo impide tras {player}!",
+      "¡Increíble! {player} estrella el balón en el poste!",
+      "¡Casi explota el estadio! {player} pega en la madera!",
+      "¡Qué abrazo al travesaño! {player} se queda con la ilusión!",
+      "¡Momento de locura! {player} encuentra el poste!",
+      "¡Se cantó y se quedó! {player} la manda al palo!"
+    ]
+  },
+  "save": {
+    "1": [
+      "Buen vuelo del portero, atrapa sin problemas.",
+      "Control sereno bajo los tres palos.",
+      "Intervención tranquila que evita el peligro.",
+      "Reflejos fríos, blocaje seguro.",
+      "Detención medida y sin sobresaltos.",
+      "Manos firmes que cortan el avance rival."
+    ],
+    "3": [
+      "Gran estirada del portero para mantener el empate.",
+      "¡Qué parada! Evita el gol con autoridad.",
+      "Mano providencial que rompe la jugada rival.",
+      "Salida valiente y atrapa en el área pequeña.",
+      "Reflejos de felino para negar el remate.",
+      "Despeje decisivo que salva a su equipo."
+    ],
+    "5": [
+      "¡Qué parada monumental del guardameta, lo impide!",
+      "¡Increíble reflejo, paradón que electrifica el estadio!",
+      "¡Salvador en el segundo palo, paradón de campeonato!",
+      "¡Espectacular estirada, la grada estalla por la parada!",
+      "¡PARADÓN! Niega el gol con una parada de elite.",
+      "¡Atajadón que cambia el partido, imposible superar eso!"
+    ]
+  },
+  "card_yellow": {
+    "1": [
+      "El árbitro saca amarilla para {player}.",
+      "Tarjeta amarilla mostrada a {player}.",
+      "Falta y amarilla para {player}.",
+      "Amarilla a {player}, atención en la próxima.",
+      "{player} ve la tarjeta amarilla del árbitro.",
+      "Advertencia con tarjeta amarilla para {player}."
+    ],
+    "3": [
+      "¡Tarjeta amarilla para {player}, se complica!",
+      "El árbitro levanta la amarilla a {player}.",
+      "Amarilla a {player} por esa entrada fuerte.",
+      "Falta peligrosa y amarilla para {player}.",
+      "{player} ve la amarilla, debe calmarse.",
+      "El juez sanciona con amarilla a {player}."
+    ],
+    "5": [
+      "¡Amarilla clara para {player}, atención!",
+      "¡Tarjeta para {player}, el juego sube de tono!",
+      "¡Amarilla a {player}, protesta en la grada!",
+      "¡El árbitro no duda: amarilla para {player}!",
+      "¡Amonestado {player}, decisión contundente!",
+      "¡Tarjeta amarilla para {player}, partido al rojo!"
+    ]
+  },
+  "card_red": {
+    "1": [
+      "Tarjeta roja para {player}, queda con diez.",
+      "{player} expulsado, partido cambia de guion.",
+      "Se va {player} por roja directa.",
+      "{player} deja a su equipo con diez hombres.",
+      "Roja para {player}, momento de repliegue.",
+      "Expulsión de {player}, situación delicada."
+    ],
+    "3": [
+      "¡Roja! {player} tiene que abandonar el campo.",
+      "Expulsión clara: {player} se marcha.",
+      "Se queda con diez: roja a {player}.",
+      "{player} ve la roja y se va del juego.",
+      "Decisión firme, roja para {player}.",
+      "Cambio forzoso tras la roja a {player}."
+    ],
+    "5": [
+      "¡Roja brutal para {player}, todo estalla!",
+      "¡Expulsión definitiva! {player} se va furioso.",
+      "¡Increíble! Roja a {player}, partido al rojo vivo!",
+      "¡Roja directa para {player}, se queda en diez!",
+      "¡No puede creerlo {player}, expulsado!",
+      "¡Estalla la grada: roja a {player}!"
+    ]
+  },
+  "foul": {
+    "1": [
+      "Falta leve de {player}, el árbitro anota y toma nota",
+      "Falta sobre {player}, juego detenido con tranquilidad",
+      "El árbitro apunta falta a favor tras la carga sobre {player}",
+      "Interrupción: falta señalada sobre {player}",
+      "Se para el juego por falta cometida sobre {player}",
+      "Falta sancionada, {player} queda en el césped tranquilo"
+    ],
+    "3": [
+      "¡Falta dura sobre {player}, el juego se frena!",
+      "Falta clara a {player}, el árbitro no duda",
+      "Falta sobre {player}, el equipo protesta y el juego para",
+      "Infracción sobre {player}, tiro libre en breve",
+      "El árbitro marca falta por la entrada sobre {player}",
+      "Falta sobre {player}, el rival pide tarjeta"
+    ],
+    "5": [
+      "¡Falta brutal sobre {player}, el estadio explode!",
+      "¡Qué entrada sobre {player}, falta clarísima!",
+      "¡Falta peligrosa a {player}, el árbitro la sanciona!",
+      "¡Increíble la entrada a {player}, falta y tensión!",
+      "¡Falta fea sobre {player}, todo el público reclama!",
+      "¡Falta sobre {player}, la grada pide expulsión!"
+    ]
+  },
+  "corner": {
+    "1": [
+      "Tiro de esquina a favor de {team}, posesión tranquila para organizar el ataque.",
+      "Corner para {team}, buscan cambiar el ritmo sin prisas.",
+      "Saqué de esquina para {team}, preparación y calma en el área.",
+      "Esquina para {team}, esperan la planificada jugada ensayada.",
+      "Tiro de esquina para {team}, defensa rival atenta y concentrada.",
+      "Corner a favor de {team}, balón en el banderín, orden táctico."
+    ],
+    "3": [
+      "¡Corner para {team}, todos al área buscando el remate!",
+      "Tiro de esquina para {team}, oportunidad clara para crear peligro.",
+      "Esquina a favor de {team}, centro al corazón del área.",
+      "Corner para {team}, rival bajo presión en defensa.",
+      "Saqué de esquina para {team}, esperan el balón en la cabeza.",
+      "Esquina para {team}, jugada preparada en marcha."
+    ],
+    "5": [
+      "¡Tiro de esquina para {team}, el estadio se enciende, todos al área!",
+      "¡Corner para {team}, ocasión monumental, cabeza arriba y a rematar!",
+      "¡Esquina a favor de {team}, centro peligroso, buscan el gol ahora!",
+      "¡Corner para {team}, todo el equipo en el área, tensión máxima!",
+      "¡Saqué de esquina para {team}, bomba aérea en puerta rival!",
+      "¡Esquina para {team}, a punto de estallar el grito de gol!"
+    ]
+  },
+  "penalty_awarded": {
+    "1": [
+      "El árbitro señala penal a favor de {team} con calma y decisión",
+      "Penal para {team}, el silbato resolvió la jugada",
+      "Falta dentro del área: penal sancionado para {team}",
+      "Revisión rápida y penal concedido a {team}",
+      "El VAR confirma penal para {team} sin protestas excesivas",
+      "{team} recibe penal tras la jugada dentro del área"
+    ],
+    "3": [
+      "¡Penal para {team}, la grada se levanta!, tensión máxima",
+      "Penal señalado: {team} tiene la oportunidad de cambiar el marcador",
+      "El árbitro no duda y marca penal para {team} en esta acción",
+      "Penal a favor de {team}, todo listo para el remate desde los once metros",
+      "Jugadón y después la falta: penal otorgado a {team}",
+      "{team} obtiene penal tras la infracción dentro del área"
+    ],
+    "5": [
+      "¡PENAL PARA {team}!, estadio en éxtasis, ¡todo puede pasar!",
+      "¡PENAL! {team} frente al portero, corazón en la garganta",
+      "¡PENAL A FAVOR DE {team}!, tiemblan las redes y los corazones",
+      "¡PENAL PARA {team}!, esto huele a gol y el ruido explota",
+      "¡PENAL! {team} tiene la oportunidad de desatar la locura",
+      "¡PENAL CONCEDIDO A {team}!, la afición grita sin control"
+    ]
+  },
+  "penalty_saved": {
+    "1": [
+      "El portero mantiene la calma y detiene el penalti.",
+      "Penal atajado con seguridad por el guardameta.",
+      "Parada fría desde el punto fatídico, juego sigue.",
+      "El disparo es detenido, respiración colectiva en el estadio.",
+      "Save preciso, la barrera psicológica se mantiene.",
+      "Alineación defensiva intacta tras la gran atajada."
+    ],
+    "3": [
+      "¡Qué parada! El guardameta despeja el penalti con reflejos.",
+      "Penal parado y el público se estremece de emoción.",
+      "Atajada decisiva, el equipo rival no puede creerlo.",
+      "Portero resuelve el penal y contagia confianza al equipo.",
+      "Gran reacción bajo palos, penal retenido con autoridad.",
+      "El disparo se va a manos del arquero, jugada cambiada."
+    ],
+    "5": [
+      "¡GOOOOL? No, penal salvado y estadio enloquece!",
+      "¡Increíble! Penal atajado, la grada tiembla y celebra.",
+      "¡Magnífica atajada! Penal rechazado y explosión de júbilo.",
+      "¡Gol? No: parada monumental que cambia el partido!",
+      "¡Qué reflejos! Penal detenido, éxtasis total en las tribunas.",
+      "¡Imparable! El portero detiene el penal y el estadio ruge."
+    ]
+  },
+  "penalty_scored": {
+    "1": [
+      "{player} coloca el penal con calma y lo convierte.",
+      "{player} ejecuta el penal y lo mete sin problemas.",
+      "{player} transforma la pena máxima con precisión.",
+      "{player} define desde los doce pasos con serenidad.",
+      "{player} anota el penal con frialdad.",
+      "{player} convierte el penal y mantiene la ventaja."
+    ],
+    "3": [
+      "¡{player} dispara el penal y la manda al fondo!",
+      "¡{player} engaña al portero y anota el penal!",
+      "¡{player} la coloca y transforma la pena máxima!",
+      "¡{player} define con potencia y marca de penal!",
+      "¡{player} no falla desde los doce pasos, gol!",
+      "¡{player} firma el penal y celebra con el público!"
+    ],
+    "5": [
+      "¡GOOOOL! ¡{player} la manda a guardar desde el penal!",
+      "¡GOOOOL! {player} fulmina el arco desde el punto penal!",
+      "¡GOOOOL! {player} conecta y estalla el estadio con el penal!",
+      "¡GOOOOL! {player} define con furia desde los doce pasos!",
+      "¡GOOOOL! {player} no perdona el penal, vibra la grada!",
+      "¡GOOOOL! {player} convierte el penal y todo explota!"
+    ]
+  },
+  "var_check": {
+    "1": [
+      "Revisión del VAR en marcha, calma en la grada mientras buscan la jugada clave",
+      "El monitor pide pausa: toca esperar la decisión del VAR con paciencia",
+      "Silencio tenso, el VAR examina la acción con detenimiento y sin prisas",
+      "El árbitro mira la pantalla; el VAR analiza paso a paso la jugada",
+      "Tiempo detenido, revisión del VAR en curso para aclarar la acción",
+      "Se detiene el juego: el VAR revisa la toma con mirada fría"
+    ],
+    "3": [
+      "El VAR está revisando la jugada, la afición contiene la respiración",
+      "Se detiene todo, el VAR repasa la acción en busca de claridad",
+      "Revisión en curso: el árbitro mira la pantalla y espera al VAR",
+      "Imágenes clave en revisión, minuto de incertidumbre por el VAR",
+      "El monitor enciende la duda; ahora habla el VAR",
+      "Momentos de tensión: el VAR analiza cada detalle de la jugada"
+    ],
+    "5": [
+      "¡Revisión del VAR! Todo detenido, expectación total en el estadio!",
+      "¡Para todo! El VAR entra en escena, se palpita cada imagen!",
+      "¡Atención! El VAR analiza la jugada decisiva, silencio absoluto!",
+      "¡Momentazo! El VAR rebobina las imágenes, la tensión se dispara!",
+      "¡No se mueve nadie! El VAR revisa para un posible giro total!",
+      "¡Imágenes bajo lupa! El VAR puede cambiar la historia del partido!"
+    ]
+  },
+  "var_decision": {
+    "1": [
+      "El VAR confirma: gol anulado por una infracción previa.",
+      "Se revisó y el tanto queda invalidado.",
+      "Decisión del VAR: gol no sube al marcador.",
+      "Se detiene la celebración: gol anulado tras revisión.",
+      "La jugada fue revisada y el gol quedó anulado.",
+      "VAR lo confirma: no hay gol válido."
+    ],
+    "3": [
+      "¡Revisión terminada: gol anulado, vuelve la tensión!",
+      "El VAR decide: gol anulado, todo sigue igual.",
+      "Se revisó y el tanto queda anulado, partido abierto.",
+      "Gol anulado tras el VAR, el público en silencio.",
+      "La pantalla lo confirma: gol anulado, continúa el juego.",
+      "VAR interviene y anula el gol, qué giro inesperado."
+    ],
+    "5": [
+      "¡GOOOOL!… no, espera: VAR lo anula, qué locura.",
+      "¡Increíble! Revisión y gol anulado, el estadio estalla en incredulidad.",
+      "¡Espectacular revés! El VAR anula el gol, corazón en vilo.",
+      "¡No puede ser! Gol anulado por VAR, explosión de sentimientos.",
+      "¡Qué drama! Revisión final y el gol queda anulado, tensión máxima.",
+      "¡Gol anulado por el VAR! Se corta la euforia en seco."
+    ]
+  },
+  "substitution": {
+    "1": [
+      "Entra {player}, sale {related}, toma aire y observa el juego con calma",
+      "Sustitución tranquila: {player} reemplaza a {related} ahora mismo",
+      "Cambio sereno, {player} ingresa por {related}",
+      "Movimiento táctico: {player} entra y {related} se retira del campo",
+      "Cambio ordenado, {player} por {related}",
+      "{player} sustituye a {related} sin prisa"
+    ],
+    "3": [
+      "¡Atención! {player} entra por {related}, busca ritmo de partido",
+      "Cambio en el equipo, {player} salta al campo por {related}",
+      "Ahora mismo {player} reemplaza a {related}, se reorganizan las líneas",
+      "{player} ingresa por {related} y el equipo lo necesita",
+      "Sustitución táctica: {player} entra por {related} para refrescar",
+      "{player} entra, {related} se va, veremos su impacto"
+    ],
+    "5": [
+      "¡Entra {player} y explota el ánimo, sale {related} entre vítores!",
+      "¡Impacto inmediato! {player} reemplaza a {related} y la grada estalla",
+      "¡Cambio de fuego! {player} entra por {related}, se siente la energía!",
+      "¡Al ataque! {player} entra por {related}, el equipo busca todo",
+      "¡Explosión en la banda! {player} sustituye a {related}, sube la adrenalina",
+      "¡Vamos! {player} entra por {related}, mirada feroz al juego"
+    ]
+  },
+  "injury": {
+    "1": [
+      "Hay calma mientras {player} espera asistencia médica en el césped",
+      "El juego se detiene por lesión de {player}",
+      "Atención médica para {player}, ritmo pausado",
+      "Reposo obligado: {player} recibe cuidados en el suelo",
+      "Tranquilidad en el estadio, {player} recibe asistencia",
+      "Silencio tenso: {player} permanece tendido recibiendo atención"
+    ],
+    "3": [
+      "Fuerte entrada y {player} queda en el suelo pidiendo ayuda",
+      "Se para el partido porque {player} no puede continuar",
+      "{player} rueda y el cuerpo médico entra al campo",
+      "Cantan por la asistencia, {player} necesita atención inmediata",
+      "Juego interrumpido: {player} tumbado, preocupa su estado",
+      "Se detiene la acción tras la caída de {player}"
+    ],
+    "5": [
+      "¡Paraliza todo! {player} tirado, entra el equipo médico ya!",
+      "¡Qué impacto! {player} en el césped exige atención urgente",
+      "¡Detención total! {player} no se levanta, tensión máxima en el estadio",
+      "¡Atención! {player} queda tendido y la grada estalla en preocupación",
+      "¡Alarma! {player} recibe cuidados inmediatos, juego suspendido",
+      "¡Vaya susto! {player} no puede seguir, entra ayuda rápidamente"
+    ]
+  },
+  "kickoff": {
+    "1": [
+      "Comienza el partido con paso tranquilo y control del balón.",
+      "Arranca el encuentro, paciencia en la circulación.",
+      "Empieza el juego, posesión cuidada desde el inicio.",
+      "Se reanuda el partido con calma y organización.",
+      "Inicio sereno, ambos equipos miden sus fuerzas.",
+      "Comienzan los primeros instantes con ritmo pausado."
+    ],
+    "3": [
+      "¡Arranca el partido y los equipos buscan imponer su ritmo!",
+      "Se reanuda el juego y la intensidad sube poco a poco.",
+      "Empieza el partido con presión alta desde el primer toque.",
+      "Vuelve el balón a rodar y la grada ya empuja fuerte.",
+      "Comienza el encuentro y se nota lucha en el medio campo.",
+      "Arranca el partido y los equipos ya buscan profundidad."
+    ],
+    "5": [
+      "¡Y ARRANCA CON TODO, EL ESTADIO EN ERUPCIÓN!",
+      "¡VUELVE EL JUEGO Y SE SIENTE LA ADRENALINA EN EL AIRE!",
+      "¡COMIENZA EL PARTIDO, TODO LISTO PARA LA BATALLA!",
+      "¡ARRANCAN LOS 90, QUE EMPIECE LA FIESTA DEL FÚTBOL!",
+      "¡VUELVE A RODAR EL BALÓN Y LA EMOCIÓN EXPLOTA!",
+      "¡YA SE JUEGA, LA GENTE ESTÁ EN PIE Y GRITA!"
+    ]
+  },
+  "half_time": {
+    "1": [
+      "Señal del árbitro, pausa técnica en la que se reevalúan estrategias.",
+      "Silencio breve en la grada, los equipos a vestuarios.",
+      "Finaliza la primera mitad, tiempo para ajustar detalles.",
+      "Se apagan momentáneamente los nervios, descanso merecido.",
+      "Medio tiempo: respiración profunda y análisis tranquilo.",
+      "Los técnicos hablan bajo, jugadores recargan energías."
+    ],
+    "3": [
+      "¡Pitazo al descanso! Charlas intensas en los banquillos.",
+      "Se llega al descanso, decisiones claves por delante.",
+      "Termina la primera mitad, ánimo y reproches en vestuario.",
+      "Silbato del medio tiempo, hora de recolocar piezas.",
+      "Final de la mitad: análisis rápido y órdenes firmes.",
+      "Pausa en el juego, entrenadores ya trazan modificaciones."
+    ],
+    "5": [
+      "¡Suena el silbato! Mitad del partido y la tensión explota.",
+      "¡Media hora! Respiran los equipos pero el duelo sigue ardiendo.",
+      "¡Al descanso! Se cierra la primera batalla, sigue la guerra.",
+      "¡Fin de la mitad! Banquillos en ebullición, se viene lo mejor.",
+      "¡Pitazo! Corazones a mil, instrucciones decisivas en vestuarios.",
+      "¡Media parte! Energía al máximo, vuelven con todo en la segunda."
+    ]
+  },
+  "full_time": {
+    "1": [
+      "Se acabó el partido, calma en el césped y reflexión para ambos equipos",
+      "Final del encuentro, ritmo tranquilo y la noche se lleva las decisiones",
+      "Silencio y aplausos: terminó el duelo, toca mirar hacia adelante",
+      "Se escucha el pitazo final, fin sereno de noventa intensos minutos",
+      "Final del partido, tiempo para análisis y recuperación",
+      "Termina el encuentro, jugadores respiran y la grada baja el tono"
+    ],
+    "3": [
+      "¡Se acabó el partido! Todos exhaustos tras noventa vibrantes minutos",
+      "Final del encuentro y la afición canta mientras los jugadores agradecen",
+      "Termina el partido, emoción contenida y comentarios al instante",
+      "Pitazo final: cierran las acciones y comienza la charla táctica",
+      "Final del encuentro, el árbitro marca el cierre y la gente aplaude",
+      "Se termina el partido, caras sudadas y corazones acelerados en ambas hinchadas"
+    ],
+    "5": [
+      "¡FIN DEL PARTIDO! Explosión en la grada, locura total en el estadio",
+      "¡Se acabó! Estalla el estadio, los jugadores se abrazan con fuego",
+      "¡FINAL! Emoción desbordada, los corazones laten a mil por hora",
+      "¡Pitido final y estallido de júbilo! Noche para la historia en el césped",
+      "¡Terminó! Rugido monumental, lágrimas y abrazos en libertad absoluta",
+      "¡SE ACABÓ EL PARTIDO! Locura en la tribuna, el césped vibra"
+    ]
+  },
+  "attack": {
+    "1": [
+      "{team} avanza con calma, buscando huecos y controlando el balón",
+      "Paciencia de {team}, posesión cercana y construcción desde atrás",
+      "{team} mueve el balón con criterio, esperando romper la defensa",
+      "Ritmo pausado de {team}, todos se colocan para el ataque",
+      "{team} construye la jugada con precisión y sin riesgo",
+      "Juego ordenado de {team}, buscando la opción clara"
+    ],
+    "3": [
+      "{team} presiona y acelera, buscando penetrar por las bandas",
+      "{team} combina rápido, la jugada toma buena pinta",
+      "Intercambio de pases de {team}, la defensa sufre ya",
+      "{team} sube líneas, todos se suman al ataque",
+      "Jugada colectiva de {team}, la oportunidad se cuece",
+      "{team} encuentra espacio y avanza con intención"
+    ],
+    "5": [
+      "¡{team} embiste con furia, todos al ataque!",
+      "¡{team} dispara la ofensiva, intensa y sin freno!",
+      "¡{team} arremete, la presión es total!",
+      "¡{team} lanza una oleada ofensiva, expectación máxima!",
+      "¡{team} carga el área en manada, todo o nada!",
+      "¡{team} acelera y empuja, la defensa está en crisis!"
+    ]
+  },
+  "dribble": {
+    "1": [
+      "{player} se la lleva con calma y deja atrás a {related}.",
+      "Con pausa, {player} supera a {related} en un uno contra uno.",
+      "{player} sortea a {related} con un toque sutil.",
+      "{player} evita la entrada de {related} con clase.",
+      "Moviendo el balón, {player} desbordó a {related}.",
+      "Control fino de {player} para deshacerse de {related}."
+    ],
+    "3": [
+      "¡Atento! {player} encara y supera a {related}!",
+      "{player} acelera, gambetea y deja a {related} atrás.",
+      "Qué jugada de {player}, se trae a {related} al suelo.",
+      "{player} cambia de ritmo y regatea a {related}.",
+      "Vaya asistencia de piernas: {player} se va de {related}.",
+      "{player} rompe la marca de {related} con habilidad."
+    ],
+    "5": [
+      "¡GOOOOL de finta! {player} humilla a {related} y sigue!",
+      "¡Impresionante! {player} se lleva por delante a {related}!",
+      "¡Qué locura! {player} deja clavado a {related}!",
+      "¡Explosión! {player} vuela sobre {related} y sigue!",
+      "¡Monstruo! {player} anula a {related} con lujo!",
+      "¡Pura magia! {player} hace pasar a {related} por la foto!"
+    ]
+  },
+  "goal_line_clearance": {
+    "1": [
+      "Gran intervención de {player} despejando sobre la línea, alivio para su equipo",
+      "Despeje preciso de {player} en la línea, se salva el arco",
+      "{player} corta el balón en la línea, defensa fría y ordenada",
+      "Intervención segura de {player} sobre la raya, jugada de puro oficio",
+      "Despeje milagroso de {player} en la línea, respiración contenida",
+      "{player} evita el gol con un despeje sobre la línea, partido vivo"
+    ],
+    "3": [
+      "¡Qué valentía de {player}, despeja sobre la línea y mantiene el empate!",
+      "{player} aparece en la raya y manda la pelota lejos, salva a su equipo",
+      "Despeje clave de {player} en la línea, la grada responde",
+      "¡Atención! {player} evita el gol con un despeje en la línea",
+      "{player} corta el remate en la línea y evita el grito rival",
+      "Acción frenética y {player} despeja sobre la línea, sigue el partido"
+    ],
+    "5": [
+      "¡NO LO PUEDO CREER, {player} LA QUITA EN LA LÍNEA, INCREÍBLE!",
+      "¡SALVACIÓN MÁXIMA! {player} DESPEJA SOBRE LA RAYA, LOCURA EN EL ESTADIO!",
+      "¡IMPRESIONANTE! {player} ARRASA EL REMATE EN LA LÍNEA, QUÉ REFLEJOS!",
+      "¡MILAGRO DEFENSIVO! {player} SACUDE LA PELOTA EN LA LÍNEA, BOMBAS DE ADRENALINA!",
+      "¡ESPECTACULAR! {player} SE INTERPONE EN LA LÍNEA Y EVITA EL GOL!",
+      "¡QUÉ HAZAÑA! {player} DESPEJA EN LA LÍNEA, ESTALLA LA AFICIÓN!"
+    ]
+  },
+  "pass": {
+    "1": [
+      "Pase tranquilo de {player} a {related} en la salida del balón",
+      "{player} encuentra a {related} con criterio en la construcción",
+      "Toque corto de {player} hacia {related}, circulación paciente",
+      "{player} entrega la pelota a {related} para mantener la posesión",
+      "Movida pausada: {player} conecta con {related} sin prisas",
+      "{player} asiste a {related} en la salida, juego controlado"
+    ],
+    "3": [
+      "¡{player} busca a {related} y sigue la progresión del ataque!",
+      "{player} combina con {related} y el equipo avanza con intención",
+      "Pase entre líneas de {player} para {related}, buena asociación",
+      "{player} cambia el juego hacia {related}, ritmo interesante",
+      "{player} conecta con {related} y la jugada sigue creciendo",
+      "Toque de precisión de {player} a {related}, buen movimiento"
+    ],
+    "5": [
+      "¡{player} rompe el ritmo y asiste a {related}, seguimos en ataque!",
+      "¡{player} lanza a {related} y la grada se enciende, presión arriba!",
+      "¡Veloz cambio de {player} a {related}, peligro palpable!",
+      "¡{player} filtra a {related} y la jugada explota en intensidad!",
+      "¡Pase eléctrico de {player} hacia {related}, todos al frente!",
+      "¡{player} da el pase a {related} y el área se inquieta!"
+    ]
+  },
+  "carry": {
+    "1": [
+      "{player} avanza con calma por el carril abierto",
+      "Con paciencia, {player} lleva el balón hacia adelante",
+      "{player} progresa en el espacio disponible",
+      "Control y pasos de {player} en terreno libre",
+      "{player} circula el balón aprovechando el hueco",
+      "Avance sosegado de {player} por la banda"
+    ],
+    "3": [
+      "¡{player} rompe líneas con potencia!",
+      "{player} encara y gana metros decisivos",
+      "{player} corre al espacio, opción peligrosa",
+      "¡Atento! {player} se abre y progresa rápido",
+      "{player} acelera, busca la jugada siguiente",
+      "{player} rompe la defensa conduciendo el balón"
+    ],
+    "5": [
+      "¡GOOOOL! no, espera — {player} vuela por el hueco",
+      "¡Imparable {player}! corre como un rayo al espacio",
+      "¡Qué maravilla! {player} destroza líneas con velocidad",
+      "¡Locura! {player} se escapa y lleva el balón al límite",
+      "¡Explosión! {player} se lleva a todos en carrera",
+      "¡Sí se puede! {player} devora metros hacia la portería"
+    ]
+  },
+  "tackle": {
+    "1": [
+      "Buen corte de {player}, limpia y sin aspavientos.",
+      "{player} recupera con calma, saque limpio.",
+      "Intervención serena de {player}, balón recuperado.",
+      "Pase frustrado, {player} gana la pelota limpio.",
+      "{player} limpia la jugada con seguridad.",
+      "Defensa ordenada: {player} recupera sin prisa."
+    ],
+    "3": [
+      "¡Atento {player}, quita la pelota con buen timing!",
+      "Gran entrada de {player}, recupera para su equipo.",
+      "Recuperación brillante de {player}, sale jugando.",
+      "{player} anticipa y roba limpio para salir rápido.",
+      "Tackle bien medido de {player}, calma en defensa.",
+      "{player} gana el duelo y destruye la jugada rival."
+    ],
+    "5": [
+      "¡Qué exhibición de {player}, corta y manda el balón lejos!",
+      "¡Increíble timing de {player}, robo que enciende al estadio!",
+      "¡Qué quiebre! {player} deslumbra y arrebata la pelota.",
+      "¡Impactante recuperación de {player}, frena todo el avance!",
+      "¡Tackle perfecto de {player}, ovación instantánea!",
+      "¡Momento heroico de {player}, detiene la jugada clave!"
+    ]
+  },
+  "interception": {
+    "1": [
+      "{player} lee la jugada y corta el pase con calma",
+      "{player} intercepta y retiene el balón con tranquilidad",
+      "{player} anticipa y roba el pase sin prisas",
+      "{player} corta la línea de pase con lectura fría",
+      "{player} se adelanta al pase y detiene la jugada",
+      "{player} roba el balón con sentido posicional"
+    ],
+    "3": [
+      "{player} lee el pase, sale al encuentro y recupera",
+      "{player} anticipa el pase y gana la posesión",
+      "{player} corta el pase y arranca la transición",
+      "{player} intercepta y busca compañero rápido",
+      "{player} lee la intención y corta la jugada",
+      "{player} se adelanta al pase y cambia el ritmo"
+    ],
+    "5": [
+      "¡{player} lee el pase y lo arranca enérgico!",
+      "¡{player} anticipa y arrebata el balón con furia!",
+      "¡{player} roba el pase y enciende a la grada!",
+      "¡{player} corta la jugada y desata la contra!",
+      "¡{player} intercepta y sale como un rayo!",
+      "¡{player} lee la intención y recupera con potencia!"
+    ]
+  },
+  "clearance": {
+    "1": [
+      "{player} despeja con calma y alivio desde su área.",
+      "{player} corta el peligro y envía el balón lejos.",
+      "{player} aleja la amenaza con un despeje seguro.",
+      "{player} respira y limpia la jugada con un toque largo.",
+      "{player} despeja la pelota hacia banda y ordena a sus compañeros.",
+      "{player} retira el peligro con un cabezazo preciso."
+    ],
+    "3": [
+      "¡{player} despeja bajo presión y salva la situación!",
+      "Despeje clave de {player} para alejar el peligro del área.",
+      "{player} se anticipa y despeja antes del remate.",
+      "Gran intervención de {player}, despeje que evita mayor riesgo.",
+      "{player} rechaza el centro y limpia la zona defensiva.",
+      "Despeje firme de {player} que calma el ataque rival."
+    ],
+    "5": [
+      "¡{player} despeja y evita el gol con un golpe monumental!",
+      "¡Qué despeje de {player}, salvación tremenda en el área!",
+      "¡{player} vuela y despeja como un héroe en la línea!",
+      "¡Increíble intervención de {player}, despeje que salva el partido!",
+      "¡{player} arrebata el balón y despeja con potencia absoluta!",
+      "¡Despeje milagroso de {player}, aplausos y alivio en la grada!"
+    ]
+  },
+  "throw_in": {
+    "1": [
+      "Tiro de banda para {team}, reposición tranquila desde la línea lateral",
+      "Reposición a favor de {team}, buscan controlar el balón desde el saque",
+      "{team} recibe el saque de banda, juego pausado y organizado",
+      "Tiro de banda concedido a {team}, precisión en la entrega requerida",
+      "Saque de banda para {team}, opción segura hacia atrás",
+      "{team} tiene la reposición, intentan mantener la posesión"
+    ],
+    "3": [
+      "¡Tiro de banda para {team}, buscan acelerar la jugada!",
+      "Saque de banda a favor de {team}, presión sobre el poseedor",
+      "{team} con el tiro de banda, buscan ganar terreno rápidamente",
+      "Reposición para {team}, amenaza por la banda derecha",
+      "Tiro de banda para {team}, levantan la cabeza para encontrar espacio",
+      "{team} prepara el saque de banda, opciones en ataque"
+    ],
+    "5": [
+      "¡Tiro de banda para {team}, oportunidad peligrosa ahora!",
+      "¡Saque de banda para {team}, todos suben al área!",
+      "¡Tiro de banda para {team}, chance para crear caos en el área!",
+      "¡Reposición para {team}, balón en el corazón del ataque!",
+      "¡Tiro de banda para {team}, buscan el remate decisivo!",
+      "¡Saque de banda para {team}, presión máxima en busca del gol!"
+    ]
+  },
+  "goal_kick": {
+    "1": [
+      "Salida tranquila desde el arco, el partido vuelve a rodar con paciencia.",
+      "El portero levanta la vista y reanuda el juego con calma.",
+      "Reinicio desde el arco, control y orden en la circulación.",
+      "El equipo se recompone, pase corto para empezar de nuevo.",
+      "Pase cuidado desde atrás, el duelo sigue sin prisas.",
+      "Juego reiniciado con serenidad tras el gol, manteniendo la compostura."
+    ],
+    "3": [
+      "¡Saque de puerta y la pelota ya vuelve en circulación, a mantener presión!",
+      "Reinicio rápido desde el arco, buscan sorprender al rival ya.",
+      "Portero suelta el balón y Whitcliffe intenta salir tocando.",
+      "Saque desde el arco, Redmoor busca estirar las líneas inmediatamente.",
+      "Rápido reinicio y la transición puede llegar en cualquier momento.",
+      "El arquero juega corto y el equipo ya se posiciona para atacar."
+    ],
+    "5": [
+      "¡Saque de puerta fulminante, arranca la contra con todo!",
+      "¡Rápido reinicio, la velocidad sube y el área tiembla!",
+      "¡Saque desde el arco y ya hay presión, todo por la victoria!",
+      "¡Portero lanza largo y la ofensiva estalla de inmediato!",
+      "¡Reinicio explosivo, todos corren al ataque sin miramientos!",
+      "¡Saque desde el arco y la jugada puede cambiar el destino del partido!"
+    ]
+  },
+  "free_kick": {
+    "1": [
+      "Tiro libre a favor de {team}, el juego se detiene con orden.",
+      "Falta cerca, {team} prepara el tiro libre con calma.",
+      "Se repone el balón: tiro libre para {team}.",
+      "Falta señalada, {team} tendrá la oportunidad desde parado.",
+      "{team} consigue un tiro libre, la defensa ordena la barrera.",
+      "Decisión del árbitro: tiro libre para {team}."
+    ],
+    "3": [
+      "Tiro libre para {team}, se acerca la oportunidad peligrosa.",
+      "¡Falta señalada! {team} prepara el disparo desde fuera.",
+      "Balón parado a favor de {team}, la barrera se pone en guardia.",
+      "Cobro importante: {team} con un tiro libre peligroso.",
+      "Tiro libre para {team}, todos al área esperando el centro.",
+      "Falta sobre la entrada al área, {team} con tiro libre."
+    ],
+    "5": [
+      "¡Tiro libre para {team}! Se prepara el lanzamiento decisivo.",
+      "¡Falta y tiro libre para {team}, esto puede cambiarlo todo!",
+      "¡Balón parado para {team}, todos en pie, atención!",
+      "¡Tiro libre peligroso para {team}, tensión máxima en el campo!",
+      "¡Cobro decisivo! {team} con tiro libre, corazón en la boca!",
+      "¡Falta peligrosa! {team} al cobro, esto huele a gol!"
+    ]
+  },
+  "duel": {
+    "1": [
+      "{player} y {related} forcejean por la pelota, ritmo contenido en la disputa",
+      "{player} pelea el balón con {related}, toque fino y calma en la acción",
+      "Duelo cerrado: {player} frente a {related}, juego pausado",
+      "{player} y {related} se entierran en la lucha por el balón",
+      "Contacto suave entre {player} y {related}, control y paciencia",
+      "{player} mide a {related} en la posesión, tensión serena"
+    ],
+    "3": [
+      "{player} choca con {related}, la batalla crece en el centro",
+      "{player} encara a {related}, lucha por la posesión intensa",
+      "Choque entre {player} y {related}, ambos reclaman el balón",
+      "{player} y {related} forcejean, la pelota gira entre ellos",
+      "{player} presiona a {related}, disputa viva por la posesión",
+      "{player} y {related} pelean cada centímetro del balón"
+    ],
+    "5": [
+      "¡{player} y {related} se trenzan, batalla feroz por la pelota!",
+      "¡{player} embiste y {related} responde, choque brutal por la posesión!",
+      "¡Duelo épico: {player} contra {related}, intensidad máxima!",
+      "¡{player} arremete, {related} resiste, puro fuego en la disputa!",
+      "¡Choque titánico entre {player} y {related}, la pelota en llamas!",
+      "¡{player} y {related} no se sueltan, batalla de gladiadores por el balón!"
+    ]
+  },
+  "offside": {
+    "1": [
+      "El asistente levanta la bandera, fuera de juego señalado con calma.",
+      "Bandera arriba: falta de posición, jugada anulada.",
+      "Se detiene la acción por fuera de juego.",
+      "Fuera de juego señalado, el juego se reanuda tranquilo.",
+      "El asistente indica fuera de juego, la jugada no sube.",
+      "Acción invalidada por posición adelantada del atacante."
+    ],
+    "3": [
+      "¡Bandera arriba! Fuera de juego y se frena la emoción.",
+      "Asistente marca fuera de juego, la jugada queda anulada.",
+      "Se para la jugada por fuera de juego señalado.",
+      "Fuera de juego señalan, pausa en el ataque.",
+      "Bandera en alto y la ofensiva queda invalidada.",
+      "Fuerte protesta, pero el asistente marca fuera de juego."
+    ],
+    "5": [
+      "¡Bandera arriba! Fuera de juego y se apaga la jugada.",
+      "¡Fuera de juego! Se aborta el contraataque decisivo.",
+      "¡Se frena todo! Bandera en alto por posición adelantada.",
+      "¡No vale! Asistente marca fuera de juego, se para el festejo.",
+      "¡Alto ahí! Fuera de juego señalado y cae la tensión.",
+      "¡Bandera! Posición adelantada y se acaba la jugada peligrosa."
+    ]
+  },
+  "block": {
+    "1": [
+      "Buen bloqueo de {player}, sin consecuencias mayores.",
+      "Intervención limpia de {player}, cortó el peligro.",
+      "Calma y oficio: {player} desvía la intención rival.",
+      "Salida segura tras el bloqueo de {player}.",
+      "Buena lectura: {player} frena el avance ofensivo.",
+      "Acción defensiva precisa de {player}, balón lejos."
+    ],
+    "3": [
+      "¡Qué pie tuvo {player} para bloquear ese tiro!",
+      "Gran reacción de {player}, evitó el disparo al área.",
+      "Atento {player}, bloqueo que mantiene el empate en pie.",
+      "Despeje providencial de {player}, salva a su equipo.",
+      "Imprescindible {player}, corta el centro con autoridad.",
+      "Bloqueo clave de {player}, respira la defensa."
+    ],
+    "5": [
+      "¡Increíble bloqueo de {player}, evita el gol de milagro!",
+      "¡Qué reflejo de {player}, salva la vida del equipo!",
+      "¡Crucial {player}, se lanza y tapa el disparo!",
+      "¡Espectacular bloqueo de {player}, el estadio estalla!",
+      "¡Heroico {player}, corta la intención en la línea!",
+      "¡No lo puedo creer, {player} niega el gol con el cuerpo!"
+    ]
+  }
+}

@@ -1,0 +1,718 @@
+{
+  "goal": {
+    "1": [
+      "{player} finds the net for {team}, calm and clinical finish.",
+      "{player} slots it home for {team}, confident and composed.",
+      "{player} converts for {team}, measured strike and goal.",
+      "{player} opens the scoring for {team} with a neat finish.",
+      "{player} places it beyond the keeper for {team}, quiet precision.",
+      "{player} finishes calmly for {team}, simple and effective."
+    ],
+    "3": [
+      "{player} with a smart turn and finish — goal for {team}!",
+      "{player} breaks the deadlock, goal for {team}!",
+      "{player} drives it home, goal for {team}!",
+      "{player} beats the keeper and scores for {team}!",
+      "{player} volleys into the net, goal for {team}!",
+      "{player} with a composed finish — it's a goal for {team}!"
+    ],
+    "5": [
+      "TOOOR! {player} explodes into the box and buries it for {team}!",
+      "TOOOR! {player} with a thunderous strike — massive goal for {team}!",
+      "TOOOR! {player} smashes it home, {team} roar into life!",
+      "TOOOR! {player} unstoppable, lights up the stadium for {team}!",
+      "TOOOR! {player} with a sensational finish — {team} celebrate wildly!",
+      "TOOOR! {player} emphatic finish, {team} take control!"
+    ]
+  },
+  "shot_saved": {
+    "1": [
+      "{player} tests the keeper, decent save and play resumes",
+      "A low effort from {player}, comfortably saved",
+      "{player} fires—goalkeeper gathers without panic",
+      "Gentle shot by {player}, the keeper claims it",
+      "{player} tries his luck, saved with ease",
+      "Controlled stop from the keeper on {player}'s attempt"
+    ],
+    "3": [
+      "Quick reaction save thwarts {player}'s strike",
+      "{player} gets a chance, goalkeeper parries it away",
+      "Dangerous effort from {player}, keeper keeps it out",
+      "{player} volleys—brilliant stop denies goal",
+      "Swift stop on {player} prevents the breakthrough",
+      "{player} forces a top save from the keeper"
+    ],
+    "5": [
+      "TOOOR? No — sensational save at the last from keeper on {player}",
+      "Unbelievable reflex stop! {player} is denied in spectacular fashion",
+      "Stunning one-handed save rips the goal away from {player}",
+      "Massive stop! {player}'s thunderbolt kept out brilliantly",
+      "Heart-stopping save! {player} comes inches from scoring",
+      "Heroic save! {player}'s strike smashed onto the keeper's palms"
+    ]
+  },
+  "shot_off_target": {
+    "1": [
+      "{player} drifts a tame effort wide of the target",
+      "{player} tries from distance and it skims past the post",
+      "{player} unhurried shot drifts harmlessly wide",
+      "{player} drags his attempt off target",
+      "{player} tamely misses the frame from range",
+      "{player} leaves it wide with little conviction"
+    ],
+    "3": [
+      "{player} lashes one goalwards but it flashes wide",
+      "{player} crashes a shot just off target",
+      "{player} pounces but the effort drifts wide",
+      "{player} shapes up and rifles it past the post",
+      "{player} forces a save — well, no, it goes wide",
+      "{player} meets it cleanly but can't find the net"
+    ],
+    "5": [
+      "{player} rockets a thunderbolt and it flies agonisingly wide",
+      "{player} volleys with intent — centimetres away!",
+      "{player} rips one at the keeper but it bounces wide",
+      "{player} hammers it and the woodwork is spared — wide!",
+      "{player} explodes into the box and blasts wide!",
+      "{player} lashes from range, inches away from glory!"
+    ]
+  },
+  "shot_blocked": {
+    "1": [
+      "{player} tries a tame effort, comfortably blocked by a defender",
+      "{player}'s shot is smothered by the defensive block",
+      "{player} sees his attempt denied at close range",
+      "{player} fires but the defence gets a vital touch",
+      "{player} curls one in, only to be blocked",
+      "{player} tests the keeper but a block intervenes"
+    ],
+    "3": [
+      "{player} rips in a strike and it's blocked away",
+      "{player} lunges forward, shot charged down by a defender",
+      "{player} lets fly but the effort is crucially blocked",
+      "{player} drives at goal, defence repels the shot",
+      "{player} forces a shot that hits a blocker in the box",
+      "{player} hammers one — crucial block denies danger"
+    ],
+    "5": [
+      "{player} smashes it — BUT BLOCKED! What a stop!",
+      "{player} volleys powerfully and it's miracled away!",
+      "{player} rockets one, defender throws body in the way!",
+      "{player}'s thunderbolt is thwarted by a heroic block!",
+      "{player} fires from distance, BLOCKED with agony!",
+      "{player} with a screaming effort, chopped down by a block!"
+    ]
+  },
+  "shot_post": {
+    "1": [
+      "{player} strikes, it rattles the post and spins away",
+      "{player} fires — off the woodwork, agonisingly close",
+      "A measured shot by {player}, smacks the post and stays out",
+      "{player} tests the keeper, the post denies him",
+      "Quiet disbelief as {player} sees it crash off the post",
+      "{player} curls one — metal denies a goal"
+    ],
+    "3": [
+      "{player} hammers it — off the post and out!",
+      "{player} with a fierce strike, the post rescues the defence",
+      "{player} rattles the woodwork, inches from scoring",
+      "{player} volleys — strikes the post, what a chance",
+      "{player} forces the frame into action, so unlucky",
+      "{player} meets it cleanly, but the post says no"
+    ],
+    "5": [
+      "TOOOR? {player} cannonballs it — smashes the post!",
+      "WHAT A STRIKE by {player}, the upright stands firm!",
+      "INCREDIBLE by {player}, metal saves Whitcliffe!",
+      "ALMOST legendary from {player}, rattles the post!",
+      "THAT WAS SO CLOSE — {player} hammers the bar!",
+      "UNBELIEVABLE effort, {player} hits the post dead centre!"
+    ]
+  },
+  "save": {
+    "1": [
+      "Calm hands, the keeper gathers it and slows the game down.",
+      "A composed stop, easy catch and play restarts steadily.",
+      "Collected by the goalkeeper, no panic as possession retained.",
+      "Steady hands deny the chance, distribution will follow calmly.",
+      "Routine save, grasped and held to calm proceedings.",
+      "The keeper claims it comfortably, game resumes without rush."
+    ],
+    "3": [
+      "Good reflexes, the keeper parries it away under pressure.",
+      "Quick reaction stop, the chance is kept out and cleared.",
+      "The goalkeeper smothers the shot, defenders breathe a sigh.",
+      "A sharp save, back to throw and Whitcliffe must reset.",
+      "Top-flight reflexes deny a sitter, crowd reacts audibly.",
+      "Saved! The keeper stretches well to keep the score level."
+    ],
+    "5": [
+      "TOOOR? No — the goalkeeper makes a sensational fingertip save!",
+      "What a stop! The keeper flies and claws it away spectacularly!",
+      "Unbelievable reaction, the goalkeeper ruins a sure goal in style!",
+      "A heroic save, fingertips to deny an absolute sitter from close range!",
+      "Incredible leap! The keeper keeps Redmoor in it with that stop!",
+      "Stunning reflexes, the shot was destined for net until the keeper!"
+    ]
+  },
+  "card_yellow": {
+    "1": [
+      "Schiedsrichter zückt die Gelbe Karte gegen {player}",
+      "Gelbe Karte für {player}, ruhiger Moment im Spiel",
+      "Verwarnung: {player} sieht Gelb",
+      "Karte für {player}, er muss aufpassen",
+      "Gelbe Karte gegen {player}, taktische Maßnahme",
+      "{player} bekommt die Gelbe Karte, Spiel läuft weiter"
+    ],
+    "3": [
+      "Gelbe Karte! {player} ist verwarnt",
+      "Der Schiedsrichter zieht Gelb für {player}",
+      "Verwarnung für {player}, wichtige Szene",
+      "Gelbe Karte gegen {player}, das ärgert ihn",
+      "Karte für {player} — Spiel bleibt intensiv",
+      "{player} kassiert Gelb, muss aufpassen"
+    ],
+    "5": [
+      "TOOOR? Nein — Gelbe Karte für {player}!",
+      "Gelb! {player} sieht die Karte, Stimmung kocht",
+      "Gelbe Karte gegen {player}, das ist heftig!",
+      "{player} verwarnt! Explosion auf den Rängen",
+      "Gelbe Karte! {player} taumelt, Proteste folgen",
+      "Der Pfiff, die Karte, Gelb für {player}!"
+    ]
+  },
+  "card_red": {
+    "1": [
+      "Ruhig: {player} sieht Rot und muss das Feld verlassen.",
+      "Gelassene Feststellung: {player} wird vom Platz gestellt.",
+      "Die Entscheidung steht: {player} erhält die rote Karte.",
+      "Langsam gesprochen: Platzverweis für {player}.",
+      "Sachlich: {player} sieht die rote Karte.",
+      "Neutraler Kommentar: {player} ist vom Platz verwiesen."
+    ],
+    "3": [
+      "Das war hart: {player} muss vorzeitig duschen gehen.",
+      "Platzverweis! {player} sieht die rote Karte.",
+      "Unmittelbar: Ref zeigt Rot – {player} muss raus.",
+      "Kurze Erklärung: Rote Karte für {player}.",
+      "Spiel verändert sich – {player} geht vom Feld.",
+      "Wichtiger Moment: {player} wird vom Platz gestellt."
+    ],
+    "5": [
+      "TOOOR? Nein! ROTE KARTE für {player}, Spiel explodiert!",
+      "Großer Knall: ROTE KARTE – {player} fliegt vom Platz!",
+      "Wahnsinnsmoment: Platzverweis für {player}, Stimmung kocht!",
+      "Explosion im Stadion: {player} sieht Rot, Chaos pur!",
+      "Direkt und brutal: ROTE für {player}, Partie kippt!",
+      "Rasend! {player} vom Platz gestellt, jetzt wird's wild!"
+    ]
+  },
+  "foul": {
+    "1": [
+      "Leichter Griff von {player}, Schiedsrichter stoppt das Spiel.",
+      "Foul an {player}, ruhige Entscheidung, Freistoß kommt.",
+      "Unterbrechung: Foul an {player}, Alle atmen durch.",
+      "{player} bleibt liegen nach zu hartem Einsatz, Spiel pausiert.",
+      "Kleines Vergehen an {player}, Freistoß wird ausgeführt.",
+      "{player} gestoppt, Freistoß für das angreifende Team."
+    ],
+    "3": [
+      "Pfiff! Foul an {player}, Whitcliffe fordert Freistoß.",
+      "Zu hart: {player} kommt zu Fall, Freistoß gepfiffen.",
+      "Foul an {player}, Rotmoor Rovers unterbricht Angriff.",
+      "{player} wird gestoppt, Freistoß für das verteidigende Team.",
+      "Schiedsrichter winkt, Foul an {player}, Lageentscheidung.",
+      "Hartes Einsteigen gegen {player}, Spiel unterbrochen."
+    ],
+    "5": [
+      "TOOOR? Nein — Foul an {player}, Spiel gestoppt!",
+      "Wuchtiger Einsatz! Foul an {player}, hitzige Szene.",
+      "Pfiff! Brutales Einsteigen gegen {player}, Bank explodiert.",
+      "{player} zu Fall gebracht, Freistoß — brennende Atmosphäre!",
+      "Rücksichtslos! Foul an {player}, Schiedsrichter zieht Karte.",
+      "Krachender Zweikampf, Foul an {player}, Proteste folgen."
+    ]
+  },
+  "corner": {
+    "1": [
+      "Quiet pause as {team} prepare for the corner, measured build-up expected",
+      "Short corner choice for {team}, calm and controlled atmosphere",
+      "{team} set for the corner, patient approach likely",
+      "Corner to {team}, keeper and defence organise calmly",
+      "{team} take their time over the corner, composed routine",
+      "A corner for {team}, no rush, methodical setup"
+    ],
+    "3": [
+      "Corner to {team}, crowd leaning in for the delivery",
+      "{team} step up for the corner, bodies crowd the box",
+      "In-swing or out-swing? {team} will decide from the corner",
+      "{team} on the corner, players jostle for position",
+      "Corner awarded to {team}, referee signals for the kick",
+      "{team} prepares the corner, hoping to test the defence"
+    ],
+    "5": [
+      "TOOOR build-up! Corner to {team}, box flooding with bodies",
+      "{team} wins the corner—noise rises, massive chance incoming",
+      "Corner to {team}, all eyes on that delivery, tension spikes",
+      "Huge moment: corner for {team}, defenders braced on the line",
+      "{team} claim the corner, crowd on their feet for the set piece",
+      "Corner awarded to {team}, this could decide the game"
+    ]
+  },
+  "penalty_awarded": {
+    "1": [
+      "Der Schiedsrichter zeigt auf den Punkt, Elfmeter für {team}.",
+      "Elfmeterpfiff: Strafstoß für {team}, Ruhe bewahren.",
+      "Strafstoß zugesprochen, {team} bereitet sich vor.",
+      "Punktentscheid: Elfmeter für {team}.",
+      "Der Pfiff steht, {team} bekommt einen Elfmeter.",
+      "Schiedsrichter pfeift, Elfmeter für {team}."
+    ],
+    "3": [
+      "Elfmeter! {team} darf vom Punkt antreten.",
+      "Der Schiri zeigt auf den Punkt — Elfmeter für {team}.",
+      "Große Chance: Elfmeter für {team}.",
+      "Strafstoß für {team}, das Stadion hält den Atem an.",
+      "Elfmeter zugesprochen, {team} hat die Gelegenheit.",
+      "Punkt für {team}: Elfmeter entschiedener Moment."
+    ],
+    "5": [
+      "TOOORCHANCE! Elfmeter für {team}, das ist entscheidend!",
+      "PENALTY! {team} bekommt den Elfmeter, Spannung pur!",
+      "Der Punkt ist gegeben — riesiges Momentum für {team}!",
+      "Elfmeter! {team} steht vor dem großen Moment!",
+      "STRAFSTOSS! {team} darf vom Punkt schießen, alles möglich!",
+      "EMOTIONEN explodieren: Elfmeter für {team}!"
+    ]
+  },
+  "penalty_saved": {
+    "1": [
+      "Calmly held by the goalkeeper, spot-kick kept out",
+      "Keeper reads it, comfortable save from the penalty",
+      "Penalty stopped, play resumes with a deep breath",
+      "Goalkeeper gathers, penalty denied without fuss",
+      "Quiet relief as the keeper palms it away",
+      "Penalty saved, composed reaction from the defence"
+    ],
+    "3": [
+      "Penalty saved! The keeper dives and keeps it out",
+      "Last-ditch reflex, penalty kept out by the goalkeeper",
+      "Saved from the spot — huge moment for the defence",
+      "Goalkeeper denies the penalty, crowd reacts loudly",
+      "Penalty stopped, momentum shifts to the defending side",
+      "Keeper reads it well and prevents the goal"
+    ],
+    "5": [
+      "TOOOR? No! What a save, penalty spectacularly denied",
+      "INCREDIBLE save from the spot — keeper robs the striker",
+      "Unbelievable stop! The penalty smashed away brilliantly",
+      "TOOOR wasted — the goalkeeper produces a match-defining save",
+      "Explosive reaction as the keeper claws the penalty out",
+      "Stunning reflexes! The penalty turned away in chaos"
+    ]
+  },
+  "penalty_scored": {
+    "1": [
+      "{player} sends the keeper the wrong way and slots it calmly from the spot",
+      "{player} composes himself and places the penalty into the corner",
+      "{player} buries the penalty with quiet precision",
+      "{player} converts from twelve yards with cool control",
+      "{player} keeps his nerve and scores from the spot",
+      "{player} tucks the penalty away without fuss"
+    ],
+    "3": [
+      "{player} steps up and hammers the penalty into the net",
+      "{player} converts the spot kick and celebrates with relief",
+      "{player} places it low and the keeper is beaten",
+      "{player} coolly slots the penalty past the keeper",
+      "{player} sends the ball into the corner from the spot",
+      "{player} buries the penalty and the crowd reacts"
+    ],
+    "5": [
+      "TOOOR! {player} rockets the penalty into the roof of the net",
+      "TOOOR! {player} smashes the spot kick home with venom",
+      "TOOOR! {player} thunders the penalty beyond any chance",
+      "TOOOR! {player} hammers the penalty and the stadium erupts",
+      "TOOOR! {player} powers the penalty into the top corner",
+      "TOOOR! {player} obliterates the spot kick with blistering pace"
+    ]
+  },
+  "var_check": {
+    "1": [
+      "Schiedsrichter holt den Monitor, VAR-Überprüfung läuft",
+      "Kurze Unterbrechung, VAR schaut sich die Szene an",
+      "Ruhe im Stadion, der VAR prüft das Geschehen",
+      "Spielgestopp, VAR-Entscheidung wird eingeholt",
+      "Kameraeinsatz klärt die Situation, das Spiel wartet",
+      "Der Video-Assistent überprüft den Vorfall ruhig"
+    ],
+    "3": [
+      "Unterbrechung, VAR prüft die fragliche Szene",
+      "Der Schiedsrichter bittet um VAR-Einsicht",
+      "Spiel steht still, VAR analysiert den Treffer",
+      "VAR-Signal: Überprüfung der Entscheidung",
+      "Kurze Pause, Videoassistent schaut sich das an",
+      "Alle Blicke auf den Monitor, VAR wertet"
+    ],
+    "5": [
+      "VAR-Entscheidung steht an, Stadion hält den Atem an",
+      "TOOOR? VAR prüft, wildes Warten im Stadion",
+      "Alles stoppt, VAR-Review könnte alles verändern",
+      "Bildschirmkontrolle! VAR-Entscheidung imminiert",
+      "Riesenjubel abgewürgt, VAR kommt ins Spiel",
+      "TOOOR in der Schwebe, Videoassistent entscheidet"
+    ]
+  },
+  "var_decision": {
+    "1": [
+      "VAR bestätigt, Tor aber zurückgenommen.",
+      "Nach Überprüfung: Tor aberkannt, Spiel läuft weiter.",
+      "Schiedsrichter hebt das Tor auf nach VAR.",
+      "Tor gestochen, aber VAR entscheidet auf Abseits.",
+      "Stille kurz: VAR hat das Tor nicht gegeben.",
+      "Nach Blick aufs Bild: kein Tor, Entscheidung steht."
+    ],
+    "3": [
+      "VAR-Bild zeigt Regelverstoß, Tor aberkannt.",
+      "Toresjubel verstummt — VAR gibt kein Tor.",
+      "Kein Treffer nach VAR-Check, Whitcliffe-Atmo kippt.",
+      "Rovers jubeln, dann VAR: Tor gestoppt.",
+      "Starke Entscheidung vom VAR, Tor nicht anerkannt.",
+      "Die Fahne fällt virtuell: Treffer aberkannt."
+    ],
+    "5": [
+      "TOOOR! Doch VAR kippt die Entscheidung — kein Tor!",
+      "Riesenjubel, dann Stille: VAR annulliert den Treffer!",
+      "Explosion der Emotionen, sofort gedämpft vom VAR!",
+      "Das Stadion bricht los, VAR reißt das zurück!",
+      "Jubel zu Asche: VAR nimmt das Tor weg!",
+      "Unfassbar: Treffer gefeiert, VAR erklärt es null!"
+    ]
+  },
+  "substitution": {
+    "1": [
+      "{player} replaces {related}, calm change on the flank",
+      "A measured switch: {player} comes on for {related}",
+      "Substitution made — {player} for {related}",
+      "{player} steps in as {related} leaves the pitch",
+      "Quiet alteration: {player} replaces {related}",
+      "Tactical swap, {player} on and {related} off"
+    ],
+    "3": [
+      "Here comes {player}, coming on for {related}",
+      "Change of shape as {player} replaces {related}",
+      "The manager sends {player} in for {related}",
+      "Fresh legs: {player} on, {related} off",
+      "Crowd watches {player} replace {related}",
+      "Swift sub, {player} for {related}"
+    ],
+    "5": [
+      "Big moment! {player} storms on for {related}",
+      "Explosive sub: {player} comes on, {related} goes off",
+      "TOOOR? No — but {player} is on replacing {related}",
+      "Massive change! {player} for {related}",
+      "Feel the tension as {player} replaces {related}",
+      "Charge of energy: {player} in, {related} out"
+    ]
+  },
+  "injury": {
+    "1": [
+      "Medical staff rush on as {player} stays down on the turf",
+      "It looks painful — {player} remains down and needs attention",
+      "{player} is receiving treatment after a heavy challenge",
+      "Play halted while {player} is tended to by medics",
+      "A worried pause as {player} lies motionless and staff attend",
+      "{player} down and helped off the ball, faces concerned"
+    ],
+    "3": [
+      "Play stops abruptly with {player} down and medical team running on",
+      "The crowd holds its breath while {player} receives treatment",
+      "{player} writhing on the grass as physios work quickly",
+      "Tense moment as {player} is stretchered off after collision",
+      "{player} stays down after that challenge, medics on immediately",
+      "Referee waves for help as {player} is attended by staff"
+    ],
+    "5": [
+      "Game explodes into concern — {player} down and stretcher called on",
+      "Massive stop as {player} collapses, medics sprinting onto the grass",
+      "Everyone on their feet as {player} is treated amid high alarm",
+      "{player} clutches the leg, play halted, urgent treatment underway",
+      "Tremendous worry — {player} stretchered off after brutal knock",
+      "Big scare here as {player} is down and cannot continue"
+    ]
+  },
+  "kickoff": {
+    "1": [
+      "Anstoß, das Spiel nimmt seinen ruhigen Gang wieder auf.",
+      "Der Ball rollt erneut, beide Teams tasten sich ab.",
+      "Anpfiff zur zweiten Hälfte, normale Gangart jetzt.",
+      "Spiel wieder aufgenommen, kontrolliertes Aufbauspiel.",
+      "Der Schiedsrichter gibt frei, gemächlicher Neustart.",
+      "Anstoß erfolgt, ruhige Ballzirkulation beginnt."
+    ],
+    "3": [
+      "Anstoß! Whitcliffe jetzt im Ballbesitz, Spannung steigt.",
+      "Das Spiel läuft wieder, beide Teams suchen Tempo.",
+      "Anpfiff zur neuen Phase, Mittelfeld wird sofort gefordert.",
+      "Der Ball ist im Spiel, erster Vorstoß Richtung Strafraum.",
+      "Anstoß und sofort ein schneller Pass nach vorn.",
+      "Spiel wieder freigegeben, beide Seiten drücken aufs Tempo."
+    ],
+    "5": [
+      "Anstoß! Und sofort ein wilder Vorstoß, das Stadion bebt!",
+      "Das Spiel ist wieder los — Tempo hoch, Chancen winken!",
+      "Anpfiff! Keine Minute vergeht, alle nach vorn!",
+      "Anstoß, explosives Beginnen, beide Teams voll auf Sieg!",
+      "Die Partie startet neu, Angriff auf Angriff rollt an!",
+      "Anpfiff! Whitcliffe stürmt los, beherzt und kompromisslos!"
+    ]
+  },
+  "half_time": {
+    "1": [
+      "Halftime here, a breather before the second half unfolds",
+      "Teams head in for a tactical rethink at the break",
+      "Referee blows for half-time, calm interval for both sides",
+      "A measured pause now, coaches will swap instructions",
+      "Players regroup in the dressing rooms as the half ends",
+      "Half-time whistle signals time to reassess and recover"
+    ],
+    "3": [
+      "Half-time whistle and the scoreboard frozen for now",
+      "The teams retreat for half-time, talk and tactics coming up",
+      "Whistle to mark half-time, coaches have work to do",
+      "Half-time arrives, a chance to change the game's momentum",
+      "Players off for half-time, second half promises more action",
+      "Half-time interval here, adjustments will be decisive"
+    ],
+    "5": [
+      "Half-time! Catch your breath, second half will explode back into life",
+      "WHISTLE! Half-time drama, teams dash inside plotting the comeback",
+      "Half-time whistle — the plot thickens for the second act",
+      "HALF-TIME! Fireworks promised after the break, stay tuned",
+      "Whistle blows for half-time — momentum could flip after the break",
+      "HALF-TIME and the stadium roars into a feverish pause"
+    ]
+  },
+  "full_time": {
+    "1": [
+      "Der Schlusspfiff ertönt, beide Teams ziehen sich zurück.",
+      "Spielende, ruhiger Abpfiff und erste Nachbesprechungen.",
+      "Das Spiel ist vorbei, die Spieler verlassen den Rasen.",
+      "Ende der Partie, die Mannschaften klären letzte Details.",
+      "Schlusspfiff, ein kontrolliertes Ende ohne großen Aufruhr.",
+      "Das Spiel schließt, Trainer tauschen respektvolle Blicke."
+    ],
+    "3": [
+      "Schlusspfiff, die Menge reagiert, Emotionen kochen hoch.",
+      "Und da ist der Abpfiff, Teams applaudieren und gehen vom Feld.",
+      "Das Spiel ist aus, Trainer dirigieren die Nachbesprechung.",
+      "Abpfiff! Spieler atmen durch, Medien rücken näher.",
+      "Der Schlusspfiff fällt, Unterstützer applaudieren lautstark.",
+      "Spiel beendet, Schiedsrichter pfeift die Partie zu Ende."
+    ],
+    "5": [
+      "TOOOR? Nein, Abpfiff! Explosive Schlusssekunde endet hier.",
+      "Und der Schlusspfiff — ein wilder Ausbruch auf den Rängen!",
+      "Abpfiff! Fans toben, Spieler stürzen erschöpft zu Boden.",
+      "Der Pfiff beendet das Spektakel, Jubel und Erleichterung zugleich!",
+      "Schlusspfiff! Emotionen entladen sich, Stadion bebt noch immer.",
+      "Und das Spiel ist vorbei — ein Donnernder Schlusspfiff, was für ein Finale!"
+    ]
+  },
+  "attack": {
+    "1": [
+      "{team} calmly circulate the ball, probing for an opening",
+      "{team} patient on the ball, shifting play slowly",
+      "{team} keep possession, looking for a quiet chance",
+      "{team} build from the back with composed passing",
+      "{team} retain possession, waiting for the right moment",
+      "{team} methodically construct the move across midfield"
+    ],
+    "3": [
+      "{team} push forward, testing the defence with quick passes",
+      "{team} build up through midfield, tempo steadily increasing",
+      "{team} string passes together and probe the final third",
+      "{team} work the ball wide and look for a cross",
+      "{team} advance with confidence, creating gradual pressure",
+      "{team} link up nicely as they fashion an opening"
+    ],
+    "5": [
+      "{team} storm forward in waves, intent clear and urgent",
+      "{team} relentless buildup, crowd sensing something big",
+      "{team} surge into the final third with menacing intent",
+      "{team} explode into attack, defenders scrambling to cope",
+      "{team} relentless pressure as they hammer at the defence",
+      "{team} thunder toward goal, every pass pushing forward"
+    ]
+  },
+  "dribble": {
+    "1": [
+      "{player} eases past {related} with a neat touch and continues calmly forward",
+      "A composed run from {player}, {related} left trailing behind",
+      "{player} slips by {related}, conserving pace and space",
+      "Quiet quality: {player} brushes past {related} on the flank",
+      "{player} sidesteps {related} and keeps the move ticking",
+      "Measured dribble from {player}, leaving {related} beaten"
+    ],
+    "3": [
+      "{player} takes on {related} and gets the better of the challenge",
+      "Sharp turn from {player}, {related} beaten for pace",
+      "{player} bursts by {related}, opening up the angle",
+      "Great footwork by {player}, {related} left on his heels",
+      "{player} nutmegs {related} and drives into space",
+      "Clean take from {player}, {related} left in his wake"
+    ],
+    "5": [
+      "TOOOR! Wait — {player} rockets past {related}, everything ignites",
+      "What a moment! {player} obliterates {related} with blazing skill",
+      "Unbelievable! {player} runs rings around {related} and bursts free",
+      "Sensational from {player}, {related} completely bamboozled",
+      "STUNNING — {player} leaves {related} for dead and surges on",
+      "Electric from {player}, {related} cannot contain that burst"
+    ]
+  },
+  "goal_line_clearance": {
+    "1": [
+      "{player} blocks it on the line, composure under pressure",
+      "{player} clears off the line with clinical precision",
+      "{player} shepherds danger away from goal calmly",
+      "{player} scrambles it clear, kept their cool",
+      "{player} slides in to deny the effort on the line",
+      "{player} intervenes just in time to avert disaster"
+    ],
+    "3": [
+      "Quick reaction from {player}, clearance off the line!",
+      "{player} denies the strike with a vital clearance",
+      "Goalbound denied by {player} on the line",
+      "{player} lunges and clears from under the bar",
+      "{player} throws body in, clears off the line",
+      "Vital intervention by {player}, goal averted"
+    ],
+    "5": [
+      "TOOOR! Wait — {player} robs them on the line!",
+      "Spectacular clearance! {player} saves it on the line!",
+      "INCREDIBLE from {player}, goalbound cleared at the line!",
+      "Unbelievable denial by {player} on the line!",
+      "What a rescue! {player} clears off the line!",
+      "Heart-stopping moment, {player} keeps it out!"
+    ]
+  },
+  "pass": {
+    "1": [
+      "{player} finds space and plays a neat pass to {related}",
+      "Simple exchange as {player} lays the ball off to {related}",
+      "{player} keeps possession and threads a short pass to {related}",
+      "Calm build-up: {player} passes quietly to {related}",
+      "{player} recycles the ball, feeding it gently to {related}",
+      "Measured play from {player}, slotting the ball to {related}"
+    ],
+    "3": [
+      "{player} slips a clever pass through to {related}",
+      "Good vision from {player}, feeding {related} on the move",
+      "{player} delivers a crisp pass into {related}'s path",
+      "Quick interplay: {player} threads it to {related}",
+      "{player} finds {related} with a precise short pass",
+      "Sharp pass from {player}, {related} takes control"
+    ],
+    "5": [
+      "Instant connection! {player} fires it through to {related}",
+      "Blazing pace in buildup as {player} threads {related} in",
+      "Explosive link-up: {player} rips a pass to {related}",
+      "Charge forward! {player} smashes a pass to {related}",
+      "High-octane move — {player} bolts the ball to {related}",
+      "Relentless tempo, {player} catapults the pass to {related}"
+    ]
+  },
+  "carry": {
+    "1": [
+      "{player} zieht ruhig in den Raum, Tempo behalten und Blick nach vorn",
+      "{player} nimmt den Ball mit, sucht die Lücke und trägt ihn voran",
+      "{player} führt den Ball gemächlich in die freie Zone",
+      "{player} macht Meter, ruhig und kontrolliert in die offene Fläche",
+      "{player} trägt die Kugel voran, ohne Hast in den Raum",
+      "{player} nimmt Fahrt auf, sondiert den Raum und bleibt fokussiert"
+    ],
+    "3": [
+      "{player} treibt den Ball energisch in die offene Zone",
+      "{player} zieht in den Raum, Tempo erhöht, sieht Optionen",
+      "{player} nimmt Raumgewinn, trägt das Spiel nach vorn",
+      "{player} durchbricht Linien, Ball am Fuß und voran",
+      "{player} stürmt in die Lücke, Ball kontrolliert mitgenommen",
+      "{player} marschiert in den Raum, Gefahr bahnt sich an"
+    ],
+    "5": [
+      "{player} rast in den Raum, voller Speed, alles geht voran",
+      "{player} explodiert in die Lücke, Ball am Fuß, Spannung steigt",
+      "{player} sprengt die Abwehrlinie, stürmt mit dem Ball voran",
+      "{player} schießt in den Raum, Tempo brutal, hier ist Action",
+      "{player} reißt das Feld auseinander, Ball an den Füßen, wild voran",
+      "{player} stürmt durch die Öffnung, pure Entschlossenheit mit dem Ball"
+    ]
+  },
+  "tackle": {
+    "1": [
+      "{player} times the tackle perfectly, ball recycled calmly",
+      "Neat intervention by {player}, possession secured",
+      "{player} reads the play and wins the ball cleanly",
+      "Composed defending from {player}, play shepherded away",
+      "{player} times it right, tidy challenge and safe clearance",
+      "Quiet but vital stop from {player} to halt the attack"
+    ],
+    "3": [
+      "Brave challenge from {player}, he nicks the ball away",
+      "Crunching but fair tackle by {player}, turnover achieved",
+      "{player} times the tackle well, crowd murmurs approving",
+      "Alert defending from {player}, the move is snuffed out",
+      "Key intervention by {player}, stops the counter in its tracks",
+      "{player} pops up with a crucial tackle to regain possession"
+    ],
+    "5": [
+      "TOUR de force tackle! {player} rips the ball away",
+      "What a stop! {player} throws himself in and wins it back",
+      "Sensational challenge from {player}, attack completely undone",
+      "Huge tackle by {player}, the crowd explodes at the turnover",
+      "Unbelievable timing! {player} snatches possession from danger",
+      "Game-changing interception by {player}, defence to the rescue"
+    ]
+  },
+  "interception": {
+    "1": [],
+    "3": [],
+    "5": []
+  },
+  "clearance": {
+    "1": [],
+    "3": [],
+    "5": []
+  },
+  "throw_in": {
+    "1": [],
+    "3": [],
+    "5": []
+  },
+  "goal_kick": {
+    "1": [],
+    "3": [],
+    "5": []
+  },
+  "free_kick": {
+    "1": [],
+    "3": [],
+    "5": []
+  },
+  "duel": {
+    "1": [],
+    "3": [],
+    "5": []
+  },
+  "offside": {
+    "1": [],
+    "3": [],
+    "5": []
+  },
+  "block": {
+    "1": [],
+    "3": [],
+    "5": []
+  }
+}

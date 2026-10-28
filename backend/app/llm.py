@@ -228,7 +228,7 @@ _speech_lock = asyncio.Lock()
 
 
 def voice_for(language: str) -> str:
-    return config.VOICE_AR if language == "ar" else config.VOICE_EN
+    return {"es": config.VOICE_ES, "fr": config.VOICE_FR, "de": config.VOICE_DE}.get(language, config.VOICE_EN)
 
 
 def is_hd(voice: str) -> bool:
@@ -237,13 +237,15 @@ def is_hd(voice: str) -> bool:
 
 def build_ssml(text: str, language: str, energy: int, excited: bool = False) -> str:
     voice = voice_for(language)
-    lang = "-".join(voice.split("-")[:2]) if language == "ar" else "en-GB"
+    lang = "-".join(voice.split("-")[:2])
     energy = int(energy) if int(energy) in ENERGY_PROSODY else 3
     rate, pitch, volume = ENERGY_PROSODY[energy]
     body = escape(text)
     if ":MAI-Voice" in voice:
         mood = "excited" if excited and energy >= 3 else ("lively" if energy >= 4 else "calm")
         style = MAI_STYLE[mood]
+        if style == "surprised" and not voice.startswith("en-"):
+            style = "excited"
         if style:
             body = f'<mstts:express-as style="{style}">{body}</mstts:express-as>'
     else:

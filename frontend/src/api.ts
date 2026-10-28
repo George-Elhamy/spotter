@@ -174,7 +174,7 @@ export async function sayCardNow(id: string): Promise<void> {
       kind: "card",
       card_id: card.id,
       text: card.render.line,
-      subtitle_en: card.render.language === "ar" ? card.text : null,
+      subtitle_en: card.render.language && card.render.language !== "en" ? card.text : null,
       audio_url: card.render.audio_url,
       play_at_t: store.displayT,
       duration_ms: card.render.duration_ms ?? 3000,

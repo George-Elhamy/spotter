@@ -4,7 +4,8 @@ import { useBoothStore } from "../store";
 export default function SubtitleBar() {
   const speech = useBoothStore((state) => state.currentSpeech);
   const language = useBoothStore((state) => state.instance?.language ?? "en");
-  const arabic = speech ? /[\u0600-\u06ff]/.test(speech.text) : language === "ar";
+  const arabic = speech ? /[\u0600-\u06ff]/.test(speech.text) : false;
+  void language;
 
   return (
     <section className="panel mt-2.5 min-h-[66px] shrink-0 px-4 py-2.5" aria-live="polite">

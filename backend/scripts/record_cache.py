@@ -15,7 +15,7 @@ os.environ["CACHE_MODE"] = "record"
 
 PRESETS = {
     "en": dict(name="EN Analyst", language="en", audience="analyst", perspective="neutral", energy=3, tone="neutral"),
-    "ar": dict(name="AR Casual Redmoor", language="ar", audience="casual", perspective="RED", energy=5, tone="hype"),
+    "es": dict(name="ES Casual Redmoor", language="es", audience="casual", perspective="RED", energy=5, tone="hype"),
 }
 # (jump minute, match seconds to run) — the windows used in the demo video and README test instructions
 WINDOWS = [(17, 150), (37, 120), (51, 200), (60, 480), (87, 600)]

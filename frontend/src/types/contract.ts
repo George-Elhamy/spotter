@@ -92,7 +92,7 @@ export interface Card {
 }
 
 // ---- Instance settings (§9) ----
-export type Language = "en" | "ar";
+export type Language = "en" | "es" | "fr" | "de";
 export type Audience = "casual" | "analyst";
 export type Perspective = "neutral" | TeamId;
 export type Tone = "neutral" | "hype" | "warm" | "dry";

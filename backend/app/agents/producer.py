@@ -131,7 +131,7 @@ class Producer:
         if card.id in self.say_now_ids:
             self.say_now_ids.remove(card.id)
         inst = self.booth.state.instance
-        subtitle = card.text if card.render.language == "ar" else None
+        subtitle = card.text if card.render.language not in (None, "en") else None
         play_at = await self.emit_speech("card", card.id, card.render.line or card.text, subtitle, card.render.audio_url,
                                          self.display_now() + 0.3, card.render.duration_ms or 3000, card.agent)
         self.airing[card.id] = play_at + self._span(card.render.duration_ms or 3000)
