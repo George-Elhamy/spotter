@@ -61,6 +61,8 @@ async def match_control(req: ControlRequest):
         await c.set_speed(int(req.value or 1))
     elif req.action == "seek":
         await c.seek(float(req.value or 0))
+    elif req.action == "seek_t":
+        await c.seek_t(float(req.value or 0))
     return {"ok": True, "t": booth.state.t, "speed": c.speed, "paused": c.paused}
 
 

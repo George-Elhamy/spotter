@@ -78,7 +78,25 @@ class MatchData:
                     "starter": p["starter"]} for p in self.players.values()]
         return {"teams": {"RED": team("RED"), "WHI": team("WHI")}, "players": players,
                 "jump_presets": [{"minute": m, "label": f"{m}'"} for m in JUMP_PRESETS],
-                "key_moments": self.key_moments(), "duration_t": self.duration_t}
+                "key_moments": self.key_moments(), "moment_presets": self.moment_presets(),
+                "duration_t": self.duration_t}
+
+    def moment_presets(self, lead_s: float = 15.0) -> list[dict]:
+        """Jump targets 15 s before each big moment, so the build-up and the call are both on screen."""
+        out = []
+        for e in self.events:
+            label = None
+            if e["type"] == "goal":
+                ruled_out = any(n["type"] == "var_decision" and 0 < n["t"] - e["t"] < 180 for n in self.events)
+                label = f"Goal · {self.name(e['player_id'])}" + (" (ruled out by VAR)" if ruled_out else "")
+            elif e["type"] == "penalty_awarded":
+                label = "Penalty"
+            elif e["type"] == "card" and e.get("card") in ("second_yellow", "red"):
+                label = f"Red card · {self.name(e['player_id'])}"
+            if label:
+                when = f"{e['minute']}'+{e['added']}" if e.get("added") else f"{e['minute']}'"
+                out.append({"t": round(max(0.0, e["t"] - lead_s), 1), "label": f"{when} {label}"})
+        return out
 
 
 @dataclass

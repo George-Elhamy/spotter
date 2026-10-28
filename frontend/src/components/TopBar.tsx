@@ -104,7 +104,7 @@ export default function TopBar() {
               Jump <ChevronDown size={13} className={jumpOpen ? "rotate-180 transition" : "transition"} />
             </button>
             {jumpOpen && (
-              <div className="absolute left-0 top-11 w-56 rounded-lg border border-white/10 bg-[var(--sp-panel-2)] p-1.5 shadow-2xl shadow-black/60">
+              <div className="absolute left-0 top-11 w-64 rounded-lg border border-white/10 bg-[var(--sp-panel-2)] p-1.5 shadow-2xl shadow-black/60">
                 <div className="px-2.5 pb-1.5 pt-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
                   Key moment presets
                 </div>
@@ -122,6 +122,27 @@ export default function TopBar() {
                     </button>
                   ))}
                 </div>
+                {!!meta?.moment_presets?.length && (
+                  <>
+                    <div className="px-2.5 pb-1.5 pt-3 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                      Key moments · 15 s before
+                    </div>
+                    <div className="grid gap-0.5">
+                      {meta.moment_presets.map((moment) => (
+                        <button
+                          key={moment.t}
+                          className="rounded-md px-2.5 py-1.5 text-left font-mono text-xs text-slate-300 transition hover:bg-emerald-300/10 hover:text-emerald-300"
+                          onClick={() => {
+                            void controlMatch({ action: "seek_t", value: moment.t });
+                            setJumpOpen(false);
+                          }}
+                        >
+                          {moment.label}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             )}
           </div>

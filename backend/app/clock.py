@@ -66,6 +66,10 @@ class MatchClock:
         self.speed = speed if speed in (1, 2, 5) else 1
         await self.booth.broadcast(self.booth.state.clock_msg(self.speed, self.paused))
 
+    async def seek_t(self, t: float) -> None:
+        async with self._lock:
+            await self.booth.seek(max(0.0, min(t, self.booth.data.duration_t)))
+
     async def seek(self, minute: float) -> None:
         async with self._lock:
             await self.booth.seek(self.booth.data.seek_t(minute))

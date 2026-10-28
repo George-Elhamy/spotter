@@ -97,7 +97,7 @@ class InstancePatch(BaseModel):
 
 
 class ControlRequest(BaseModel):
-    action: Literal["play", "pause", "speed", "seek"]
+    action: Literal["play", "pause", "speed", "seek", "seek_t"]
     value: Optional[float] = None
 
 

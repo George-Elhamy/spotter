@@ -154,6 +154,7 @@ export interface MatchMeta {
   players: Player[];
   jump_presets: JumpPreset[]; // §11: 0,8,17,26,37,51,60,66,80,87,90
   key_moments: { t: number; minute: number; label: string }[];
+  moment_presets?: { t: number; label: string }[]; // jump 15 s before each big moment
   duration_t: number; // final event t
 }
 
@@ -162,7 +163,8 @@ export type ControlAction =
   | { action: "play"; value?: null }
   | { action: "pause"; value?: null }
   | { action: "speed"; value: 1 | 2 | 5 }
-  | { action: "seek"; value: number }; // minute
+  | { action: "seek"; value: number } // minute
+  | { action: "seek_t"; value: number }; // match seconds
 
 export interface AuditEntry {
   t: number;
