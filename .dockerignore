@@ -1,0 +1,10 @@
+.env
+.env.*
+.git
+**/node_modules
+backend/.venv
+**/__pycache__
+**/.pytest_cache
+frontend/dist
+voice_samples
+backend/app/data/cost_ledger.json
