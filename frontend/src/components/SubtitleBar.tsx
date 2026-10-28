@@ -15,21 +15,21 @@ export default function SubtitleBar() {
         <div className="min-w-0 flex-1">
           {speech ? (
             <>
-              <div dir={arabic ? "rtl" : "ltr"} className={`text-[13px] font-medium leading-snug text-slate-100 ${arabic ? "text-right" : ""}`}>
+              <div dir={arabic ? "rtl" : "ltr"} className={`text-[15px] font-medium leading-snug text-slate-100 ${arabic ? "text-right" : ""}`}>
                 <span className="mr-1.5 text-emerald-300">🔊</span>{speech.text}
               </div>
               {speech.subtitle_en && (
-                <div dir="ltr" className="mt-1 text-[10px] leading-snug text-slate-500">{speech.subtitle_en}</div>
+                <div dir="ltr" className="mt-1 text-[12px] leading-snug text-slate-500">{speech.subtitle_en}</div>
               )}
             </>
           ) : (
             <div>
-              <div className="text-[11px] font-medium text-slate-500">Commentary channel ready</div>
-              <div className="mt-1 text-[8px] uppercase tracking-[0.15em] text-slate-700">Synchronized to the broadcast delay</div>
+              <div className="text-[13px] font-medium text-slate-500">Commentary channel ready</div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-slate-700">Synchronized to the broadcast delay</div>
             </div>
           )}
         </div>
-        {speech && <span className="shrink-0 rounded border border-white/[0.06] px-1.5 py-0.5 font-mono text-[7px] uppercase tracking-wider text-slate-600">{speech.kind === "call" ? "Live call" : "Insight"}</span>}
+        {speech && <span className="shrink-0 rounded border border-white/[0.06] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-slate-600">{speech.kind === "call" ? "Live call" : "Insight"}</span>}
       </div>
     </section>
   );

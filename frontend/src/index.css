@@ -60,7 +60,7 @@
 
 .section-title {
   color: var(--sp-muted);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .14em;
   line-height: 1;
@@ -82,14 +82,14 @@
 .field-select {
   display: block;
   width: 100%;
-  height: 31px;
-  padding: 0 28px 0 9px;
+  height: 34px;
+  padding: 0 28px 0 10px;
   border: 1px solid var(--sp-line);
   border-radius: 6px;
   outline: none;
   color: var(--sp-soft);
   background: var(--sp-field);
-  font-size: 10px;
+  font-size: 12px;
 }
 .field-select:focus { border-color: rgba(110,231,183,.3); }
 
@@ -121,7 +121,7 @@
   padding: 2px 5px;
   color: #fda4af;
   background: rgba(244,63,94,.12);
-  font-size: 7px;
+  font-size: 9px;
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;

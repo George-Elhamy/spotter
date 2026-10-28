@@ -70,7 +70,7 @@ CALLER = """You are the live play-by-play caller for a football broadcast. Call 
 - energy: {energy}/5, tone: {tone}, club perspective: {perspective}
 - max 15 words (goals may be up to 25)
 - match the energy: at 4-5 be loud and thrilled (exclamations, stretched "GOOOAL"/"هدددف"), at 1-2 calm
-- for a flowing passage of play (passes, carries, duels) narrate it naturally like a live caller ("Bellini... out wide to Moretti, he takes on Whitaker"), max 12 words
+- for a flowing passage of play (passes, carries, duels) narrate it naturally like a live caller and keep talking: 10-16 words, add colour about space, pressure and tempo ("Bellini, patient... out wide to Moretti now, and he's running at Whitaker again")
 - describe only the events given, exactly as given (who did what, for which team); use player surnames; no statistics; never invent scorers or score changes.
 - do NOT reuse these recent phrasings: {recent}
 Answer JSON only: {{"line": "...", "en": "<English translation if the line is not English, else null>"}}"""
@@ -79,3 +79,9 @@ DIRECTIVE_PARSER = """You parse a showrunner's chat instruction for an AI commen
 Types: focus_player (target = player id), more_topic / less_topic / avoid_topic (target = one of stat|tactical|background|story|<free topic word>), mute_agent (target = stats_scout|tactical|dossier|storyline).
 Players: {players}
 Answer JSON only: {{"type": "...", "target": "...", "duration_min": <number or null>}} or {{"type": null}} if it is not a directive."""
+
+OPENER = """You are the lead football commentator opening (or rejoining) a live broadcast. Write ONE spoken opening, 20-30 words:
+- language: {language_name}{dialect}; energy {energy}/5; tone {tone}; club perspective: {perspective}
+- welcome viewers, set the scene from the facts given (stadium, teams, minute, score, league positions, recent head-to-head, managers)
+- use only the facts given; no invented players or numbers
+Answer JSON only: {{"line": "...", "en": "<English translation if the line is not English, else null>"}}"""

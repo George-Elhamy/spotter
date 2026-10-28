@@ -54,7 +54,7 @@ export default function Board() {
       <div className="flex h-9 shrink-0 items-center gap-2 border-b border-white/[0.055] px-3">
         <Columns3 size={12} className="text-slate-500" />
         <h2 className="section-title">Booth board</h2>
-        <span className="ml-auto font-mono text-[8px] uppercase tracking-wider text-slate-600">Verifier → producer → air</span>
+        <span className="ml-auto font-mono text-[10px] uppercase tracking-wider text-slate-600">Verifier → producer → air</span>
       </div>
       <LayoutGroup>
         <div className="grid min-h-0 flex-1 grid-cols-3 divide-x divide-white/[0.055]">
@@ -62,7 +62,7 @@ export default function Board() {
             <CardList cards={proposed} highlighted={highlighted} onRevision={showRevision} />
             {closed.length > 0 && (
               <div className="mt-2 shrink-0 border-t border-dashed border-white/[0.07] pt-2">
-                <div className="mb-1.5 px-1 text-[7px] font-bold uppercase tracking-[0.14em] text-slate-700">Skipped / discarded</div>
+                <div className="mb-1.5 px-1 text-[9px] font-bold uppercase tracking-[0.14em] text-slate-700">Skipped / discarded</div>
                 <CardList cards={closed} highlighted={highlighted} onRevision={showRevision} />
               </div>
             )}
@@ -74,7 +74,7 @@ export default function Board() {
             <CardList cards={aired} highlighted={highlighted} onRevision={showRevision} />
             {archive.length > 0 && (
               <div className="mt-2 shrink-0 border-t border-dashed border-white/[0.07] pt-2">
-                <div className="mb-1.5 px-1 text-[7px] font-bold uppercase tracking-[0.14em] text-slate-700">Expired / removed</div>
+                <div className="mb-1.5 px-1 text-[9px] font-bold uppercase tracking-[0.14em] text-slate-700">Expired / removed</div>
                 <CardList cards={archive} highlighted={highlighted} onRevision={showRevision} compact />
               </div>
             )}
@@ -100,8 +100,8 @@ function BoardColumn({
     <div className="board-column flex min-h-0 flex-col">
       <div className="sticky top-0 z-10 flex h-8 shrink-0 items-center gap-1.5 border-b border-white/[0.045] bg-[var(--sp-panel)] px-2.5 backdrop-blur">
         <span className="h-1 w-1 rounded-full" style={{ backgroundColor: accent }} />
-        <h3 className="truncate text-[8px] font-bold uppercase tracking-[0.13em] text-slate-400">{title}</h3>
-        <span className="ml-auto font-mono text-[8px] text-slate-600">{count}</span>
+        <h3 className="truncate text-[10px] font-bold uppercase tracking-[0.13em] text-slate-400">{title}</h3>
+        <span className="ml-auto font-mono text-[10px] text-slate-600">{count}</span>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto p-1.5">{children}</div>
     </div>

@@ -42,41 +42,41 @@ export default function CardItem({
     >
       <div className="flex items-center gap-1.5">
         <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: agent?.color }} />
-        <span className="text-[8px] font-bold uppercase tracking-[0.14em]" style={{ color: agent?.color }}>{agent?.label}</span>
-        <span className="font-mono text-[7px] uppercase tracking-wider text-slate-600">{card.status.replace("_", " ")}</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.14em]" style={{ color: agent?.color }}>{agent?.label}</span>
+        <span className="font-mono text-[9px] uppercase tracking-wider text-slate-600">{card.status.replace("_", " ")}</span>
         {card.status === "verifying" && <LoaderCircle size={9} className="animate-spin text-slate-500" />}
         {card.status === "airing" && <span className="on-air-badge ml-auto">On air</span>}
         {card.verifier.ok === true && card.status !== "airing" && (
-          <span className="ml-auto flex items-center gap-0.5 rounded-sm border border-emerald-300/20 bg-emerald-300/[0.06] px-1 py-0.5 text-[7px] font-bold uppercase tracking-wider text-emerald-300">
+          <span className="ml-auto flex items-center gap-0.5 rounded-sm border border-emerald-300/20 bg-emerald-300/[0.06] px-1 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-300">
             <Check size={8} strokeWidth={3} /> Verified
           </span>
         )}
         {card.producer.score != null && card.status !== "airing" && (
-          <span className={`${card.verifier.ok ? "" : "ml-auto"} rounded bg-white/[0.045] px-1.5 py-0.5 font-mono text-[8px] text-slate-400`} title="Producer score">
+          <span className={`${card.verifier.ok ? "" : "ml-auto"} rounded bg-white/[0.045] px-1.5 py-0.5 font-mono text-[10px] text-slate-400`} title="Producer score">
             {Math.round(card.producer.score)}
           </span>
         )}
       </div>
 
-      <p className={`mt-2 leading-[1.45] text-slate-300 ${compact ? "line-clamp-2 text-[9px]" : "text-[10px]"}`}>
+      <p className={`mt-2 leading-[1.45] text-slate-300 ${compact ? "line-clamp-2 text-[11px]" : "text-[12px]"}`}>
         {card.text}
       </p>
       {["ready", "airing", "aired"].includes(card.status) && card.render.line && (
-        <p className="mt-1.5 border-l border-white/10 pl-2 text-[9px] italic leading-relaxed text-slate-500">“{card.render.line}”</p>
+        <p className="mt-1.5 border-l border-white/10 pl-2 text-[11px] italic leading-relaxed text-slate-500">“{card.render.line}”</p>
       )}
 
       {(card.status === "rejected" || card.status === "discarded") && card.verifier.reason && (
-        <div className="mt-2 rounded border border-red-400/15 bg-red-400/[0.055] px-2 py-1.5 text-[8px] leading-relaxed text-red-300/85">
+        <div className="mt-2 rounded border border-red-400/15 bg-red-400/[0.055] px-2 py-1.5 text-[10px] leading-relaxed text-red-300/85">
           {card.verifier.reason}
         </div>
       )}
       {card.status === "skipped" && card.producer.reason && (
-        <div className="mt-1.5 text-[8px] italic leading-relaxed text-slate-500">Skipped · {card.producer.reason}</div>
+        <div className="mt-1.5 text-[10px] italic leading-relaxed text-slate-500">Skipped · {card.producer.reason}</div>
       )}
       {card.verifier.revision_of && (
         <button
           onClick={() => onRevision(card.verifier.revision_of!)}
-          className="mt-1.5 block font-mono text-[8px] text-purple-300/75 underline decoration-purple-300/20 underline-offset-2 transition hover:text-purple-200"
+          className="mt-1.5 block font-mono text-[10px] text-purple-300/75 underline decoration-purple-300/20 underline-offset-2 transition hover:text-purple-200"
         >
           ↳ revised from {card.verifier.revision_of}
         </button>
@@ -96,7 +96,7 @@ export default function CardItem({
                   strokeDashoffset={RING_LENGTH * (1 - ttlRatio)}
                 />
               </svg>
-              <span className={`font-mono text-[8px] ${urgent ? "text-red-300" : "text-slate-600"}`}>
+              <span className={`font-mono text-[10px] ${urgent ? "text-red-300" : "text-slate-600"}`}>
                 {formatRemaining(remaining)}
               </span>
             </div>
@@ -110,7 +110,7 @@ export default function CardItem({
             </div>
           </>
         ) : (
-          <span className="font-mono text-[7px] uppercase tracking-wider text-slate-700">
+          <span className="font-mono text-[9px] uppercase tracking-wider text-slate-700">
             {card.status === "aired" ? "Delivered to broadcast" : card.status}
           </span>
         )}

@@ -5,6 +5,7 @@ Card lifecycle (§7.1): proposed → verifying → (rejected → revising → ve
 """
 from __future__ import annotations
 
+import asyncio
 import logging
 from typing import TYPE_CHECKING
 
@@ -42,6 +43,11 @@ class AgentRuntime:
         await self.dispatcher.tick()
         await self.producer.tick()
         await self.caller.tick()
+
+    async def on_play(self) -> None:
+        # never start silent: an opening/rejoin line as soon as play starts
+        if self.producer.speaking_until == 0 or self.producer.speaking_until < self.producer.display_now() - 5:
+            asyncio.create_task(self.caller.intro())
 
     async def reset(self) -> None:
         self.dispatcher.reset()

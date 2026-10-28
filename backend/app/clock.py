@@ -55,6 +55,7 @@ class MatchClock:
 
     async def play(self) -> None:
         self.paused = False
+        await self.booth.agents.on_play()
         await self.booth.broadcast(self.booth.state.clock_msg(self.speed, self.paused))
 
     async def pause(self) -> None:

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Radio } from "lucide-react";
+import { PanelLeftClose, PanelLeftOpen, Radio } from "lucide-react";
 import { getInstance, getMatchMeta } from "./api";
 import AgentStrip from "./components/AgentStrip";
 import AudioPlayer from "./components/AudioPlayer";
@@ -18,6 +18,22 @@ export default function App() {
   const meta = useBoothStore((state) => state.meta);
   const instance = useBoothStore((state) => state.instance);
   const [bootError, setBootError] = useState<string | null>(null);
+  const [controlsOpen, setControlsOpen] = useState(() => {
+    try {
+      return localStorage.getItem("spotter.controls") !== "closed";
+    } catch {
+      return true;
+    }
+  });
+  const toggleControls = () =>
+    setControlsOpen((open) => {
+      try {
+        localStorage.setItem("spotter.controls", open ? "closed" : "open");
+      } catch {
+        /* storage unavailable */
+      }
+      return !open;
+    });
   useDisplayClock();
 
   useEffect(() => {
@@ -54,7 +70,7 @@ export default function App() {
             <Radio size={21} className="animate-pulse text-emerald-300" />
           </div>
           <div className="mt-4 text-lg font-black tracking-[0.25em]">SPOTTER</div>
-          <div className="mt-2 text-[9px] uppercase tracking-[0.2em] text-slate-600">
+          <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-slate-600">
             {bootError ?? "Connecting to the research booth"}
           </div>
         </div>
@@ -65,11 +81,35 @@ export default function App() {
   return (
     <div className="app-shell flex h-dvh flex-col overflow-hidden text-slate-200">
       <TopBar />
-      <main className="grid min-h-0 flex-1 grid-cols-[260px_minmax(0,1fr)_minmax(560px,40%)] gap-2.5 p-2.5">
-        <aside className="flex min-h-0 flex-col gap-2.5">
-          <ControlsPanel />
-          <DirectiveChat />
-        </aside>
+      <main
+        className={`grid min-h-0 flex-1 gap-2.5 p-2.5 transition-[grid-template-columns] duration-300 ${
+          controlsOpen
+            ? "grid-cols-[300px_minmax(0,1fr)_minmax(600px,42%)]"
+            : "grid-cols-[44px_minmax(0,1fr)_minmax(720px,52%)]"
+        }`}
+      >
+        {controlsOpen ? (
+          <aside className="flex min-h-0 flex-col gap-2.5 overflow-y-auto">
+            <button
+              className="icon-button h-8 w-full gap-2 !flex items-center justify-center text-[11px] font-semibold uppercase tracking-[0.14em]"
+              onClick={toggleControls}
+              title="Hide controls"
+            >
+              <PanelLeftClose size={15} /> Hide controls
+            </button>
+            <ControlsPanel />
+            <DirectiveChat />
+          </aside>
+        ) : (
+          <aside className="panel flex min-h-0 flex-col items-center py-2">
+            <button className="icon-button h-9 w-9" onClick={toggleControls} title="Show controls" aria-label="Show controls">
+              <PanelLeftOpen size={16} />
+            </button>
+            <span className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 [writing-mode:vertical-rl]">
+              Controls
+            </span>
+          </aside>
+        )}
         <section className="flex min-h-0 min-w-0 flex-col">
           <Pitch />
           <SubtitleBar />

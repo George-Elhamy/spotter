@@ -166,12 +166,50 @@ class Caller:
             return
         self._start(e)
 
+    async def intro(self) -> None:
+        """Opening line when play starts (kickoff or rejoining after a jump) so the broadcast never starts silent."""
+        rt, st = self.rt, self.rt.booth.state
+        d, inst = rt.booth.data, st.instance
+        table = {r["team_id"]: r for r in d.history.get("table", [])}
+        facts = {
+            "stadium": d.teams["RED"].get("stadium"), "home": d.teams["RED"]["name"], "away": d.teams["WHI"]["name"],
+            "managers": [d.teams["RED"].get("manager"), d.teams["WHI"].get("manager")],
+            "minute": st.match_time_label(), "kickoff": st.t < 5, "score": f"{st.score[0]}-{st.score[1]}",
+            "league": {tid: {"position": table.get(tid, {}).get("position"), "points": table.get(tid, {}).get("pts")}
+                       for tid in ("RED", "WHI")},
+            "head_to_head_last3": d.history.get("head_to_head", [])[-3:],
+        }
+        line = subtitle = None
+        try:
+            system = prompts.OPENER.format(**lang_fields(inst), energy=inst.energy, tone=inst.tone,
+                                           perspective=PERSPECTIVE[inst.perspective])
+            out = llm.parse_json(await llm.complete("caller", "nano", system, json.dumps(facts, ensure_ascii=False),
+                                                    timeout=6, cache_parts=["intro", facts["minute"], facts["score"],
+                                                                            inst.language, inst.energy, inst.perspective]))
+            line = str((out or {}).get("line") or "").strip() or None
+            subtitle = str((out or {}).get("en") or "").strip() or None
+        except (llm.LLMUnavailable, ValueError):
+            pass
+        if not line:
+            en = (f"Welcome to {facts['stadium']}: {facts['home']} against {facts['away']}, and we're under way!"
+                  if facts["kickoff"] else
+                  f"Back with you at {facts['stadium']}, {facts['minute']} played, {facts['home']} {facts['score']} {facts['away']}.")
+            ar = (f"أهلاً بكم في {facts['stadium']}: {facts['home']} ضد {facts['away']}، وانطلقت المباراة!"
+                  if facts["kickoff"] else f"نعود إليكم من {facts['stadium']}، والنتيجة {facts['score']}.")
+            line, subtitle = (ar, en) if inst.language == "ar" else (en, None)
+        audio_url, dur = await speak(rt, line, inst, "caller", excited=inst.energy >= 4)
+        play_at = rt.producer.display_now() + 0.3
+        self.reserved_until = play_at + dur / 1000 * max(1.0, rt.booth.clock.speed)
+        st.spoken = (st.spoken + [line])[-10:]
+        await rt.producer.emit_speech("call", None, line, subtitle if inst.language == "ar" else None, audio_url,
+                                      play_at, dur, agent="caller")
+
     async def tick(self) -> None:
         """Fill gaps: as the current line is about to end, call the next stretch of play from the backlog."""
         if self.rt.booth.clock.speed >= 5 or self.rt.producer.wants_slot():
             return
         disp = self.rt.producer.display_now()
-        if not self.channel_free(disp + 2.2):  # start generating ~2 s before the current line ends
+        if not self.channel_free(disp + 2.6):  # start generating ~2 s before the current line ends
             return
         ahead = max(disp + 0.4, self.rt.producer.speaking_until - 1.0)
         for e in self.backlog:

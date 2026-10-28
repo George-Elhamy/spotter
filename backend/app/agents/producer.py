@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 log = logging.getLogger("spotter.producer")
 RANK_EVERY_S = 0.5
 LONG_WINDOW_S = 40
-CARD_WAIT_S = 8.0  # a ready card waits at most this long (match seconds) for a quiet window before taking the next gap
+CARD_WAIT_S = 6.0  # a ready card waits at most this long (match seconds) for a quiet window before taking the next gap
 PENDING = ("verified", "queued", "rendering", "ready")
 TOPIC_WORDS = {"stat": ("stat", "stats", "number", "numbers", "data"), "tactical": ("tactic", "tactics", "tactical", "shape", "press"),
                "background": ("background", "history", "dossier", "season", "form"), "story": ("story", "stories", "storyline", "narrative")}
@@ -244,7 +244,8 @@ class Producer:
                         self.window = None
                     await self.air(c)
                     return
-        waited = [c for c in ready if st.t - self.ready_at.get(c.id, st.t) >= CARD_WAIT_S]
+        idle = disp - max(self.speaking_until, self.rt.caller.reserved_until) > 1.5  # dead air: fill it
+        waited = ready if idle else [c for c in ready if st.t - self.ready_at.get(c.id, st.t) >= CARD_WAIT_S]
         if waited:
             await self.air(waited[0])
 

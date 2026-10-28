@@ -117,11 +117,11 @@ export default function AudioPlayer() {
     <div className="pointer-events-none fixed inset-x-0 bottom-5 z-50 flex justify-center">
       <button
         onClick={() => void enableAudio()}
-        className="pointer-events-auto flex items-center gap-2.5 rounded-full border border-emerald-300/30 bg-[var(--sp-toast)] px-5 py-3 text-[11px] font-semibold text-emerald-100 shadow-2xl shadow-black/60 backdrop-blur-xl transition hover:scale-[1.02] hover:bg-[#163328]"
+        className="pointer-events-auto flex items-center gap-2.5 rounded-full border border-emerald-300/30 bg-[var(--sp-toast)] px-5 py-3 text-[13px] font-semibold text-emerald-100 shadow-2xl shadow-black/60 backdrop-blur-xl transition hover:scale-[1.02] hover:bg-[#163328]"
       >
         <Volume2 size={15} className="text-emerald-300" />
         Click to enable audio
-        <span className="rounded-full bg-emerald-300/10 px-2 py-0.5 text-[8px] uppercase tracking-wider text-emerald-300">One time</span>
+        <span className="rounded-full bg-emerald-300/10 px-2 py-0.5 text-[10px] uppercase tracking-wider text-emerald-300">One time</span>
       </button>
     </div>
   );

@@ -48,7 +48,7 @@ export default function ControlsPanel() {
               <button
                 key={value}
                 onClick={() => void update({ perspective: value })}
-                className={`rounded px-1 py-1.5 text-[9px] font-semibold transition ${
+                className={`rounded px-1 py-1.5 text-[11px] font-semibold transition ${
                   instance.perspective === value ? "bg-white/[0.11] text-white" : "text-slate-500 hover:text-slate-300"
                 }`}
               >
@@ -108,8 +108,8 @@ export default function ControlsPanel() {
         </label>
         <label className="flex cursor-pointer items-center justify-between border-t border-white/[0.06] pt-3">
           <span>
-            <span className="block text-[11px] font-medium text-slate-200">AI voice</span>
-            <span className="mt-0.5 block text-[9px] text-slate-500">Speak rendered commentary</span>
+            <span className="block text-[13px] font-medium text-slate-200">AI voice</span>
+            <span className="mt-0.5 block text-[11px] text-slate-500">Speak rendered commentary</span>
           </span>
           <input
             type="checkbox"
@@ -128,13 +128,13 @@ function PanelHeading({ title, detail }: { title: string; detail: string }) {
   return (
     <div className="flex items-baseline justify-between">
       <h2 className="section-title">{title}</h2>
-      <span className="text-[8px] uppercase tracking-wider text-slate-600">{detail}</span>
+      <span className="text-[10px] uppercase tracking-wider text-slate-600">{detail}</span>
     </div>
   );
 }
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
-  return <span className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-500">{children}</span>;
+  return <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.13em] text-slate-500">{children}</span>;
 }
 
 function Segmented({
@@ -152,7 +152,7 @@ function Segmented({
         <button
           key={option}
           onClick={() => onChange(option)}
-          className={`rounded px-2 py-1.5 text-[10px] font-semibold transition ${
+          className={`rounded px-2 py-1.5 text-[12px] font-semibold transition ${
             value === option ? "bg-white/[0.11] text-white shadow-sm" : "text-slate-500 hover:text-slate-300"
           }`}
         >

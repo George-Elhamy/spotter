@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { Radio } from "lucide-react";
 import { latestDisplayedEvent, useBoothStore } from "../store";
 import type { FramePlayer, MatchEvent, Player, XY } from "../types/contract";
@@ -51,6 +51,12 @@ export default function Pitch() {
     return [{ id, ...position }];
   });
   const ball = fromFrame && toFrame ? interpolate(fromFrame.ball, toFrame.ball, amount) : { x: 52.5, y: 34 };
+  const trailRef = useRef<{ x: number; y: number }[]>([]);
+  const lastTrail = trailRef.current[trailRef.current.length - 1];
+  if (!lastTrail || Math.hypot(lastTrail.x - ball.x, lastTrail.y - ball.y) > 0.6) {
+    trailRef.current = [...trailRef.current, { x: ball.x, y: ball.y }].slice(-6);
+  }
+  const ballTrail = trailRef.current.slice(0, -1);
   const displayedEvent = latestDisplayedEvent(events, displayT);
   const carrier = displayedEvent?.player_id ? playerById.get(displayedEvent.player_id) : null;
   const carrierPosition = players.find((player) => player.id === carrier?.id);
@@ -68,9 +74,9 @@ export default function Pitch() {
         <div className="flex items-center gap-2">
           <Radio size={12} className="text-emerald-300" />
           <h2 className="section-title">Match ingestion</h2>
-          <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-[7px] font-black uppercase tracking-[0.16em] text-red-400">Live</span>
+          <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-[0.16em] text-red-400">Live</span>
         </div>
-        <div className="flex items-center gap-2 font-mono text-[8px] uppercase tracking-[0.12em] text-slate-600">
+        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-slate-600">
           <span>105 × 68 m</span><span className="text-slate-800">/</span><span>2D tracking</span>
         </div>
       </div>
@@ -90,6 +96,15 @@ export default function Pitch() {
             <filter id="playerShadow" x="-100%" y="-100%" width="300%" height="300%">
               <feDropShadow dx="0" dy="0.45" stdDeviation="0.45" floodColor="#000" floodOpacity="0.65" />
             </filter>
+            <radialGradient id="ballShade" cx="0.38" cy="0.32" r="0.75">
+              <stop offset="0" stopColor="#ffffff" />
+              <stop offset="0.7" stopColor="#e8edf0" />
+              <stop offset="1" stopColor="#aab4bb" />
+            </radialGradient>
+            <radialGradient id="ballGloss" cx="0.32" cy="0.28" r="0.5">
+              <stop offset="0" stopColor="#ffffff" stopOpacity="0.75" />
+              <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+            </radialGradient>
             <filter id="ballShadow" x="-200%" y="-200%" width="500%" height="500%">
               <feDropShadow dx="0" dy="0.25" stdDeviation="0.3" floodColor="#000" floodOpacity="0.8" />
             </filter>
@@ -165,9 +180,22 @@ export default function Pitch() {
             })}
           </g>
 
+          {ballTrail.map((point, index) => (
+            <circle key={index} cx={point.x} cy={point.y} r={0.35 + index * 0.09} fill="#f8fafc" opacity={0.05 + index * 0.05} />
+          ))}
+          <ellipse cx={ball.x + 0.35} cy={ball.y + 0.75} rx="0.95" ry="0.38" fill="#000" opacity="0.38" />
           <g transform={`translate(${ball.x} ${ball.y})`} filter="url(#ballShadow)">
-            <circle r="0.73" fill="#f8fafc" stroke="#152019" strokeWidth="0.2" />
-            <circle r="0.19" fill="#26352d" />
+            <circle r="1.55" fill="none" stroke="#f8fafc" strokeOpacity="0.16" strokeWidth="0.12" />
+            <g transform={`rotate(${(ball.x * 40 + ball.y * 25) % 360})`}>
+              <circle r="0.95" fill="url(#ballShade)" stroke="#0b1210" strokeWidth="0.09" />
+              <polygon points="0.000,-0.340 0.323,-0.105 0.200,0.275 -0.200,0.275 -0.323,-0.105" fill="#17201c" />
+              <polygon points="0.725,-0.487 0.389,-0.378 0.182,-0.663 0.389,-0.949 0.725,-0.840" fill="#17201c" opacity="0.85" />
+              <polygon points="0.687,0.539 0.480,0.253 0.687,-0.032 1.023,0.077 1.023,0.430" fill="#17201c" opacity="0.85" />
+              <polygon points="-0.300,0.820 -0.093,0.535 0.243,0.644 0.243,0.996 -0.093,1.105" fill="#17201c" opacity="0.85" />
+              <polygon points="-0.873,-0.032 -0.537,0.077 -0.537,0.430 -0.873,0.539 -1.080,0.253" fill="#17201c" opacity="0.85" />
+              <polygon points="-0.239,-0.840 -0.239,-0.487 -0.575,-0.378 -0.782,-0.663 -0.575,-0.949" fill="#17201c" opacity="0.85" />
+            </g>
+            <circle r="0.95" fill="url(#ballGloss)" />
           </g>
 
           {carrier && carrierPosition && (
@@ -187,7 +215,7 @@ export default function Pitch() {
               <div className="goal-word text-[clamp(56px,8vw,118px)] font-black italic leading-none tracking-[-0.07em] text-white drop-shadow-[0_8px_35px_rgba(0,0,0,.6)]">
                 GOAL
               </div>
-              <div className="mx-auto mt-2 w-fit rounded-full border border-white/20 bg-black/45 px-5 py-1.5 text-[12px] font-bold uppercase tracking-[0.22em] text-emerald-200 backdrop-blur-md">
+              <div className="mx-auto mt-2 w-fit rounded-full border border-white/20 bg-black/45 px-5 py-1.5 text-[14px] font-bold uppercase tracking-[0.22em] text-emerald-200 backdrop-blur-md">
                 {goalScorer?.short_name ?? "Redmoor"} · {goal?.team_id ? meta?.teams[goal.team_id]?.short_name : ""}
               </div>
             </div>
@@ -195,7 +223,7 @@ export default function Pitch() {
         )}
       </div>
 
-      <div className="flex h-8 shrink-0 items-center gap-2.5 border-t border-white/[0.055] px-3.5 text-[9px]">
+      <div className="flex h-8 shrink-0 items-center gap-2.5 border-t border-white/[0.055] px-3.5 text-[11px]">
         <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${displayedEvent ? "bg-emerald-300" : "bg-slate-600"}`} />
         <span className="shrink-0 font-mono text-slate-500">
           {displayedEvent ? `${String(displayedEvent.minute).padStart(2, "0")}:${String(displayedEvent.second).padStart(2, "0")}` : "--:--"}

@@ -26,10 +26,10 @@ export default function AgentStrip() {
               <span className={`status-dot status-${status}`} />
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
-                  <span className={`truncate text-[10px] font-semibold ${muted ? "text-slate-600" : "text-slate-200"}`}>{agent.label}</span>
-                  {muted && <span className="text-[9px]">🔇</span>}
+                  <span className={`truncate text-[12px] font-semibold ${muted ? "text-slate-600" : "text-slate-200"}`}>{agent.label}</span>
+                  {muted && <span className="text-[11px]">🔇</span>}
                 </div>
-                <div className="mt-0.5 font-mono text-[8px] uppercase tracking-wide text-slate-600">
+                <div className="mt-0.5 font-mono text-[10px] uppercase tracking-wide text-slate-600">
                   {status === "thinking" ? "thinking" : state?.last_ms != null ? formatMs(state.last_ms) : status}
                 </div>
               </div>
