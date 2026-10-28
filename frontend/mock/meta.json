@@ -1,0 +1,315 @@
+{
+  "teams": {
+    "RED": {
+      "id": "RED",
+      "name": "Redmoor Rovers",
+      "short_name": "REDMOOR",
+      "color_primary": "#d7263d",
+      "color_secondary": "#ffffff",
+      "formation": "4-3-3",
+      "manager": "Erik Halvorsen",
+      "stadium": "Moor Lane"
+    },
+    "WHI": {
+      "id": "WHI",
+      "name": "Whitcliffe Athletic",
+      "short_name": "WHITCLIFFE",
+      "color_primary": "#f2f2f2",
+      "color_secondary": "#111111",
+      "formation": "4-2-3-1",
+      "manager": "Paolo Ricci",
+      "stadium": "Cliffside Park"
+    }
+  },
+  "players": [
+    {
+      "id": "RED-1",
+      "team_id": "RED",
+      "number": 1,
+      "name": "Tomasz Wrona",
+      "short_name": "Wrona",
+      "position": "GK",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-2",
+      "team_id": "RED",
+      "number": 2,
+      "name": "Callum Reid",
+      "short_name": "Reid",
+      "position": "RB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-4",
+      "team_id": "RED",
+      "number": 4,
+      "name": "Mateo Duarte",
+      "short_name": "Duarte",
+      "position": "CB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-5",
+      "team_id": "RED",
+      "number": 5,
+      "name": "Henrik Dahl",
+      "short_name": "Dahl",
+      "position": "CB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-3",
+      "team_id": "RED",
+      "number": 3,
+      "name": "Yannick Laurent",
+      "short_name": "Laurent",
+      "position": "LB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-6",
+      "team_id": "RED",
+      "number": 6,
+      "name": "Pieter de Wit",
+      "short_name": "de Wit",
+      "position": "CDM",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-8",
+      "team_id": "RED",
+      "number": 8,
+      "name": "Marco Bellini",
+      "short_name": "Bellini",
+      "position": "CM",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-14",
+      "team_id": "RED",
+      "number": 14,
+      "name": "Elias Brenner",
+      "short_name": "Brenner",
+      "position": "CM",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-7",
+      "team_id": "RED",
+      "number": 7,
+      "name": "Luca Moretti",
+      "short_name": "Moretti",
+      "position": "RW",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-9",
+      "team_id": "RED",
+      "number": 9,
+      "name": "Jonas Falk",
+      "short_name": "Falk",
+      "position": "ST",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "RED-11",
+      "team_id": "RED",
+      "number": 11,
+      "name": "Kofi Asante",
+      "short_name": "Asante",
+      "position": "LW",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-1",
+      "team_id": "WHI",
+      "number": 1,
+      "name": "Mikkel Sørensen",
+      "short_name": "Sørensen",
+      "position": "GK",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-2",
+      "team_id": "WHI",
+      "number": 2,
+      "name": "Adrien Fournier",
+      "short_name": "Fournier",
+      "position": "RB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-5",
+      "team_id": "WHI",
+      "number": 5,
+      "name": "Stefan Vuković",
+      "short_name": "Vuković",
+      "position": "CB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-6",
+      "team_id": "WHI",
+      "number": 6,
+      "name": "Ollie Grant",
+      "short_name": "Grant",
+      "position": "CB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-3",
+      "team_id": "WHI",
+      "number": 3,
+      "name": "Sam Whitaker",
+      "short_name": "Whitaker",
+      "position": "LB",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-8",
+      "team_id": "WHI",
+      "number": 8,
+      "name": "Lukas Hofer",
+      "short_name": "Hofer",
+      "position": "CDM",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-18",
+      "team_id": "WHI",
+      "number": 18,
+      "name": "Ruben Castillo",
+      "short_name": "Castillo",
+      "position": "CDM",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-7",
+      "team_id": "WHI",
+      "number": 7,
+      "name": "Emil Nyström",
+      "short_name": "Nyström",
+      "position": "RW",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-10",
+      "team_id": "WHI",
+      "number": 10,
+      "name": "Andrej Novak",
+      "short_name": "Novak",
+      "position": "CAM",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-17",
+      "team_id": "WHI",
+      "number": 17,
+      "name": "Jakub Hrubý",
+      "short_name": "Hrubý",
+      "position": "LW",
+      "nationality": "",
+      "starter": true
+    },
+    {
+      "id": "WHI-9",
+      "team_id": "WHI",
+      "number": 9,
+      "name": "Daan Visser",
+      "short_name": "Visser",
+      "position": "ST",
+      "nationality": "",
+      "starter": true
+    }
+  ],
+  "jump_presets": [
+    {
+      "minute": 0,
+      "label": "0'"
+    },
+    {
+      "minute": 8,
+      "label": "8'"
+    },
+    {
+      "minute": 17,
+      "label": "17'"
+    },
+    {
+      "minute": 26,
+      "label": "26'"
+    },
+    {
+      "minute": 37,
+      "label": "37'"
+    },
+    {
+      "minute": 51,
+      "label": "51'"
+    },
+    {
+      "minute": 60,
+      "label": "60'"
+    },
+    {
+      "minute": 66,
+      "label": "66'"
+    },
+    {
+      "minute": 80,
+      "label": "80'"
+    },
+    {
+      "minute": 87,
+      "label": "87'"
+    },
+    {
+      "minute": 90,
+      "label": "90'"
+    }
+  ],
+  "key_moments": [
+    {
+      "t": 540,
+      "minute": 9,
+      "label": "Whitaker yellow"
+    },
+    {
+      "t": 1085,
+      "minute": 18,
+      "label": "GOAL Falk 1-0"
+    },
+    {
+      "t": 1640,
+      "minute": 27,
+      "label": "VAR: Falk goal disallowed"
+    },
+    {
+      "t": 2290,
+      "minute": 38,
+      "label": "GOAL Visser 1-1"
+    }
+  ],
+  "duration_t": 5760
+}

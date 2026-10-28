@@ -1,0 +1,13 @@
+{
+  "id": "main",
+  "name": "EN Analyst",
+  "language": "en",
+  "audience": "analyst",
+  "perspective": "neutral",
+  "energy": 3,
+  "tone": "neutral",
+  "focus_player_id": null,
+  "ai_voice": true,
+  "muted_agents": [],
+  "directives": []
+}
