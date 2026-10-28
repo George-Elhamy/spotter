@@ -1,0 +1,156 @@
+<title>Spotter Architecture</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: three horizontal lanes read left→right like a broadcast signal chain (feed → booth → screen),
+   with the shared blackboard as the hinge in the middle lane. Deliberately one dark control-room look. */
+:root {
+  color-scheme: dark;
+  --bg: #070b0a; --panel: #0e1513; --panel-2: #121c19; --line: #1f2e29; --ink: #e6efeb; --muted: #8a9a94;
+  --pitch: #34d399; --gold: #fbbf24; --red: #f87171; --sky: #60a5fa; --violet: #c084fc; --teal: #2dd4bf; --orange: #fb923c;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--body); }
+.wrap {
+  max-width: 1360px; margin: 0 auto;
+  padding-block: 36px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 18px;
+}
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
+h1 { font-family: var(--display); font-weight: 800; font-size: 44px; letter-spacing: .06em; margin: 0; line-height: 1; text-wrap: balance; }
+h1 span { color: var(--pitch); }
+.sub { color: var(--muted); max-width: 62ch; margin: 8px 0 0; line-height: 1.5; font-size: 15px; }
+.delay { font-family: var(--mono); font-size: 12px; color: var(--gold); border: 1px solid #4a3a12; background: #1a1508; padding: 8px 12px; border-radius: 6px; }
+
+.lane { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.lane-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.lane-tag { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.lane-note { font-size: 13px; color: var(--muted); }
+.chain { display: flex; align-items: stretch; gap: 10px; min-width: 0; flex-wrap: wrap; }
+.arrow { align-self: center; color: var(--muted); font-family: var(--mono); font-size: 18px; flex: none; }
+
+.node { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-width: 0; flex: 1 1 150px; display: grid; gap: 4px; align-content: start; }
+.node h3 { margin: 0; font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: .03em; }
+.node p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+.chip { justify-self: start; font-family: var(--mono); font-size: 10.5px; padding: 2px 7px; border-radius: 99px; border: 1px solid currentColor; opacity: .95; }
+.code { color: var(--muted); }
+.mini { color: var(--pitch); }
+.nano { color: var(--gold); }
+.speech { color: var(--sky); }
+
+.booth { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .9fr) minmax(0, 1.25fr); gap: 14px; align-items: stretch; }
+.agents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.agent { border-left: 3px solid var(--c); }
+.stack { display: grid; gap: 8px; align-content: start; }
+
+.board { border: 1px dashed #2f5c4b; background: radial-gradient(circle at 50% 0, #10261e, var(--panel-2) 70%); border-radius: 10px; padding: 14px; display: grid; gap: 10px; align-content: center; text-align: center; }
+.board h3 { font-family: var(--display); font-size: 26px; letter-spacing: .12em; margin: 0; color: var(--pitch); }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.cols span { font-family: var(--mono); font-size: 10.5px; color: var(--ink); background: #0b1210; border: 1px solid var(--line); border-radius: 5px; padding: 6px 4px; }
+.board p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+.flow { display: grid; gap: 8px; }
+.flow-row { display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap; }
+.flow-row .node { flex-basis: 120px; }
+.loop { font-family: var(--mono); font-size: 11px; color: var(--red); border: 1px solid #5b2626; background: #1a0d0d; border-radius: 6px; padding: 7px 10px; line-height: 1.4; }
+
+.stackbar { display: flex; flex-wrap: wrap; gap: 8px; }
+.ms { display: grid; gap: 2px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); flex: 1 1 200px; }
+.ms b { font-family: var(--display); font-size: 17px; letter-spacing: .03em; }
+.ms span { font-size: 12px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: var(--muted); align-items: center; }
+
+@media (max-width: 980px) {
+  .booth { grid-template-columns: minmax(0, 1fr); }
+  .arrow { transform: rotate(90deg); }
+  .chain { flex-direction: column; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>SPOTTER <span>·</span> MULTI-AGENT BOOTH</h1>
+      <p class="sub">Specialist agents watch a live synthetic match, propose insight cards on a shared blackboard, an independent Verifier checks every number, and a Producer decides what airs and when — voiced live in English, Spanish, French or German.</p>
+    </div>
+    <div class="delay">BROADCAST DELAY · screen shows server&nbsp;t − 2.0&nbsp;s</div>
+  </header>
+
+  <section class="lane" aria-label="Match feed">
+    <div class="lane-head"><span class="lane-tag">1 · Match feed</span><span class="lane-note">Fully synthetic, seed 42 — only match events follow a script; every number is derived</span></div>
+    <div class="chain">
+      <div class="node"><h3>Generator</h3><p>1,749 events with 22-player position frames, 10-matchday league history, dossiers. Validated: realism ranges, pinned facts, smooth motion.</p><span class="chip code">python · seed=42</span></div>
+      <div class="arrow">→</div>
+      <div class="node"><h3>Match clock</h3><p>1× / 2× / 5×, pause, jump to any minute. Runs 2 s ahead of the screen so commentary lands in sync.</p><span class="chip code">asyncio</span></div>
+      <div class="arrow">→</div>
+      <div class="node"><h3>Stats engine</h3><p>Incremental: pass difficulty 0–100, speeds, xG, control &amp; chaos indexes, duels, alerts, quiet windows, win probability.</p><span class="chip code">code</span></div>
+      <div class="arrow">→</div>
+      <div class="node"><h3>Match state</h3><p>Score, on-pitch players, instance settings and showrunner directives — read by every tool.</p><span class="chip code">shared state</span></div>
+    </div>
+  </section>
+
+  <section class="lane" aria-label="Booth">
+    <div class="lane-head"><span class="lane-tag">2 · The booth</span><span class="lane-note">Blackboard pattern — agents never call each other; they read state and write cards</span></div>
+    <div class="booth">
+      <div class="stack">
+        <div class="node"><h3>Dispatcher</h3><p>Wakes only the relevant agents per event, with cooldowns, mutes, a concurrency cap and a rate limit.</p><span class="chip code">code, not an agent</span></div>
+        <div class="agents">
+          <div class="node agent" style="--c: var(--sky)"><h3>Stats Scout</h3><p>Numbers, milestones, thresholds</p></div>
+          <div class="node agent" style="--c: var(--violet)"><h3>Tactical Analyst</h3><p>Control, pressure, shape — and why</p></div>
+          <div class="node agent" style="--c: var(--teal)"><h3>Dossier Researcher</h3><p>Season form, table, head-to-head</p></div>
+          <div class="node agent" style="--c: var(--orange)"><h3>Storyline Keeper</h3><p>Threads inside this match</p></div>
+        </div>
+        <span class="chip mini">Agent Framework agents · function tools · gpt-5-mini</span>
+      </div>
+
+      <div class="board">
+        <h3>BOOTH BOARD</h3>
+        <div class="cols"><span>PROPOSED</span><span>PRODUCER QUEUE</span><span>AIRED</span></div>
+        <p>Shared blackboard. Every card carries structured claims and evidence event ids. The human can ✕ remove or ⚡ say-now any card.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-row">
+          <div class="node"><h3>Verifier</h3><p>Code recomputes every numeric claim; nano checks the wording.</p><span class="chip nano">code + gpt-5-nano</span></div>
+          <div class="arrow">→</div>
+          <div class="node"><h3>Producer</h3><p>Audience fit, ranking, airs cards into quiet moments and gaps.</p><span class="chip nano">gpt-5-nano + code</span></div>
+          <div class="arrow">→</div>
+          <div class="node"><h3>Narrator</h3><p>One spoken line per language, audience, energy and club; numbers checked.</p><span class="chip mini">gpt-5-mini</span></div>
+        </div>
+        <div class="loop">✗ rejected → back to the proposer once with the reason → second failure = discarded</div>
+        <div class="flow-row">
+          <div class="node"><h3>Caller</h3><p>Continuous play-by-play from the 2 s lookahead; 1.4 s deadline, then a template.</p><span class="chip nano">gpt-5-nano</span></div>
+          <div class="arrow">→</div>
+          <div class="node"><h3>Voice</h3><p>One shared speech channel, never overlapping. Energy drives style and prosody.</p><span class="chip speech">Azure AI Speech · MAI voices</span></div>
+        </div>
+        <span class="chip mini">Card lifecycle = Agent Framework workflow: Verify → Revise ↺ → Producer fit → Narrate</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lane" aria-label="Screen">
+    <div class="lane-head"><span class="lane-tag">3 · Showrunner screen</span><span class="lane-note">One WebSocket server → client, REST client → server</span></div>
+    <div class="chain">
+      <div class="node"><h3>2D pitch</h3><p>Players interpolated between event frames, displayed 2 s behind the server.</p><span class="chip code">React · SVG</span></div>
+      <div class="node"><h3>Board &amp; trace</h3><p>Cards move Proposed → Queue → Aired; verifier rejections and revisions are visible.</p><span class="chip code">live</span></div>
+      <div class="node"><h3>Controls</h3><p>Language EN/ES/FR/DE, audience, club perspective, energy, tone, focus player, AI voice.</p><span class="chip code">instance settings</span></div>
+      <div class="node"><h3>Directives</h3><p>“focus on Novak”, “more tactics” → parsed chips the Producer and agents obey.</p><span class="chip nano">gpt-5-nano parser</span></div>
+      <div class="node"><h3>Audio &amp; subtitles</h3><p>Plays each line at its event time; English subtitles under other languages.</p><span class="chip speech">mp3 cache</span></div>
+    </div>
+  </section>
+
+  <div class="stackbar" aria-label="Microsoft technologies">
+    <div class="ms"><b>Microsoft Foundry</b><span>gpt-5-mini &amp; gpt-5-nano deployments</span></div>
+    <div class="ms"><b>Microsoft Agent Framework</b><span>Agents, function tools, card-lifecycle workflow</span></div>
+    <div class="ms"><b>Azure AI Speech</b><span>Expressive MAI neural voices, 4 languages</span></div>
+    <div class="ms"><b>Azure Container Apps</b><span>One container, scale to zero</span></div>
+  </div>
+  <div class="legend">
+    <span class="chip mini">gpt-5-mini</span><span class="chip nano">gpt-5-nano</span><span class="chip speech">speech</span><span class="chip code">code</span>
+    <span>Every model and voice call goes through one wrapper with a hard cost cap and record/replay cache.</span>
+  </div>
+</div>
