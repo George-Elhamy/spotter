@@ -203,8 +203,9 @@ async def complete(agent: str, kind: Kind, system: str, user: str, *, cache_part
     if json_mode:
         options["response_format"] = {"type": "json_object"}
     msgs = [Message("system", [system]), Message("user", [user])]
-    return await _guarded(agent, kind, [system, user, *(cache_parts or [])] if cache_parts is not None else None,
-                          timeout, lambda: _client(kind).get_response(msgs, options=options))
+    # cache_parts must be deterministic for a given moment + settings (not the full prompt, which embeds
+    # timing-dependent board content) so CACHE_MODE=replay hits on re-runs.
+    return await _guarded(agent, kind, cache_parts, timeout, lambda: _client(kind).get_response(msgs, options=options))
 
 
 async def run_agent(agent: str, instructions: str, tools: Sequence[Any], prompt: str, *, kind: Kind = "mini",
