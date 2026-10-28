@@ -19,9 +19,14 @@ class BoothBoard:
     def new_id(self) -> str:
         return f"c_{next(self._ids):04d}"
 
-    def clear(self) -> None:
-        """On seek: drop pending/rejected cards but keep the aired history (shown on the board and used for dedupe)."""
-        self.cards = {cid: c for cid, c in self.cards.items() if c.status == "aired"}
+    def clear(self, keep_aired_before: float | None = None) -> None:
+        """On seek: drop pending/rejected cards. Aired cards created before the new time stay as history
+        (shown on the board and used for dedupe); jumping back removes the ones from "the future"."""
+        if keep_aired_before is None:
+            self.cards = {}
+            return
+        self.cards = {cid: c for cid, c in self.cards.items()
+                      if c.status == "aired" and c.created_t <= keep_aired_before}
 
     async def put(self, card: Card) -> Card:
         self.cards[card.id] = card

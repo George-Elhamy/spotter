@@ -67,7 +67,7 @@ class Booth:
 
     async def seek(self, t: float) -> None:
         """§8: clear board queue and audio, rebuild stats to t, agents resume with match-so-far context."""
-        self.board.clear()
+        self.board.clear(keep_aired_before=t if t > 0 else None)  # jump to kickoff = full reset
         self.state.reset()
         idx = self.data.index_at(t)
         for e in self.data.events[:idx]:
