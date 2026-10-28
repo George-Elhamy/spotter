@@ -23,6 +23,7 @@ if TYPE_CHECKING:
 log = logging.getLogger("spotter.producer")
 RANK_EVERY_S = 0.5
 LONG_WINDOW_S = 40
+CARD_WAIT_S = 8.0  # a ready card waits at most this long (match seconds) for a quiet window before taking the next gap
 PENDING = ("verified", "queued", "rendering", "ready")
 TOPIC_WORDS = {"stat": ("stat", "stats", "number", "numbers", "data"), "tactical": ("tactic", "tactics", "tactical", "shape", "press"),
                "background": ("background", "history", "dossier", "season", "form"), "story": ("story", "stories", "storyline", "narrative")}
@@ -40,6 +41,7 @@ class Producer:
         self.window: list[float] | None = None  # [start, end] in display time
         self.airing: dict[str, float] = {}  # card id → display time it finishes
         self.say_now_ids: list[str] = []
+        self.ready_at: dict[str, float] = {}
         self.removals: list[tuple[float, str]] = []
         self._last_rank = 0.0
 
@@ -121,6 +123,7 @@ class Producer:
             return
         await board.set_status(card, "ready", render={"line": line, "language": inst.language, "audio_url": audio_url,
                                                       "duration_ms": dur})
+        self.ready_at.setdefault(card.id, self.booth.state.t)
         if card.id in self.say_now_ids:
             await self.air(card)
 
@@ -178,6 +181,17 @@ class Producer:
                     s -= 15
         return round(s, 1)
 
+    def _in_window(self) -> bool:
+        return bool(self.window) and self.display_now() < self.window[1] - 1.0
+
+    def wants_slot(self) -> bool:
+        """A ready card is waiting for the next gap (quiet window open, or it has waited CARD_WAIT_S)."""
+        ready = self.booth.board.with_status("ready")
+        if not ready:
+            return False
+        t = self.booth.state.t
+        return self._in_window() or any(t - self.ready_at.get(c.id, t) >= CARD_WAIT_S for c in ready)
+
     def _recently_aired(self, card: Card, within: float) -> bool:
         end = self.airing.get(card.id)
         return end is not None and self.display_now() - end < within
@@ -210,23 +224,29 @@ class Producer:
         if len(live) != len(st.instance.directives):
             st.instance.directives = live
             await self.broadcast_directives()
-        # air in quiet windows
+        # air cards: in quiet windows, or in the next free gap once a card has waited CARD_WAIT_S
         if any(board.get(cid) and board.get(cid).status == "airing" for cid in self.airing):
             return
-        if self.window and disp < self.window[1] - 1.0:
+        if self.window and not self._in_window():
+            self.window = None
+        if not self.rt.caller.channel_free(disp):
+            return
+        ready = sorted(board.with_status("ready"), key=lambda c: -(c.producer.score or 0))
+        if not ready:
+            return
+        if self.window:
             start, end = self.window
-            play_at = max(start + 0.8, self.speaking_until + 0.3, disp)
-            remaining = end - play_at
-            ready = sorted(board.with_status("ready"), key=lambda c: -(c.producer.score or 0))
+            remaining = end - max(start + 0.8, disp)
             long_window = end - start >= LONG_WINDOW_S
             for c in ready:
                 if self._span(c.render.duration_ms or 3000) <= remaining or (long_window and c is ready[0]):
                     if not long_window:
                         self.window = None
                     await self.air(c)
-                    break
-        elif self.window:
-            self.window = None
+                    return
+        waited = [c for c in ready if st.t - self.ready_at.get(c.id, st.t) >= CARD_WAIT_S]
+        if waited:
+            await self.air(waited[0])
 
     def on_event(self, e: dict) -> None:
         try:

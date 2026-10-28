@@ -19,6 +19,9 @@ if TYPE_CHECKING:
 log = logging.getLogger("spotter.caller")
 DEADLINE_S = 1.4
 GROUP_S = 2.0
+FLOW_GROUP_S = 3.2  # a flowing call narrates the next few seconds of play in one line
+FLOW = {"pass", "carry", "dribble", "duel", "tackle", "interception", "clearance", "block", "throw_in",
+        "goal_kick", "free_kick", "corner", "offside", "foul"}
 HIGH = {"goal", "shot", "save", "penalty_awarded", "penalty_taken", "card", "var_check", "var_decision", "half_time",
         "full_time", "kickoff", "substitution", "injury"}
 FAST_ONLY = {"goal", "shot", "card", "penalty_taken"}
@@ -36,7 +39,11 @@ BUILTIN = {
            "var_decision": "VAR decision: the goal is ruled out!", "substitution": "{player} comes on for {related}.",
            "injury": "{player} is down injured.", "kickoff": "We're under way.", "half_time": "Half-time.",
            "full_time": "Full-time!", "attack": "{team} on the attack.", "dribble": "{player} skips past {related}.",
-           "goal_line_clearance": "Cleared off the line by {player}!"},
+           "goal_line_clearance": "Cleared off the line by {player}!", "pass": "{player}, finds {related}.",
+           "carry": "{player} carries it forward.", "tackle": "Good tackle from {player}.",
+           "interception": "Intercepted by {player}.", "clearance": "{player} clears it.",
+           "throw_in": "Throw-in, {team}.", "goal_kick": "Goal kick.", "free_kick": "Free kick to {team}.",
+           "duel": "{player} battling with {related}.", "offside": "Flag's up, offside.", "block": "Blocked by {player}!"},
     "ar": {"goal": "هدف! {player} يسجل لـ{team}!", "shot_saved": "تسديدة من {player}… والحارس يتصدى!",
            "shot_off_target": "تسديدة {player} تمر بجوار المرمى.", "shot_blocked": "تسديدة {player} تُصد.",
            "shot_post": "القائم! كرة {player} ترتطم بالقائم!", "save": "تصدٍّ رائع من الحارس!",
@@ -47,7 +54,11 @@ BUILTIN = {
            "substitution": "{player} يدخل بدلاً من {related}.", "injury": "{player} سقط مصاباً.",
            "kickoff": "انطلقت المباراة.", "half_time": "نهاية الشوط الأول.", "full_time": "نهاية المباراة!",
            "attack": "هجمة لـ{team}.", "dribble": "{player} يراوغ {related}!",
-           "goal_line_clearance": "{player} يبعدها من على خط المرمى!"},
+           "goal_line_clearance": "{player} يبعدها من على خط المرمى!", "pass": "{player} يمرر إلى {related}.",
+           "carry": "{player} يتقدم بالكرة.", "tackle": "افتكاك رائع من {player}.", "interception": "{player} يقطع الكرة.",
+           "clearance": "{player} يبعد الخطر.", "throw_in": "رمية تماس لـ{team}.", "goal_kick": "ركلة مرمى.",
+           "free_kick": "ركلة حرة لـ{team}.", "duel": "صراع بين {player} و{related}.", "offside": "تسلل.",
+           "block": "صدّها {player}!"},
 }
 
 
@@ -75,8 +86,6 @@ def event_key(e: dict) -> str | None:
         return "goal_line_clearance"
     if t == "dribble":
         return "dribble"
-    if t == "pass":
-        return "attack"
     return t if t in BUILTIN["en"] else None
 
 
@@ -86,11 +95,19 @@ class Caller:
         self.templates = _load_templates()
         self.consumed: set[int] = set()
         self.last_minor_t = -999.0
+        self.reserved_until = 0.0  # display-time the line being generated is expected to occupy
+        self.backlog: list[dict] = []  # flow events that arrived while the channel was busy
         self.rng = random.Random(42)
 
     def reset(self) -> None:
         self.consumed.clear()
         self.last_minor_t = -999.0
+        self.reserved_until = 0.0
+        self.backlog = []
+
+    def channel_free(self, t: float) -> bool:
+        """True when nothing is scheduled or being generated on the shared speech channel at display-time t."""
+        return max(self.rt.producer.speaking_until, self.reserved_until) <= t + 0.3
 
     def _speakable(self, e: dict) -> bool:
         t = e["type"]
@@ -98,29 +115,23 @@ class Caller:
             return t in FAST_ONLY
         if t in HIGH or (t == "clearance" and e.get("subtype") == "goal_line"):
             return True
-        busy = self.rt.producer.speaking_until > e["t"] - 0.5
-        if busy or e["t"] - self.last_minor_t < 10:
-            return False
-        if t in ("foul", "corner") or (t == "dribble" and e.get("outcome") in ("won", "complete")):
-            return True
-        if t == "pass" and e.get("outcome") == "complete" and e.get("end"):
-            x = e["end"]["x"]
-            attack_dir = self.rt.booth.data.meta["attack_direction"][str(e["period"])][e["team_id"]]
-            in_box = (x > 88.5 if attack_dir == "+x" else x < 16.5) and 13.8 < e["end"]["y"] < 54.2
-            return in_box
-        return False
+        # Continuous play-by-play: call the flow whenever the channel is free, unless the Producer
+        # is waiting to air a card (the analyst gets the next gap).
+        return t in FLOW and self.channel_free(e["t"]) and not self.rt.producer.wants_slot()
 
     def _group(self, e: dict) -> list[dict]:
         """Phase of play: this event plus speakable follow-ups within GROUP_S (shot → save/goal, foul → card...)."""
         evs = self.rt.booth.data.events
-        st = self.rt.booth.state
         group = [e]
-        i = st.next_idx
-        while i < len(evs) and evs[i]["t"] <= e["t"] + GROUP_S:
+        flow = e["type"] in FLOW
+        i = e["id"]  # event ids are 1-based and sequential: events[e.id] is the next event
+        while i < len(evs) and evs[i]["t"] <= e["t"] + (FLOW_GROUP_S if flow else GROUP_S):
             n = evs[i]
-            if n["type"] in HIGH or n["type"] == "clearance":
+            if n["type"] in HIGH or n["type"] == "clearance" or (flow and n["type"] in FLOW):
                 group.append(n)
                 self.consumed.add(n["id"])
+            if flow and n["type"] in HIGH:
+                break
             i += 1
         return group
 
@@ -147,12 +158,33 @@ class Caller:
         return tpl.format_map(fields)
 
     async def on_event(self, e: dict) -> None:
-        if e["id"] in self.consumed or not self._speakable(e):
+        if e["id"] in self.consumed:
             return
+        if not self._speakable(e):
+            if e["type"] in FLOW:
+                self.backlog = (self.backlog + [e])[-8:]
+            return
+        self._start(e)
+
+    async def tick(self) -> None:
+        """Fill gaps: as the current line is about to end, call the next stretch of play from the backlog."""
+        if self.rt.booth.clock.speed >= 5 or self.rt.producer.wants_slot():
+            return
+        disp = self.rt.producer.display_now()
+        if not self.channel_free(disp + 2.2):  # start generating ~2 s before the current line ends
+            return
+        ahead = max(disp + 0.4, self.rt.producer.speaking_until - 1.0)
+        for e in self.backlog:
+            if e["id"] not in self.consumed and e["t"] >= ahead:
+                self.backlog = [b for b in self.backlog if b["t"] > e["t"]]
+                self._start(e)
+                return
+
+    def _start(self, e: dict) -> None:
         group = self._group(e)
         main = self._main(group)
-        if main["type"] not in HIGH:
-            self.last_minor_t = e["t"]
+        span = max(2.4, group[-1]["t"] - group[0]["t"]) * max(1.0, self.rt.booth.clock.speed)
+        self.reserved_until = max(self.reserved_until, e["t"] + span)
         asyncio.create_task(self._call(group, main))
 
     async def _call(self, group: list[dict], main: dict) -> None:
@@ -188,6 +220,9 @@ class Caller:
         audio_url, dur = await speak(rt, line, inst, "caller", excited=excited)
         st.spoken = (st.spoken + [line])[-10:]
         play_at = main["t"] if main["type"] != "goal" else group[0]["t"]
+        if main["type"] in FLOW:  # flowing calls may start up to 1 s early to close gaps (still in sync)
+            play_at = max(group[0]["t"] - 1.0, rt.producer.speaking_until + 0.2, rt.producer.display_now() + 0.2)
+        self.reserved_until = min(self.reserved_until, max(play_at, rt.producer.speaking_until))
         await rt.producer.emit_speech("call", None, line, subtitle if inst.language == "ar" else None, audio_url, play_at, dur, agent="caller")
         if source == "template":
             await rt.booth.trace("caller", "template", f"{main['type']} after {time.monotonic() - started:.1f}s: {line}")

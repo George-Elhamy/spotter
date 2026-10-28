@@ -287,6 +287,8 @@ def _generic_events(seed: int, squads: dict[str, list[dict]], anchors: list[dict
             kind = "carry"
         attribute = "dribbling" if kind == "dribble" else "defending" if kind in {"tackle", "interception", "block", "clearance"} else "passing"
         actor = pick_player([pid for pid in players if not pid.endswith("-1")], attribute)
+        if kind == "save":  # only goalkeepers make saves
+            actor = "RED-1" if team == "RED" else "WHI-1"
         opponent = "WHI" if team == "RED" else "RED"
         defender = rng.choice([pid for pid in _active_at(opponent, t) if not pid.endswith("-1")])
         data = {}

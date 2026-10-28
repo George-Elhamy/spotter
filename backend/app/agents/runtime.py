@@ -41,6 +41,7 @@ class AgentRuntime:
     async def on_tick(self) -> None:
         await self.dispatcher.tick()
         await self.producer.tick()
+        await self.caller.tick()
 
     async def reset(self) -> None:
         self.dispatcher.reset()

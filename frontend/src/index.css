@@ -31,12 +31,15 @@
 }
 :root[data-theme="light"] { color-scheme: light; }
 
-* { box-sizing: border-box; }
-html, body, #root { width: 100%; height: 100%; }
-body { margin: 0; overflow: hidden; }
-button, select, input { font: inherit; }
-button { cursor: pointer; }
-button:disabled { cursor: default; }
+@layer base {
+  /* Layered so Tailwind utilities (e.g. text-[10px]) win over these resets. */
+  * { box-sizing: border-box; }
+  html, body, #root { width: 100%; height: 100%; }
+  body { margin: 0; overflow: hidden; }
+  button, select, input { font-family: inherit; }
+  button { cursor: pointer; }
+  button:disabled { cursor: default; }
+}
 ::selection { color: #ecfdf5; background: rgba(52, 211, 153, .25); }
 
 .app-shell {
