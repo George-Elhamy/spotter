@@ -14,3 +14,5 @@ backend/app/static/
 backend/app/data/cost_ledger.json
 backend/app/data/cache/audio_tmp/
 voice_samples/
+/composite*.png
+/microphone*.png

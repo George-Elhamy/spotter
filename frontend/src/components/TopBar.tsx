@@ -43,7 +43,7 @@ export default function TopBar() {
     <header className="relative z-40 border-b border-white/[0.07] bg-[var(--sp-header)] shadow-[0_12px_36px_rgba(0,0,0,.25)]">
       <div className="flex h-[66px] items-center gap-5 px-4 2xl:px-6">
         <div className="flex w-[174px] shrink-0 items-center gap-3">
-          <Logo size={36} />
+          <Logo size={46} />
           <div>
             <div className="text-[19px] font-black tracking-[0.22em] text-white">SPOTTER</div>
             <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500">
