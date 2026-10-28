@@ -20,10 +20,12 @@ def describe_event(rt: "AgentRuntime", e: dict) -> str:
     s = f"[{e['id']}] {rt.booth.state.match_time_label(e)} {e['type']}"
     if e.get("subtype"):
         s += f"/{e['subtype']}"
+    team = {"RED": "Redmoor", "WHI": "Whitcliffe"}
     if e.get("player_id"):
-        s += f" {d.name(e['player_id'])} ({e['player_id']})"
+        s += f" {d.name(e['player_id'])} ({e['player_id']}, {team.get(e.get('team_id') or '', '')})"
     if e.get("related_player_id"):
-        s += f" → {d.name(e['related_player_id'])} ({e['related_player_id']})"
+        rel = d.players.get(e["related_player_id"], {})
+        s += f" → {d.name(e['related_player_id'])} ({e['related_player_id']}, {team.get(rel.get('team_id', ''), '')})"
     if e.get("outcome"):
         s += f" [{e['outcome']}]"
     if e.get("card"):

@@ -13,6 +13,7 @@ from .proposers import describe_event
 if TYPE_CHECKING:
     from .runtime import AgentRuntime
 
+WINDOWS = ("match", "5min", "10min", "half")
 PCT_HINTS = ("pct", "percent", "accuracy", "possession", "share", "index", "control", "chaos", "prob")
 
 
@@ -50,14 +51,38 @@ def _season_value(rt: "AgentRuntime", c: Claim) -> float | None:
     return _num(p.get(c.metric)) if c.metric in p else None
 
 
-def actual_value(rt: "AgentRuntime", c: Claim) -> float | None:
-    if (c.window or "match") == "season":
+ALIASES = {"control": "control_index", "chaos": "chaos_index", "possession_pct": "possession",
+           "dribbles_won_against": "dribbles_won_vs", "accuracy": "pass_accuracy"}
+
+
+def actual_value(rt: "AgentRuntime", c: Claim, window: str | None = None) -> float | None:
+    window = window or c.window or "match"
+    if c.metric in ALIASES:
+        c.metric = ALIASES[c.metric]
+    if window == "season":
         return _season_value(rt, c)
     try:
-        v = rt.booth.stats.metric_value(c.entity, c.metric, c.window or "match", c.against)
+        v = rt.booth.stats.metric_value(c.entity, c.metric, window, c.against)
     except Exception:  # noqa: BLE001
         v = None
-    return _num(v) if v is not None else _season_value(rt, c)
+    return _num(v) if v is not None else (_season_value(rt, c) if window == (c.window or "match") else None)
+
+
+def check_claim(rt: "AgentRuntime", c: Claim, claimed: float) -> tuple[bool | None, float | None]:
+    """(ok, actual). Tries the claimed window first, then other windows (proposers sometimes mislabel the window).
+    ok None = not verifiable by code."""
+    first = actual_value(rt, c)
+    if first is None:
+        return None, None
+    if abs(first - claimed) <= tolerance(c.metric, first):
+        return True, first
+    for w in WINDOWS:
+        if w != (c.window or "match"):
+            alt = actual_value(rt, c, w)
+            if alt is not None and abs(alt - claimed) <= tolerance(c.metric, alt):
+                c.window = w
+                return True, alt
+    return False, first
 
 
 def _words(s: str) -> set[str]:
@@ -72,10 +97,10 @@ async def verify(rt: "AgentRuntime", card: Card) -> tuple[bool, str]:
         claimed = _num(c.value)
         if claimed is None or c.kind != "stat":
             continue
-        actual = actual_value(rt, c)
-        if actual is None:
+        ok, actual = check_claim(rt, c, claimed)
+        if ok is None or actual is None:
             continue  # unverifiable by code → covered by the qualitative check
-        if abs(actual - claimed) > tolerance(c.metric, actual):
+        if not ok:
             return False, f"claimed {c.metric}={claimed:g} for {data.name(c.entity) or c.entity}, actual {actual:g}"
         checked.append(f"{c.metric}={actual:g}")
     # 2. evidence must exist and be in the past
