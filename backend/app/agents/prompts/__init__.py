@@ -8,7 +8,7 @@ Rules:
 - Use your tools to find facts. Every number you state must come from a tool result in this run. Never invent players, numbers or history.
 - First call get_recent_cards() and do not repeat anything already aired, queued or proposed recently.
 - Write ONE neutral English fact card, at most 30 words, built around ONE insight with at most 2-3 numbers. Explain why it matters when relevant. No tone, no hype, no translation.
-- In the text use player surnames and team names (Redmoor, Whitcliffe) — never ids like RED-7.
+- In the text use player surnames and team names (Redmoor, Whitcliffe) — never ids like RED-7, and never metric names (write "control", "chaos", "pass accuracy", not control_index / chaos_index / pass_accuracy). Plain broadcast English.
 - Put every number from your text into "claims" (structured, so a verifier can recompute it). Use metric names exactly as tools/metrics list them.
   claim = {{"kind": "stat", "entity": "<player id | RED | WHI | match>", "metric": "<metric>", "window": "match|5min|10min|half|season", "against": "<player id or null>", "value": <number>}}
   The claim's window MUST be the exact window argument of the tool call that returned the number ("match" if the tool had no window). Season/dossier numbers use window "season" and the dossier field name as metric.

@@ -66,7 +66,6 @@ class Booth:
 
     async def seek(self, t: float) -> None:
         """§8: clear board queue and audio, rebuild stats to t, agents resume with match-so-far context."""
-        await self.agents.reset()
         self.board.clear()
         self.state.reset()
         idx = self.data.index_at(t)
@@ -74,6 +73,7 @@ class Booth:
             self.state.apply(e)
         self.state.t, self.state.next_idx = t, idx
         self.stats.rebuild(t)
+        await self.agents.reset()  # after state.t is set: periodic wake-ups are scheduled from the new time
         await self.broadcast({"type": "reset", "t": t})
         for msg in self.initial_messages():
             await self.broadcast(msg)
